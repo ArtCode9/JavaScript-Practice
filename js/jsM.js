@@ -1316,4 +1316,76 @@ console.log(announcement.replace('door', 'Gate'));
 console.log(announcement.replace(/door/g, 'Gate'));
 
 // Booleans
+const plan = 'A320neo';
+console.log(plan.includes('A320'));
+console.log(plan.includes('Boeing'));
+console.log(plan.startsWith('Air'));
 
+if(plane.startsWith('Airbus') && plane.endsWith('neo')){
+   console.log('part of the new Airbus');
+};
+
+// Practice exercise
+const checkBaggage = function(items){
+   const baggage = items.toLowerCase()
+   
+   if(baggage.includes('knife') || baggage.includes('gun')){
+      console.log('You are not allowed onboard');
+   }else {
+      console.log('Welcome aboard!');
+   }
+};
+
+checkBaggage('I have a laptop, some food and a pocket Knife');
+checkBaggage('Scoks nad animal');
+checkBaggage('Got some snacks and a gun for protection');
+
+//    split and join 
+console.log('a+very+nice+string'.split('+'));
+console.log('Jonas Schmedthmen'.split(' '));
+
+const [firstName, lastName] = 'Jonas Schmedthmen'.split(' ');
+const newName = ['Mr.', firstName, lastName.toUpperCase()].join('--');
+console.log(newName);
+
+
+
+const capitalizeName = function (name){
+   const names = name.split(' ');
+   const namesUpper = [];
+
+   for(const n of names){
+      // namesUpper.push(n[0].toUpperCase() + n.slice(1));  // or
+      namesUpper.push(n.replace(n[0], n[0].toUpperCase()));  // work like same above
+   }
+   console.log(namesUpper.join(' '));
+};
+capitalizeName('jessica ann smith daris');
+capitalizeName('jonas schemdtmen');
+capitalizeName('alireza tavanmand');
+
+
+//    padding
+const message = 'Go to gate 23!';
+console.log(message.padStart(20, '+').padEnd(30, '+'));
+console.log('Art'.padStart(20, '+').padEnd(30, '+'));
+
+const maskCredicard = function (number){
+   const str = number + ' ';
+   const last = str.slice(-5);
+   return last.padStart(str.length, '*');
+};
+console.log(maskCredicard(64567894));
+console.log(maskCredicard(43378456789128));
+console.log(maskCredicard('33546832146842237554'));
+
+//       repeat
+const message2 = 'Bad weather... all Delayed...';
+console.log(message2.repeat(5));
+const planesInline = function (n) {
+   console.log(`there are ${n} planes in line ${'✈'.repeat(n)}`);
+};
+planesInline(5);
+planesInline(3);
+planesInline(12);
+planesInline(9);
