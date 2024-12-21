@@ -1249,7 +1249,71 @@ for(const [min, event] of gameEvents) {
 ///////////    22 Working With Strings - Part 1   ///////////
 /////////////////////////////////////////////////////////////
 
+const airline = 'Tap Air Portugal';
+const plane = 'A320';
+console.log(airline, '✈',plane);
 
+console.log(plane[0]);
+console.log(plane[1]);
+console.log(plane[2]);
+console.log('B737'[0]);
 
+console.log(airline.length);
+console.log(airline.indexOf('r'));
+console.log(airline.lastIndexOf('r'));
+console.log(airline.indexOf('Portugal'));
+console.log(airline.slice(4));
+console.log(airline.slice(4, 7));
+console.log(airline.slice(0, airline.indexOf(' ')));
+console.log(airline.slice(airline.lastIndexOf(' ') + 1));
+console.log(airline.slice(-2));
+console.log(airline.slice(1, -1));
+console.log(airline.toLowerCase());
+console.log(airline.toUpperCase());
+console.log(`================`);
 
+const checkMiddleSeat = function(seat){
+      // B and E are middle seat
+      const s = seat.slice(-1);
+      if(s === 'B' || s === 'E')
+         console.log(`You got the middle seat🎊`);
+      else console.log(`You got lucky🎆`);
+}
+checkMiddleSeat('11b');
+checkMiddleSeat('11B');
+checkMiddleSeat('23C');
+checkMiddleSeat('3E');
+
+console.log(new String('jonas'));
+console.log(typeof new String('jonas'));
+
+// fix capitalization in name
+const passanger = 'jOnAs' // Jonas
+const passangerlower = passanger.toLowerCase();
+const passangerCorrect = passangerlower[0].toUpperCase() + passangerlower.slice(1);
+console.log(passangerCorrect);
+
+// comparing emails
+const email = 'hello@jonas.io';
+const loginEmail = ' Hello@Jonas.Io \n';
+
+const lowerEmail = loginEmail.toLowerCase();
+const trimmedEmail = lowerEmail.trim();
+console.log(trimmedEmail);
+
+const normalizedEmail = loginEmail.toLowerCase().trim();
+console.log(normalizedEmail);
+console.log(email === normalizedEmail);
+
+// replacing
+const priceGB = '288,97e';
+const priceUS = priceGB.replace('e', '$').replace(',', '.');
+console.log(priceUS);
+
+const announcement = 'All passanger come to boarding door 23. boarding door 23';
+console.log(announcement);
+console.log(announcement.replace('door', 'Gate'));
+console.log(announcement.replace(/door/g, 'Gate'));
+
+// Booleans
 
