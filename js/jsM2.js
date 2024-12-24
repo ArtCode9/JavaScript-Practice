@@ -27,7 +27,7 @@ createBooking('LH124', undefined, 1000);
  */
 
 /////////////////////////////////////////////////////////////
-///// 4 How Passing Arguments Works Value vs. Reference  ////
+////  4 How Passing Arguments Works Value vs. Reference   ///
 /////////////////////////////////////////////////////////////
 
 /* 
@@ -70,14 +70,53 @@ checkIn(flight, jonas);
  */
 
 /////////////////////////////////////////////////////////////
-/////    ////
+/////     5 First-Class and Higher-Order Functions       ////
 /////////////////////////////////////////////////////////////
 
+// first class function : simply values
+//                        function are another type values
+// higher order function : ""    ""    ""   ""
+
+/////////////////////////////////////////////////////////////
+/////     6 Functions Accepting Callback Functions       ////
+/////////////////////////////////////////////////////////////
+
+/* 
+// low-level functions
+const oneWord = function (str) {
+      return str.replace(/ /g, ' + ').toLowerCase();
+};
+
+const upperFirstWord = function (str) {
+   const [first, ...others] = str.split(' ');
+   return [first.toUpperCase(), ...others].join(' ');
+};
 
 
+//  Higher-order Function
+const transformer = function (str, fn) {
+   console.log(`Original string : ${str}`);
+   console.log(`Transformed String : ${fn(str)}`);
+
+   console.log(`Transformed by : ${fn.name}`);
+
+};
+
+transformer(`Javascript is the best!`, upperFirstWord);
+transformer(`Javascript is the best!`, oneWord);
 
 
+//  JS uses callbacks all the time
+const high5 = function () {
+   console.log('🤑');
+};
+document.body.addEventListener('click', high5); // addEventListener is higher-order functions
 
+['Jonas', 'Martha', 'Adam'].forEach(high5);
 
+ */
 
+/////////////////////////////////////////////////////////////
+/////           ////
+/////////////////////////////////////////////////////////////
 
