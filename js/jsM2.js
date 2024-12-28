@@ -258,5 +258,116 @@ person.fullName.call(person1);
 /////////            9 The bind Method                 //////
 /////////////////////////////////////////////////////////////
 
+/* 
+const lufthansa = {
+   airline: 'Lufthansa',
+   iataCode: 'LH',
+   bookings: [],
+   // book: function()
+   book(flightNum, name) {
+         console.log(`${name} booked a seat on ${this.airline} flight
+            ${this.iataCode} ${flightNum}`);
+   this.bookings.push({flight: `${this.iataCode}${flightNum}`, name });         
+   },
+};
+
+lufthansa.book(239, 'Jonas Schmedtman');
+lufthansa.book(635, 'John Smith');
+console.log(lufthansa);
+
+
+const euroWings = {
+   airline: 'Eurowings',
+   iataCode: 'EW',
+   bookings: []
+};
+
+const book = lufthansa.book;
+// lufthansa.book.call(euroWings, 23, 'Sarah Williams');
+
+
+// Does NOT work
+// book(23, 'Sarah Williams');
+
+//  Call Methods
+book.call(euroWings, 23, 'Sarah Williams');
+console.log(euroWings);
+
+
+book.call(lufthansa, 23, 'Sarah Williams');
+console.log(lufthansa);
+
+const swiss = {
+   airline: 'Swiss Air line',
+   iataCode: 'LX',
+   bookings: []  
+};
+
+book.call(swiss, 583, 'Mary Cooper');
+console.log(swiss);
+
+//  Apply Methods
+const flightDate = [583, 'George Cooper'];
+book.apply(swiss, flightDate);
+console.log(swiss);
+
+book.call(swiss, ...flightDate);
+
+
+//  Bind Method
+// book.call(euroWings, 23, 'Sarah Williams');
+
+const bookEW = book.bind(euroWings);
+const bookLH = book.bind(lufthansa);
+const bookLX = book.bind(swiss);
+
+bookEW(23, 'Steven art');
+bookLH(77, 'arti art');
+bookLX(88, 'hi man');
+
+
+const bookEW23 = book.bind(euroWings, 2453);
+// this only need a name of passenger
+bookEW23('Arta Tav');
+bookEW23('BAT man');
+
+
+// with Event Listeners
+lufthansa.planes = 300;
+lufthansa.buyPlane = function () {
+   console.log(this);
+
+   this.planes++;
+   console.log(this.planes);
+};
+// lufthansa.buyPlane();
+
+// document.querySelector('.buy').addEventListener('click', lufthansa.buyPlane.bind(lufthansa));
+
+// partial application
+const addTax = (rate, value) => value + value * rate ;
+console.log(addTax(0.1, 200));
+
+const addVAT = addTax.bind(null, 0.23);
+// addVAT = value =>  value + value * 0.23;
+
+console.log(addVAT(100));
+console.log(addVAT(23));
+
+const addTaxRate = function(rate) {
+      return function (value) {
+         return value + value * rate;
+      }
+};
+const addVAT2 = addTaxRate(0.23);
+console.log(addVAT2(100));
+console.log(addVAT2(23));
+
+ */
+
+/////////////////////////////////////////////////////////////
+/////////            9 The bind Method                 //////
+/////////////////////////////////////////////////////////////
+
 
 
