@@ -461,6 +461,63 @@ poll.displayResult.call({ answers: [1, 5, 3, 9, 6, 1]}, 'string');
  */
 
 /////////////////////////////////////////////////////////////
-///////////                          /////////
+/////  11 Immediately Invoked Function Expressions (IIFE) ///
 /////////////////////////////////////////////////////////////
+
+/* 
+const runOnce = function () {
+   console.log(`This will never run again`);
+};
+runOnce();
+
+// IIFE
+(function () {
+   console.log(`This will never run  again`);
+   const isPrivate = 23;
+})();
+//  this not work for scope reason
+// console.log(isPrivate);
+
+(() => console.log(`This will NEVER ALSO run again`))();
+
+
+{
+   const isPrivate = 23;
+   var notPrivate = 46;
+}
+//  not work scope reason
+// console.log(isPrivate);
+//  it's work scope reason
+console.log(notPrivate);
+
+ */
+
+/////////////////////////////////////////////////////////////
+///////////                12 Closures              /////////
+/////////////////////////////////////////////////////////////
+
+ 
+/* 
+const secureBooking = function () {
+   let passengerCount = 0;
+
+   return function () {
+      passengerCount++;
+      console.log(`${passengerCount} passengers`);
+   };
+};
+
+const booker = secureBooking();
+
+console.log(typeof booker);
+
+booker();
+booker();
+booker();
+
+console.dir(booker);
+
+ */
+
+
 
