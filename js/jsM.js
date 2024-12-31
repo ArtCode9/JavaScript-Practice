@@ -1,6 +1,6 @@
 'use strict';
 
-// season 09 :: Data structures , Modern Operators and Strings
+//  Data structures , Modern Operators and Strings
 
 /////////////////////////////////////////////////////////////
 ////////////////// 03 Destructuring Arrays //////////////////

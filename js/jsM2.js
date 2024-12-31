@@ -1,4 +1,5 @@
 'use strict';
+//  closer look at function
 
 /////////////////////////////////////////////////////////////
 /////////////////     3 Default Parameters    ///////////////
@@ -585,7 +586,7 @@ boardPassengers(180, 6);
 // and what that means for the variables involved in this example.
 
 
-(function () { 
+/* (function () { 
    const header = document.querySelector('h1'); 
    header.style.color = 'red'; 
 
@@ -595,7 +596,7 @@ boardPassengers(180, 6);
       }
    );
 })(); 
-
+ */
 
 
 /////////////////////////////////////////////////////////////
