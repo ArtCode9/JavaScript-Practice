@@ -81,17 +81,71 @@ const account1 = {
 // const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
 /////////////////////////////////////////////////////////////
+///////////      06 forEach With Maps and Sets      /////////
+/////////////////////////////////////////////////////////////
+
+
+
+
+
+/////////////////////////////////////////////////////////////
 /////////////////    05 Looping Arrays forEach   ////////////
 /////////////////////////////////////////////////////////////
 // we were start working with bank account data 😎 in this section
+
+/* 
 //  the positive values are deposits
 //  and the negative values are withdrawals
 const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
+for (const movement of movements){
+    if (movement > 0){
+      console.log(`You deposited ${movement} 😎🤑`);
+    }else {
+      console.log(`You withdrew ${Math.abs(movement)} 😥😁`);
+    }; 
+};
+// with forEach method
+console.log(`------with forEach Methods------`);
+movements.forEach(function(movement) {
+    if(movement > 0){
+      console.log(`You deposited ${movement} 😍🤑`);
+    }else {
+      console.log(`You withdrew ${Math.abs(movement)} 😑😁`);
+    };
+});
+// 0: function(200)
+// 1: function(450)
+// 2: function(400)
+// ......
+console.log(`--------`);
+// now what if we actually needed access to a counter variable here.
+for (const [i, movement] of movements.entries()){
+  if(movement > 0 ){
+    console.log(`Movement ${i + 1}: You deposited ${movement} 😎🤑`);
+  }else {
+    console.log(`Movement ${i + 1}: You withdrew ${Math.abs(movement)} 😥😁`);
+  }
+}; 
+// now what if we actually needed access to a counter variable here do with forEach
+console.log(`----ForEach----`);
+movements.forEach(function (mov, i, arr){
+    if(mov > 0){
+      console.log(`Movement ${i + 1}: You deposited ${mov} 🤡🤡🤡`);
+    }else {
+      console.log(`Movement ${i + 1}: You withdrew ${Math.abs(mov)} 🤠🤠🤠`);
+    }
+});
+// when should you use forEach and when you use the for of loop
+// well one fundamental difference between the two of them
+// is that you cannot break out of a forEach loop.
+// so the continue and break statements do not work in a forEach loop at all
+// so instead foreach will always loop over the entire array and there is nothing that
+//  you can do about it.so if you need break out of the loop then you have 
+//  keep using the for of loop bit other than that it really comes down to your personal 
+//  preference.
 
-
-
-
+ */
 /////////////////////////////////////////////////////////////
 /////////////////       04 The New at Method     ////////////
 /////////////////////////////////////////////////////////////
