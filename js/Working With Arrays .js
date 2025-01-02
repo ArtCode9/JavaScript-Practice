@@ -78,12 +78,25 @@ const account1 = {
    ['GBP', 'Pound sterling'],
  ]);
  
- const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+// const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+
+/////////////////////////////////////////////////////////////
+/////////////////    05 Looping Arrays forEach   ////////////
+/////////////////////////////////////////////////////////////
+// we were start working with bank account data 😎 in this section
+//  the positive values are deposits
+//  and the negative values are withdrawals
+const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+
+
+
+
 
 /////////////////////////////////////////////////////////////
 /////////////////       04 The New at Method     ////////////
 /////////////////////////////////////////////////////////////
 
+/* 
 //  At method
 const arr = [23, 11, 64];
 //  if  we wanted to take one of the values out of the array
@@ -96,10 +109,16 @@ console.log(arr.at(0));
 console.log(arr[arr.length - 1]);
 // with the slice method
 console.log(arr.slice(-1));
- 
+ // with the at method
+console.log(arr.at(-1));
+//  in methods chaining at is perfect for that
+//  for combining multiple methods
+// at method also work on the string
 
+console.log('artcode9'.at(0));
+console.log('artcode9'.at(-1));
 
-
+ */
 /////////////////////////////////////////////////////////////
 /////////////////     03 Simple Array Methods    ////////////
 /////////////////////////////////////////////////////////////
