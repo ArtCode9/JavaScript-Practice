@@ -35,7 +35,7 @@ const account1 = {
 
  const account5 = {
       owner: 'Art Tavanmand',
-      movements: [750, 590, 233, 7000, 30000],
+      movements: [750, -230, 590, 233, 7000, 30000, -400],
       interestRate: 3.2,
       pin: 5555,
 };
@@ -106,7 +106,23 @@ const displayMovements = function(movements) {
 };
 displayMovements(account1.movements);
 
+/////////////////////////////////////////////////////////////
+//////////////        11 The map Method         /////////////
+/////////////////////////////////////////////////////////////
 
+
+
+
+
+
+/////////////////////////////////////////////////////////////
+//////    10 Data Transformations map, filter, reduce  //////
+/////////////////////////////////////////////////////////////
+// three array methods map - filter - reduce
+
+// MAP >> applying an operation on all original array element and build new array
+// Filter >> return a new array containing the array elements that passed a specified test condition
+// Reduce >> all elements down to one single value 
 
 /////////////////////////////////////////////////////////////
 ///////////              09 CHALLENGE #1            /////////
@@ -114,6 +130,7 @@ displayMovements(account1.movements);
 
 // Coding Challenge #1
 
+/* 
 // Julia and Kate are doing a study on dogs. So each of them asked 5 dog owners 
 // about their dog's age, and stored the data into an array (one array for each). For 
 // now, they are just interested in knowing whether a dog is an adult or a puppy.
@@ -138,20 +155,36 @@ displayMovements(account1.movements);
 // 4. Run the function for both test datasets
 // Test data:
 
-// § Data 1: Julia's data [3, 5, 2, 12, 7], Kate's data [4, 1, 15, 8, 3]
-// § Data 2: Julia's data [9, 16, 6, 8, 3], Kate's data [10, 5, 6, 1, 4]
+//  Data 1: Julia's data [3, 5, 2, 12, 7], Kate's data [4, 1, 15, 8, 3]
+//  Data 2: Julia's data [9, 16, 6, 8, 3], Kate's data [10, 5, 6, 1, 4]
 // Hints: Use tools from all lectures in this section so far 
 
+const checkDogs = function (dogsJulia, dogsKate) {
+      const dogsJuliaCorrected = dogsJulia.slice();
+      dogsJuliaCorrected.splice(0, 1);
+      dogsJuliaCorrected.splice(-2);
+      // we can also do this with the same result
+      // dogsJulia.slice(1, 3);
+      console.log(`Julia🐶 ${dogsJuliaCorrected}`);
+      const dogs = dogsJuliaCorrected.concat(dogsKate);
+      console.log(`All 🐶 ${dogs}`);
+      console.log(dogs);
+// ("Dog number 1 is an adult, and is 5 years old") or a puppy ("Dog number 2 is still a puppy
+      dogs.forEach(function(dog, i){
+            console.log(dog);
+            if(dog >= 3) {
+              console.log(`Dog number ${i + 1} is an adult, and is ${dog} years old🐕‍🦺`);
+            }else {
+              console.log(`Dog number ${i + 1} is still a puppy🐕`);
+            }
+      });
+};
+// checkDogs([3, 5, 2, 12, 7], [4, 1, 15, 8, 3]);
+// checkDogs([9, 16, 6, 8, 3], [10, 5, 6, 1, 4]);
+checkDogs([19, 6, 16, 18, 7], [1, 15, 9, 10, 14]);
 
 
-
-
-
-
-
-
-
-
+ */
 /////////////////////////////////////////////////////////////
 ///////////          07 PROJECT Bankist App         /////////
 /////////////////////////////////////////////////////////////
