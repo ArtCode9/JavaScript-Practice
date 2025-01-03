@@ -127,7 +127,7 @@ console.log(accounts);
 // console.log(account5.username);
 
 /* ============================================== */
-// const user = 'Ali Reza Tavan';
+// const user = 'John Smith';
 
 // const createUsernames = function (accounts) {
 //   const username = user.toLowerCase().split(' ').map(accounts => accounts[0])
