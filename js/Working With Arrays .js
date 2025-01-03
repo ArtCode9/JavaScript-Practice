@@ -71,13 +71,15 @@ const account1 = {
  /////////////////////////////////////////////////
  /////////////////////////////////////////////////
  // LECTURES
-/*  
- const currencies = new Map([
-   ['USD', 'United States dollar'],
-   ['EUR', 'Euro'],
-   ['GBP', 'Pound sterling'],
- ]);
- */ 
+
+ /*  
+    const currencies = new Map([
+      ['USD', 'United States dollar'],
+      ['EUR', 'Euro'],
+      ['GBP', 'Pound sterling'],
+    ]);
+*/ 
+
 // const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
 /////////////////////////////////////////////////////////////
@@ -111,11 +113,33 @@ displayMovements(account1.movements);
 /////////////////////////////////////////////////////////////
 
 
+/* 
+const movements = [200, 450, -400, 3000, -650, -130, 70, 1300, 999, 876, -1092];
 
+const eurToUds = 1.1;
 
+// const movementsUsd = movements.map(function(mov){
+//     return mov * eurToUds;
+//     // return 23;
+// });
 
+const movementsUsd = movements.map( (mov) => mov * eurToUds);
 
-/////////////////////////////////////////////////////////////
+console.log(movements);
+console.log(movementsUsd);
+
+const movementsUsdfor = [];
+for (const mov of movements) movementsUsdfor.push(mov * eurToUds);
+console.log(movementsUsdfor);
+
+const movementsDescriptions =  movements.map((mov, i) => 
+
+  `Movement ${i + 1}: You ${mov > 0 ? 'deposited🤑' : 'withdrew😋'} ${Math.abs(mov)}`
+); 
+console.log(movementsDescriptions);
+
+ *
+//////////////////////////////////////////////////////////////
 //////    10 Data Transformations map, filter, reduce  //////
 /////////////////////////////////////////////////////////////
 // three array methods map - filter - reduce
