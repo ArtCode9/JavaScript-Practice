@@ -109,13 +109,82 @@ const displayMovements = function(movements) {
 displayMovements(account1.movements);
 
 /////////////////////////////////////////////////////////////
-/////////         12 Computing Usernames        /////////////
+/////////         12 Computing Usernames   💾   ////////////
+/////////////////////////////////////////////////////////////
+ 
+const createUsernames = function (accs){
+  accs.forEach(function (acc) {
+    acc.username = acc.owner
+    .toLowerCase().split(' ').map(name => name[0]).join('');
+  });
+};
+createUsernames(accounts);
+console.log(accounts);
+// console.log(account1.username);
+// console.log(account2.username);
+// console.log(account3.username);
+// console.log(account4.username);
+// console.log(account5.username);
+
+/* ============================================== */
+// const user = 'Ali Reza Tavan';
+
+// const createUsernames = function (accounts) {
+//   const username = user.toLowerCase().split(' ').map(accounts => accounts[0])
+//   .join('');
+//   return username;
+// };
+// console.log(createUsernames('Steven Thomas Williams',));
+
+
+
+///////💻💻💻💻💻💻💻💻💻💻💻💻💻💻💻💻💻💻/////////
+
+
+/////////////////////////////////////////////////////////////
+//////////////       14 The reduce Method        ////////////
 /////////////////////////////////////////////////////////////
 
 
 
 
-///////💻💻💻💻💻💻💻💻💻💻💻💻💻💻💻💻💻💻/////////
+
+
+
+
+/////////////////////////////////////////////////////////////
+//////////////       13 The filter Method        ////////////
+/////////////////////////////////////////////////////////////
+
+/* 
+const mov = [200, 450, -400, 3000, -650, -130, 70, 1300];
+
+const deposits = mov.filter(function (m) {
+  return m > 0;
+});
+console.log(mov);
+console.log(`Filter method:`);
+console.log(deposits);
+
+const depositsFor = []; //  empty array
+for(const v of mov) if (v > 0) depositsFor.push(v);
+console.log(`for and push method:`);
+console.log(depositsFor);
+
+
+const withdrawals = []; //  empty array
+const withdrawal = mov.filter(function (t) {
+   return t < 0 ;
+});
+// with arrow function
+// const withdrawal = mov.filter(mov => mov < 0);
+console.log(`Filter method:`);
+console.log(withdrawal);
+
+for(const v of mov) if (v < 0) withdrawals.push(v);
+console.log(`for and push method:`);
+console.log(withdrawals); 
+*/
 
 /////////////////////////////////////////////////////////////
 //////////////        11 The map Method         /////////////
