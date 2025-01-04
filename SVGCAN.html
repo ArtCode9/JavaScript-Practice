@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Canvas</title>
+   <style>
+      *{
+         padding: 0;
+         margin: 0;
+         text-align: center;
+         box-sizing: border-box;
+      }
+      img{
+         width: 64px;
+         height: 64px;
+      }
+      #container {
+         margin: 6px;
+         border: 4px solid black;
+         display: grid;
+         grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+         align-items: center;
+         align-content: center;
+         text-align: center;
+      }
+      #svg3 {
+           margin-top: 7px;
+       }
+      .bx{
+         border: 2px solid black;
+         width: 100px;
+         height: 100px;
+         background-color: black;
+       }
+</style>
+</head>
+<body>
+   <h1>My first SVG</h1>
+   <div id="container">
+      <div id="box1">
+         <svg width="190" height="190" >
+            <circle cx="99" cy="99" r="70" stroke="blue" stroke-width="6" fill="lightblue"/>
+         </svg>
+      </div>
+      <div id="box2">
+         <svg width="160" height="100" xmlns="http://www.w3.org/2000/svg">
+            <rect width="100%" height="100%" fill="green" rx="20" ry="20"/>
+            <circle cx="75" cy="50" r="40" fill="yellow" />
+            <text x="75" y="60" font-size="30" text-anchor="middle" fill="blue">SVG</text>
+          </svg>
+      </div>
+      <div id="box3">
+         <svg width="260" height="200" xmlns="http://www.artcode9.com" id="svg3">
+            <rect width="100%" height="100%" fill="blue" rx="16" ry="16"></rect>
+            <circle cx="125" cy="95" r="80" fill="lightblue" stroke="black" stroke-width="4"></circle>
+            <text x="125" y="105" font-size="30" text-anchor="middle" fill="red">Art</text>
+         </svg>
+      </div>
+      <div id="box4">
+            <svg width="320" height="210" xmlns="http://www.artcode9.com">
+               <rect width="270" height="112" fill="gray" x="30" y="50" stroke="red" stroke-width="2"></rect>
+               <rect width="120" height="90" fill="lightblue" x="10" y="30" rx="16" ry="16"
+               opacity="0.7" stroke="blue" stroke-width="2"></rect>
+            </svg>
+      </div>
+      <div id="box5">
+            <svg width="120" hight="80" style="border:2px solid black">
+                  <circle cx="50" cy="60" r="50" fill="yellow"></circle>
+                  <circle cx="44" cy="33" r="33" fill="black" opacity="0.3"></circle>
+            </svg>
+      </div>
+      <div id="box6">
+               <svg width="220" hight="120" style="border:2px solid black; border-radius:13px; background: green">
+                     <ellipse rx="96" ry="40" cx="120" cy="100"
+                     style="fill: yellow; stroke: tomato; stroke-width: 3;"></ellipse>
+               </svg>
+      </div>
+      <div id="box7">
+            <svg width="223" hight="126" style="border:1px solid tomato; border-radius: 5px; background: brown;">
+                  <ellipse cx="110" cy="110" rx="110" ry="20" fill="yellow"></ellipse>
+                  <ellipse cx="110" cy="90" rx="110" ry="20" fill="green"></ellipse>
+                  <ellipse cx="110" cy="70" rx="110" ry="20" fill="orange"></ellipse>
+                  <ellipse cx="110" cy="50" rx="110" ry="20" fill="blue"></ellipse>
+            </svg>
+      </div>
+      <div id="box8">
+            <svg width="400" height="90" xmlns="http://www.w3school.com">
+                  <ellipse cx="170" cy="50" rx="150" ry="25" fill="yellow"></ellipse>
+                  <ellipse cx="160" cy="50" rx="110" ry="15" fill="black"></ellipse>
+            </svg>
+      </div>
+      <div id="box9">
+            <svg width="300" height="200" xmlns="http://www.w3school.com">
+               <line x1="0" y1="0" x2="200" y2="180" style="stroke: tomato; stroke-width: 4"></line>
+               <line x1="150" y1="0" x2="0" y2="190" style="stroke: blue; stroke-width: 4"></line>
+               <line x1="0" y1="100" x2="150" y2="100" style="stroke: gold; stroke-width: 4"></line>
+               <line x1="170" y1="60" x2="60" y2="177" style="stroke: green; stroke-width: 4"></line>
+            </svg>
+      </div>
+      <div id="box10">
+            <h3>A Horizontal Line</h3>
+            <svg width="300" height="50" >
+                  <line x1="0" y1="10" x2="250" y2="10" style="stroke: red; stroke-width:12"></line>
+            </svg>
+      </div>
+      <div id="box11">
+         <h3>A Vertical line</h3>
+         <svg width="300" height="210" >
+            <line x1="0" y1="0" x2="0" y2="200" style="stroke: blue; stroke-width:18"></line>
+            <line x1="80" y1="0" x2="80" y2="200" style="stroke: blue; stroke-width:18"></line>
+         </svg>
+      </div>
+      <div id="box12">
+         
+      </div>
+   </div>
+   
+
+   
+</body>
+</html>
