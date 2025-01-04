@@ -4,6 +4,7 @@
    background: transparent;
    white-space: nowrap;
    width: 100%;
+   height: 39px;
    margin: 10px auto;
    position: relative;
 }
@@ -30,11 +31,12 @@
 }
 .logos-slide {
    display: inline-block;
-   animation: 39s slide infinite linear;
+   animation: 19s slide infinite linear;
 }
 .logos-slide img {
    height: 50px;
    margin: 0 66px;
+   cursor: pointer;
 }
 .logos-slide h1 {
    height: 50px;
