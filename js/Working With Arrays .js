@@ -119,7 +119,7 @@ const createUsernames = function (accs){
   });
 };
 createUsernames(accounts);
-console.log(accounts);
+// console.log(accounts);
 // console.log(account1.username);
 // console.log(account2.username);
 // console.log(account3.username);
@@ -136,6 +136,18 @@ console.log(accounts);
 // };
 // console.log(createUsernames('Steven Thomas Williams',));
 
+/////////////////////////////////////////////////////////////
+//////////////       14 The reduce Method   💾    ///////////
+/////////////////////////////////////////////////////////////
+
+const calcDisplayBalance = function(movements) {
+  const balance = movements.reduce((acc, mov) => acc + mov,0);
+  labelBalance.textContent = `${balance} EUR`;
+};
+calcDisplayBalance(account1.movements);
+
+
+
 
 
 ///////💻💻💻💻💻💻💻💻💻💻💻💻💻💻💻💻💻💻/////////
@@ -145,12 +157,36 @@ console.log(accounts);
 //////////////       14 The reduce Method        ////////////
 /////////////////////////////////////////////////////////////
 
+/*  
+const mov = [200, 450, -400, 3000, -650, -130, 70, 1300];
+console.log(mov);
 
+//  accumulator -->  SNOWBALL
+const balance = mov.reduce(function (acc, cur, i, arr) {
+      console.log(`Iteration ${i}: ${acc}`);
+      return acc + cur;
+}, 0);
+console.log(balance);
+// with arrow function
+console.log(`----arrow function----`);
+const balanceArrow = mov.reduce((acc, cur) => acc + cur, 0);
+console.log(balanceArrow);
 
+//  now do it with for loop
+console.log(`----for loop----`);
+let balance2 = 0;
+for(const m of mov) balance2 += m;
+console.log(balance2);
 
+//  Maximum value
+console.log(`---max value----`);
+const max = mov.reduce((acc, mov) => {
+  if(acc > mov) return acc;
+  else  return mov;
+}, mov[0]); 
+console.log(max);
 
-
-
+ */
 
 /////////////////////////////////////////////////////////////
 //////////////       13 The filter Method        ////////////
