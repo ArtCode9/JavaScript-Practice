@@ -6,10 +6,15 @@
    <title>Canvas</title>
    
       <style>
-         body{
+         *{
             padding: 0;
             margin: 0;
             text-align: center;
+            box-sizing: border-box;
+         }
+         img{
+            width: 64px;
+            height: 64px;
          }
          #container {
             margin: 6px;
@@ -23,6 +28,106 @@
       #svg3 {
          margin-top: 7px;
       }
+      .bx{
+         border: 2px solid black;
+         width: 100px;
+         height: 100px;
+         background-color: black;
+      }
+      .slides {
+            display: flex;
+  
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+  
+            scroll-behavior: smooth;
+            -webkit-overflow-scrolling: touch;
+  
+            /*
+            scroll-snap-points-x: repeat(300px);
+            scroll-snap-type: mandatory;
+            */
+      }
+      .slides::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+.slides::-webkit-scrollbar-thumb {
+  background: black;
+  border-radius: 10px;
+}
+.slides::-webkit-scrollbar-track {
+  background: transparent;
+}
+.slides > div {
+  scroll-snap-align: start;
+  flex-shrink: 0;
+  width: 300px;
+  height: 300px;
+  margin-right: 50px;
+  border-radius: 10px;
+  background: #eee;
+  transform-origin: center center;
+  transform: scale(1);
+  transition: transform 0.5s;
+  position: relative;
+  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 100px;
+}
+.slides > div:target {
+/*   transform: scale(0.8); */
+}
+.author-info {
+  background: rgba(0, 0, 0, 0.75);
+  color: white;
+  padding: 0.75rem;
+  text-align: center;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  margin: 0;
+}
+/* .author-info a {
+  color: white;
+} */
+img {
+  object-fit: cover;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.slider > a {
+  display: inline-flex;
+  width: 1.5rem;
+  height: 1.5rem;
+  background: white;
+  text-decoration: none;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  margin: 0 0 0.5rem 0;
+  position: relative;
+}
+.slider > a:active {
+  top: 1px;
+}
+.slider > a:focus {
+  background: #000;
+}
+
+/* Don't need button navigation */
+@supports (scroll-snap-type) {
+  .slider > a {
+    display: none;
+  }
+}  
       </style>
 
 </head>
@@ -76,15 +181,76 @@
          </svg>
    </div>
    <div id="box8">
-         <svg width="500" height="100" xmlns="http://www.w3school.com">
-               <ellipse cx="240" cy="50" rx="220" ry="30" fill="yellow"></ellipse>
-               <ellipse cx="220" cy="50" rx="190" ry="20" fill="black"></ellipse>
-               
+         <svg width="400" height="90" xmlns="http://www.w3school.com">
+               <ellipse cx="170" cy="50" rx="150" ry="25" fill="yellow"></ellipse>
+               <ellipse cx="160" cy="50" rx="110" ry="15" fill="black"></ellipse>
+         </svg>
+   </div>
+   <div id="box9">
+         <svg width="300" height="200" xmlns="http://www.w3school.com">
+            <line x1="0" y1="0" x2="200" y2="180" style="stroke: tomato; stroke-width: 4"></line>
+            <line x1="150" y1="0" x2="0" y2="190" style="stroke: blue; stroke-width: 4"></line>
+            <line x1="0" y1="100" x2="150" y2="100" style="stroke: gold; stroke-width: 4"></line>
+            <line x1="170" y1="60" x2="60" y2="177" style="stroke: green; stroke-width: 4"></line>
+         </svg>
+   </div>
+   <div id="box10">
+         <h3>A Horizontal Line</h3>
+         <svg width="300" height="50" >
+               <line x1="0" y1="10" x2="250" y2="10" style=""></line>
          </svg>
    </div>
 </div>
+<div class="slider">
+  
+   <!-- <a href="#slide-1">1</a>
+   <a href="#slide-2">2</a>
+   <a href="#slide-3">3</a>
+   <a href="#slide-4">4</a>
+   <a href="#slide-5">5</a>
+  -->
+   <div class="slides">
+     <div id="slide-1" class="mySlides">
+       <img src="src/icons8-javascript-96.png" alt="js">
+     </div>
+     <div id="slide-2" class="mySlides">
+      <img src="src/icons8-pixel-star-80.png" alt="js">
+     </div>
+     <div id="slide-3" class="mySlides">
+      <img src="src/icons8-javascript-96.png" alt="js">
+     </div>
+     <div id="slide-4" class="mySlides">
+      <img src="src/icons8-pixel-star-80.png" alt="js">
+     </div>
+     <div id="slide-5" class="mySlides">
+      <img src="src/icons8-javascript-96.png" alt="js">
+     </div>
+     <div id="slide-6" class="mySlides">
+      <img src="src/icons8-pixel-star-80.png" alt="js">
+     </div>
+     <div id="slide-7" class="mySlides">
+      <img src="src/icons8-javascript-96.png" alt="js">
+     </div>
+     <div id="slide-8" class="mySlides">
+      <img src="src/icons8-pixel-star-80.png" alt="js">
+     </div>
+   </div>
+ </div>
      <script>
-    
+      var myIndex = 0;
+      carousel();
+
+function carousel() {
+  var i;
+  var x = document.getElementsByClassName("mySlides");
+  for (i = 0; i < x.length; i++) {
+    x[i].style.display = "none";  
+  }
+  myIndex++;
+  if (myIndex > x.length) {myIndex = 1}    
+  x[myIndex-1].style.display = "block";  
+  setTimeout(carousel, 2000);    
+}
     
    
      </script>   
