@@ -37,9 +37,14 @@ body{background-color: black;}
    width: 95%;
    border: 1px solid black;
    display: flex;
-   flex-direction: column;
+   flex-direction: column-reverse;
    align-content: center;
    align-items: center;
+}
+#headboxhone{
+   background-color: transparent;
+   padding-top: 80px;
+
 }
 #headboxhone:hover {
    background-color: black;
