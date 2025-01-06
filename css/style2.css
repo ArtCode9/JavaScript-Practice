@@ -5,6 +5,7 @@
    font-family: Cambria;
 }
 body{background-color: black;}
+/* ================ main box  =============== */
 #mainBox {
       margin: 20px 20px;
       width: auto;
@@ -13,16 +14,19 @@ body{background-color: black;}
       box-shadow: 0 0 25px whitesmoke;
       display: grid;
       grid-template-columns: 1fr 1fr 1fr;
-      grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+      grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
       grid-template-areas:
          "he he he"
          "hr hd hz"
          "xr xd xz"
-         "pr pd pz";
+         "pr pd pz"
+         "pr2 pd2 pz2"
+         "pr3 pd3 pz3";
       text-align: center;
       border-radius: 16px;
       gap: 6px;
 }
+/* ============== head section ============ */
 #headbox{
    grid-area: he;
    margin: 19px auto;
@@ -30,7 +34,7 @@ body{background-color: black;}
    font-weight: bold;
    background-color: gold;
    height: 90%;
-   width: 80%;
+   width: 95%;
    border: 1px solid black;
    display: flex;
    flex-direction: column;
@@ -41,9 +45,11 @@ body{background-color: black;}
    background-color: black;
    color: gold;
    border: 3px solid black;
+   border-radius: 9px;
    cursor: pointer;
    animation: blink 1s ease-in-out infinite;
 }
+/* ==================box1====================== */
 #box1{
    /* background-image: linear-gradient(to top, rgb(216, 245, 100) , #333); */
    background-color: #037fa9;
@@ -60,6 +66,51 @@ body{background-color: black;}
                         "y1 y1 y2 y3";
    
 }
+.again{
+   grid-area: x1;
+   background-color: goldenrod;
+   padding: 6px;
+   font-weight: bolder;
+   font-family: system-ui, -apple-system;
+   border: none;
+}
+#headed{
+   grid-area: x2;
+}
+#headed2{
+   grid-area: b2;
+}
+.guessp{
+   grid-area: d2;
+   background-color: violet;
+   width: 32px;
+   height: 32px;
+   margin: 5px auto;
+   border-radius: 4px;
+   padding: 6px;
+   display: block;
+   text-align: center;
+   align-items: center;
+   align-content: center;
+}
+#inin{
+   grid-area: d1;
+   width: 180px;
+   margin-bottom: 8px;
+   margin-top: 8px;
+   font-size: 24px;
+}
+#check{
+   grid-area: y1;
+   margin-top: 16px;
+   width: 100%;
+   margin: 0 auto;
+}
+.again:hover {
+   background-color: black;
+   color: goldenrod;
+}
+/* ==================box2====================== */
 #box2{
    background-image: linear-gradient(to top, rgb(42, 235, 64) , #333);
    grid-area: hd;
@@ -112,50 +163,7 @@ body{background-color: black;}
    height: 64px;
    font-size: 42px;
 }
-.again{
-   grid-area: x1;
-   background-color: goldenrod;
-   padding: 6px;
-   font-weight: bolder;
-   font-family: system-ui, -apple-system;
-   border: none;
-}
-#headed{
-   grid-area: x2;
-}
-#headed2{
-   grid-area: b2;
-}
-.guessp{
-   grid-area: d2;
-   background-color: violet;
-   width: 32px;
-   height: 32px;
-   margin: 5px auto;
-   border-radius: 4px;
-   padding: 6px;
-   display: block;
-   text-align: center;
-   align-items: center;
-   align-content: center;
-}
-#inin{
-   grid-area: d1;
-   width: 180px;
-   margin-bottom: 8px;
-   margin-top: 8px;
-   font-size: 24px;
-}
-#check{
-   grid-area: y1;
-   margin-top: 16px;
-   width: 100%;
-   margin: 0 auto;
-}
-.again:hover {
-   background-color: black;
-   color: goldenrod;
-}
+/* ==================box3====================== */
 #box3{
    background-image: linear-gradient(to top, rgb(243, 55, 168) , #525050);
    grid-area: hz;
@@ -242,6 +250,7 @@ body{background-color: black;}
 .player__winner {
    background-color: orangered;
 }
+/* ==================box4====================== */
 #box4{
    background-image: linear-gradient(to top, rgb(209, 113, 24) , #aca3a3);
    grid-area: xr;
@@ -329,6 +338,7 @@ body{background-color: black;}
    padding: 3px 5px;
    background: gray;  
  }
+ /* ==================box5====================== */
 #box5{
    background-image: linear-gradient(to bottom, rgb(20, 180, 244) , #fdf9f9);
    grid-area: xd;
@@ -391,6 +401,7 @@ body{background-color: black;}
 #start-button:hover {
    background-color: #e64a19;
 }
+/* ==================box6====================== */
 #box6{
    background-image: linear-gradient(to top, rgb(225, 24, 65) , #2d2a2a);
    grid-area: xz;
@@ -401,6 +412,7 @@ body{background-color: black;}
    border: 1px solid gray;
    margin: 0 5px;
 }
+/* ==================box7====================== */
 #box7{
    background-image: linear-gradient(to left, rgb(158, 12, 237) , #897c7c);
    grid-area: pr;
@@ -411,6 +423,7 @@ body{background-color: black;}
    border: 1px solid gray;
    margin: 0 5px;
 }
+/* ==================box8====================== */
 #box8{
    background-image: linear-gradient(to top, rgb(249, 3, 114) , #111111);
    grid-area: pd;
@@ -421,6 +434,7 @@ body{background-color: black;}
    border: 1px solid gray;
    margin: 0 5px;
 }
+/* ==================box9====================== */
 #box9{
    background-image: linear-gradient(to right, rgb(2, 248, 150) , #333);
    grid-area: pz;
@@ -431,6 +445,73 @@ body{background-color: black;}
    border: 1px solid gray;
    margin: 0 5px;
 }
+/* ==================box10====================== */
+#box10{
+   background-image: linear-gradient(to right, rgb(213, 239, 15) , #333);
+   grid-area: pr2;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   padding: 6px 9px;
+   border: 1px solid gray;
+   margin: 0 5px;
+}
+/* ==================box11====================== */
+#box11{
+   background-image: linear-gradient(to right, rgb(97, 28, 233) , #333);
+   grid-area: pd2;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   padding: 6px 9px;
+   border: 1px solid gray;
+   margin: 0 5px;
+}
+/* ==================box12====================== */
+#box12{
+   background-image: linear-gradient(to right, rgb(239, 101, 15) , #333);
+   grid-area: pz2;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   padding: 6px 9px;
+   border: 1px solid gray;
+   margin: 0 5px;
+}
+/* ==================box13====================== */
+#box13{
+   background-image: linear-gradient(to right, rgb(15, 224, 239) , #333);
+   grid-area: pr3;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   padding: 6px 9px;
+   border: 1px solid gray;
+   margin: 0 5px;
+}
+/* ==================box14====================== */
+#box14{
+   background-image: linear-gradient(to right, rgb(34, 239, 15) , #333);
+   grid-area: pd3;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   padding: 6px 9px;
+   border: 1px solid gray;
+   margin: 0 5px;
+}
+/* ==================box15====================== */
+#box15{
+   background-image: linear-gradient(to right, rgb(220, 8, 78) , #333);
+   grid-area: pz3;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   padding: 6px 9px;
+   border: 1px solid gray;
+   margin: 0 5px;
+}
+/* ==============animation and responsive============= */
 /* anime section here define all effect in web project */
 @keyframes blink {
    0%{
