@@ -37,23 +37,114 @@ body{background-color: black;}
    width: 95%;
    border: 1px solid black;
    display: flex;
+   justify-content: center;
    flex-direction: column-reverse;
    align-content: center;
    align-items: center;
 }
 #headboxhone{
+   width: 95%;
+   height: 30%;
+   display: flex;
+   flex-direction: row;
    background-color: transparent;
-   padding-top: 80px;
-
+   overflow: hidden;
+   background-color: transparent;
+   align-items: center;
+   align-content: center;
+   text-align: center;
+   justify-content: center;
+   padding-top: 19px 6px;
+   margin: 10px;
 }
-#headboxhone:hover {
-   background-color: black;
-   color: gold;
-   border: 3px solid black;
-   border-radius: 9px;
-   cursor: pointer;
-   animation: blink 1s ease-in-out infinite;
+#hhead{
+   width: 600px;
+   margin: 19px;
+   display: flex;
+   flex-direction: row;
+   letter-spacing: 0.6rem;
+   text-align:center;
+   text-transform: uppercase;
+   color: black; 
+   font-size: 20px;
 }
+.roller{
+   height: 3rem;
+   line-height: 2rem;
+   position: relative;
+   overflow: hidden; 
+   width: 100%;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   color: #1D3557;
+ }
+ #spare-time{
+   font-size: 1rem;
+   font-style: italic;
+   letter-spacing: 1rem;
+   margin-top: 0;
+   color: tomato;
+   
+ }
+ .roller #rolltext {
+   font-size: 30px;
+   color: white;
+   position: absolute;
+   top: 0;
+   animation: slide2 5s infinite;  
+ }
+ #hhead2{
+   height: 80%;
+   margin: 14px;
+}
+.roller2{
+   top: 0;
+   height: 100%;
+   line-height: 2rem;
+   position: relative;
+   overflow: hidden; 
+   width: 100%;
+   display: flex;
+   justify-content: center;
+   align-items: center;  
+   animation: slide3 5s infinite;  
+}
+ @keyframes slide2 {
+   0%{
+     top:0;
+   }
+   25%{
+     top: -4rem;    
+   }
+   50%{
+     top: -8rem;
+   }
+   72.5%{
+     top: -12.25rem;
+   }
+   99.6%{
+      top: -16.11rem;
+   }
+ }
+  
+ @keyframes slide3 {
+   0%{
+     top: 5rem;
+   }
+   25%{
+     top: 4rem;    
+   }
+   50%{
+     top: 3rem;
+   }
+   72.5%{
+     top: 2rem;
+   }
+   99.6%{
+      top: 0rem;
+   }
+ }
 /* ==================box1====================== */
 #box1{
    /* background-image: linear-gradient(to top, rgb(216, 245, 100) , #333); */
