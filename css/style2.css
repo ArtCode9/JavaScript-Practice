@@ -94,23 +94,12 @@ body{background-color: black;}
    top: 0;
    animation: slide2 5s infinite;  
  }
- #hhead2{
-   height: 80%;
-   margin: 14px;
-}
-.roller2{
-   top: 0;
-   height: 100%;
-   line-height: 2rem;
-   position: relative;
-   overflow: hidden; 
-   width: 100%;
-   display: flex;
-   justify-content: center;
-   align-items: center;  
-   animation: slide3 5s infinite;  
-}
- @keyframes slide2 {
+/* second part */
+
+ 
+
+
+@keyframes slide2 {
    0%{
      top:0;
    }
@@ -125,24 +114,6 @@ body{background-color: black;}
    }
    99.6%{
       top: -16.11rem;
-   }
- }
-  
- @keyframes slide3 {
-   0%{
-     top: 5rem;
-   }
-   25%{
-     top: 4rem;    
-   }
-   50%{
-     top: 3rem;
-   }
-   72.5%{
-     top: 2rem;
-   }
-   99.6%{
-      top: 0rem;
    }
  }
 /* ==================box1====================== */
