@@ -643,6 +643,11 @@ body{background-color: black;}
    border: 1px solid gray;
    margin: 0 5px;
 }
+.canblock{
+      display: block;
+      width: 100%;
+      height: 100%;
+}
 /* ==================box7====================== */
 #box7{
    background-image: linear-gradient(to left, rgb(158, 12, 237) , #897c7c);

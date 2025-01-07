@@ -416,3 +416,65 @@ resetbtimer.addEventListener("click", function(){
 /////////////////////////////////////////////////////////////////////////////////////
 var copy = document.querySelector(".logos-slide").cloneNode(true);
 document.querySelector(".logos").appendChild(copy);
+
+
+
+
+/////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////     box 6       ///////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////
+
+
+const canvas = document.querySelector('canvas');
+const ctx = canvas.getContext('2d');
+canvas.width = innerWidth;
+canvas.height = innerHeight;
+let particles = [];
+
+const centerX = canvas.width / 2;
+const centerY = canvas.height / 2;
+class Particle {
+      constructor(angle, radius, speed, color){
+         this.angle = angle;
+         this.radius = radius;
+         this.speed = speed;
+         this.color = color;
+      }
+      update() {
+         this.angle += this.speed;
+         const x = centerX + this.radius * Math.cos(this.angle);
+         const y = centerY + this.radius * Math.sin(this.angle);
+         ctx.beginPath();
+         ctx.arc(x, y, 6, 0, Math.PI * 3);
+         ctx.fillStyle = this.color;
+         ctx.fill();
+         ctx.closePath();
+      }
+}
+function initParticles(count){
+         particles = [];
+         for(let i = 0; i < count; i++){
+            const angle = Math.random() * Math.PI * 6;
+            const radius = Math.random() * 700 + 200;
+            const speed = Math.random() * 0.001 + 0.001;
+            const color = `hsl(${Math.random() * 360}, 70%, 70%)`;
+            particles.push(new Particle(angle, radius, speed, color));
+         }
+}
+function animate() {
+   ctx.clearRect(0, 0, canvas.width, canvas.height);
+   particles.forEach((particle) => particle.update());
+   requestAnimationFrame(animate);
+}
+window.addEventListener('resize', () =>
+{
+   canvas.width = innerWidth;
+   canvas.height = innerHeight;
+   initParticles(1600);
+});
+initParticles(1600);
+animate();
+
+
+
+
