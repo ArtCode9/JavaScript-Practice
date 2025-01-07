@@ -78,8 +78,33 @@ body{background-color: black;}
    font-size: 20px;
    padding-top: 10px;
 }
+#hhead2{
+   width: 250px;
+   height: 100%;
+   margin: 19px;
+   background-color: transparent;
+   display: flex;
+   flex-direction: row;
+   letter-spacing: 0.6rem;
+   text-align:center;
+   text-transform: uppercase;
+   color: black; 
+   font-size: 20px;
+   padding-top: 10px;
+}
 .roller{
    height: 3rem;
+   line-height: 2rem;
+   position: relative;
+   overflow: hidden; 
+   width: 100%;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   color: #1D3557;
+ }
+ .roller2{
+   height: 100%;
    line-height: 2rem;
    position: relative;
    overflow: hidden; 
@@ -104,7 +129,14 @@ body{background-color: black;}
    top: 0;
    animation: slide2 5s infinite;  
  }
-/* second part */
+ .roller2 #rolltext2 {
+   font-size: 30px;
+   color: white;
+   position: absolute;
+   top: 0;
+   animation: slide3 15s infinite alternate-reverse;  
+ }
+/*==================== second part===================== */
 .center {
    position: relative;
    top: 0;
@@ -142,7 +174,7 @@ body{background-color: black;}
    display: inline-block;
    animation: move 20s infinite linear;
 }
-/* third part */
+/* ==================third part===================== */
 /* From Uiverse.io by Nawsome */ 
 .svg-frame {
    position: relative;
@@ -225,6 +257,26 @@ body{background-color: black;}
    }
    72.5%{
      top: -15.25rem;
+   }
+ }
+ @keyframes slide3 {
+   0%{
+     top: 10rem;
+   }
+   25%{
+     top: -14rem;    
+   }35%{
+      top: -16rem;
+   }
+   50%{
+     top: -18rem;
+   }66%{
+      top: -22rem;
+   }
+   72.5%{
+     top: -35.25rem;
+   }89.5%{
+      top: -39.86rem;
    }
  }
 /* ==================box1====================== */
