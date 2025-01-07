@@ -89,7 +89,7 @@ body{background-color: black;}
    text-align:center;
    text-transform: uppercase;
    color: black; 
-   font-size: 20px;
+   font-size: 15px;
    padding-top: 10px;
 }
 .roller{
@@ -115,7 +115,7 @@ body{background-color: black;}
    color: #1D3557;
  }
  #spare-time{
-   font-size: 1rem;
+   font-size: 0.5rem;
    font-style: italic;
    letter-spacing: 1rem;
    margin-top: 0;
@@ -123,7 +123,8 @@ body{background-color: black;}
    
  }
  .roller #rolltext {
-   font-size: 30px;
+   font-size: 17px;
+   font-weight: bolder;
    color: white;
    position: absolute;
    top: 0;
@@ -147,7 +148,7 @@ body{background-color: black;}
 }
 .table {
    margin: 22px;
-   width: 58%;
+   width: 52%;
    height: 100%;
    background-color: #d4e5ff;
 }
@@ -652,12 +653,145 @@ body{background-color: black;}
 #box7{
    background-image: linear-gradient(to left, rgb(158, 12, 237) , #897c7c);
    grid-area: pr;
-   display: flex;
-   flex-direction: column;
+   display: grid;
+   gap: 7px;
+   grid-template-columns: 1fr 1fr 1fr;
+   grid-template-rows: 1fr 1fr 1fr;
+   grid-template-areas: 
+            "x1 x2 x3"
+            "x4 x5 x6"
+            "x7 x8 x9";
    align-items: center;
+   align-content: center;
+   justify-content: center;
    padding: 6px 9px;
    border: 1px solid gray;
    margin: 0 5px;
+}
+.sbox7 {
+   width: auto;
+   height: 100%;
+   border: 1px solid orange;
+}
+#sx1{
+   grid-area: x1;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+.neon-button {
+   position: relative;
+   padding: 15px 30px;
+   font-size: 20px;
+   font-weight: bold;
+   color: white;
+   background: transparent;
+   border: 2px solid #0aff9d;
+   border-radius: 30px;
+   cursor: pointer;
+   overflow: hidden;
+   transition: all 0.3s ease-in-out;
+   box-shadow: 0 0 15px #0aff9d, 0 0 30px #0aff9d;
+   }
+   .neon-button:hover {
+   color: #0aff9d;
+   background-color: #00ff9d1a;
+   box-shadow: 0 0 30px #0aff9d, 0 0 60px #0aff9d;
+   }
+   .ripple {
+      position: absolute;
+      border-radius: 50%;
+      background: #00ff9d80;
+      transform: scale(0);
+      animation: rippleEffect 0.6s ease-out;
+      pointer-events: none;
+      }
+      @keyframes rippleEffect {
+      to {
+      transform: scale(4);
+      opacity: 0;
+      }
+   }      
+#sx2{
+   grid-area: x2;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+#sx2 button {
+   /* Variables */
+   --button_radius: 0.75em;
+   --button_color: #e8e8e8;
+   --button_outline_color: #000000;
+   font-size: 17px;
+   font-weight: bold;
+   border: none;
+   cursor: pointer;
+   border-radius: var(--button_radius);
+   background: var(--button_outline_color);
+ }
+ .button_top {
+   display: block;
+   box-sizing: border-box;
+   border: 2px solid var(--button_outline_color);
+   border-radius: var(--button_radius);
+   padding: 0.75em 1.5em;
+   background: var(--button_color);
+   color: var(--button_outline_color);
+   transform: translateY(-0.2em);
+   transition: transform 0.1s ease;
+ }
+ 
+ button:hover .button_top {
+   /* Pull the button upwards when hovered */
+   transform: translateY(-0.63em);
+ }
+ 
+ button:active .button_top {
+   /* Push the button downwards when pressed */
+   transform: translateY(0);
+ }
+#sx3{
+   grid-area: x3;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+#sx4{
+   grid-area: x4;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+#sx5{
+   grid-area: x5;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+#sx6{
+   grid-area: x6;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+#sx7{
+   grid-area: x7;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+#sx8{
+   grid-area: x8;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+#sx9{
+   grid-area: x9;
+   display: flex;
+   justify-content: center;
+   align-items: center;
 }
 /* ==================box8====================== */
 #box8{
