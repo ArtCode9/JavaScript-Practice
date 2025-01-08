@@ -86,11 +86,14 @@ const account1 = {
 ///////////        08 Creating DOM Elements 💾     /////////
 /////////////////////////////////////////////////////////////
 
-const displayMovements = function(movements) {
+const displayMovements = function(movements, sort = false) {
     containerMovements.innerHTML = '';
     // .textContent = 0 we can use this for above but innerHTML is better
 
-    movements.forEach(function (mov, i) {
+    const movs = sort ? movements.slice().sort((a , b) => a -b) : movements;
+
+
+    movs.forEach(function (mov, i) {
         const type = mov > 0 ? 'deposit' : 'withdrawal';
 
       // template literal amazing for create html templates
@@ -301,15 +304,76 @@ btnClose.addEventListener('click', function(e) {
 
 });
 
+/////////////////////////////////////////////////////////////
+/////////             24 Sorting Arrays       💾  //////////
+/////////////////////////////////////////////////////////////
+// add in the displaymovement function
 
 
+let sorted = false;// fix button to do and undo
+btnSort.addEventListener('click', function(e){
+      e.preventDefault();
+
+      displayMovements(currentAccount.movements, !sorted);
+      sorted = !sorted;
+});
 
 
 ///////💎🏀💻💻💻💻💻💻💻💻💻💻💻💻💻💻💻💻💻💻💎🏀/////////
 
 
+
+
+
+
+
 /////////////////////////////////////////////////////////////
-/////////         23 flat and flatMap     🗺  ////////////
+/////////             24 Sorting Arrays          ////////////
+/////////////////////////////////////////////////////////////
+
+
+/* 
+// its also mutate the original array
+
+const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+
+// string
+const owner = ['Jonas','Art','Adam','Martina'];
+console.log(owner);
+console.log(owner.sort());
+console.log(owner);
+
+// sort method is working on string so for number at first must convert everything to string
+// number
+console.log(movements);
+console.log(movements.sort());
+
+// if return < 0, then A, B (Keep order)
+// if return > 0, then B, A (Switch order)
+// the array is sorted in an ascending order
+      // movements.sort((a,b) => {
+      //     if(a > b) return 1;
+      //     if(a < b) return -1;
+      // });
+      //this work the same
+movements.sort((a,b) => a - b );
+console.log(movements);
+
+
+// the array is sorted in an descending order
+        // movements.sort((a,b) => {
+        //   if(a > b) return -1;
+        //   if(a < b) return 1;
+        // });
+        // this work the same
+        movements.sort((a,b) => b - a);        
+console.log(movements);
+
+
+ */
+
+/////////////////////////////////////////////////////////////
+/////////         23 flat and flatMap     🗺     ////////////
 /////////////////////////////////////////////////////////////
 
 
