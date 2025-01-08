@@ -313,7 +313,47 @@ btnClose.addEventListener('click', function(e) {
 /////////////////////////////////////////////////////////////
 
 
+/* 
+const arr = [[ 1, 2, 3], [ 4, 5], 6, 7, 8];
+console.log(arr);
+// flat method::: so remove nested arrays and flattened the array
+console.log(arr.flat());
 
+const arrDeep = [[[ 1, 2], 3], [ 4, [5, 6]], 7, 8, 9];
+console.log(arrDeep);
+console.log(arrDeep.flat());
+console.log(arrDeep.flat(2));
+
+
+const accountMovement = accounts.map(acc => acc.movements);
+console.log(accountMovement);
+
+const allMovement = accountMovement.flat();
+console.log(allMovement);
+
+const overalBalance = allMovement.reduce((acc, mov) => acc + mov, 0);
+console.log(overalBalance);
+
+// we can do all this stuff with chaining
+
+const overalBalanceChain = accounts
+      .map(acc => acc.movements)
+      .flat()
+      .reduce((acc, mov) => acc + mov ,0);
+console.log(overalBalanceChain);
+
+// flatmap combines flat method and map methods like above
+// flatmap :::
+
+const overalBalanceFlatmap = accounts
+      .flatMap(acc => acc.movements)
+      .reduce((acc, mov) => acc + mov ,0);
+console.log(overalBalanceFlatmap);
+
+// flatmap only goes one level deep so if you need go deeper than just one level use just flat
+
+
+ */
 
 /////////////////////////////////////////////////////////////
 /////////            22 some and every           ////////////
