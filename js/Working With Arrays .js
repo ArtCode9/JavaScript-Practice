@@ -254,6 +254,19 @@ btnTransfer.addEventListener('click', function(e) {
       }
 });
 /////////////////////////////////////////////////////////////
+///////////      22 some and every   💾          ///////////
+/////////////////////////////////////////////////////////////
+
+btnLoan.addEventListener('click', function(e) {
+    e.preventDefault();
+
+    const amount = Number(inputLoanAmount.value);
+
+      //  5 : 59  from 22 some and every video
+});
+
+
+/////////////////////////////////////////////////////////////
 /////////           21 The findIndex Method    💾    ////////
 /////////////////////////////////////////////////////////////
 
@@ -275,7 +288,7 @@ btnClose.addEventListener('click', function(e) {
           // Hide UI
           containerApp.style.opacity = 0;
       }
-      
+
       inputCloseUsername.value = inputClosePin.value = '';
 
 });
@@ -286,6 +299,28 @@ btnClose.addEventListener('click', function(e) {
 
 ///////💎🏀💻💻💻💻💻💻💻💻💻💻💻💻💻💻💻💻💻💻💎🏀/////////
 
+
+
+/////////////////////////////////////////////////////////////
+/////////            22 some and every           ////////////
+/////////////////////////////////////////////////////////////
+
+/* 
+const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+console.log(movements);
+
+// EQUALITY
+console.log(movements.includes(-130));
+
+// CONDITION
+console.log(`🎄` + movements.some(mov => mov === -130));
+
+const anyDeposits = movements.some(mov => mov > 5000);
+const anyDeposits2 = movements.some(mov => mov > 1500);
+console.log(anyDeposits);
+console.log(anyDeposits2);
+
+ */
 
 /////////////////////////////////////////////////////////////
 /////////            18 The find Method          ////////////
