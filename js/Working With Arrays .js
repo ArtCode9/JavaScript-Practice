@@ -319,17 +319,47 @@ btnSort.addEventListener('click', function(e){
 });
 
 
+/////////////////////////////////////////////////////////////
+//////          27 Array Methods Practice       💾  ////////
+/////////////////////////////////////////////////////////////
+
+// Practice 1
+const bankDepositSum = accounts.map(acc => acc.movements);
+
+const bank1 = bankDepositSum.flat();
+
+const bank2 = accounts.flatMap(acc => acc.movements);
+
+const bank3 = accounts
+              .flatMap(acc => acc.movements)
+              .filter(mov => mov > 0)
+              .reduce((sum, cur) => sum + cur, 0);
+
+console.log(bankDepositSum);
+console.log(bank1);
+console.log(bank2);
+console.log(bank3);
+
+// Practice 2
+//  count how many deposits there have been in bank with at least $1000
+
+
+
+
+
+
+
+
+
+
 ///////💎🏀💻💻💻💻💻💻💻💻💻💻💻💻💻💻💻💻💻💻💎🏀/////////
+
+
 
 /////////////////////////////////////////////////////////////
 //////      26 Summary Which Array Method to Use     ////////
 /////////////////////////////////////////////////////////////
-
-
-
-
-
-
+// check notebook full great tips 📝
 
 /////////////////////////////////////////////////////////////
 //////  25 More Ways of Creating and Filling Arrays  ////////
