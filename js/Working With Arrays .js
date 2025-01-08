@@ -321,6 +321,14 @@ btnSort.addEventListener('click', function(e){
 
 ///////💎🏀💻💻💻💻💻💻💻💻💻💻💻💻💻💻💻💻💻💻💎🏀/////////
 
+/////////////////////////////////////////////////////////////
+//////      26 Summary Which Array Method to Use     ////////
+/////////////////////////////////////////////////////////////
+
+
+
+
+
 
 
 /////////////////////////////////////////////////////////////
@@ -329,19 +337,48 @@ btnSort.addEventListener('click', function(e){
 
 // in this section we learn how to programmatically create and fill arrays🧨🧨🧨
 
+/* 
+
 console.log([1, 2, 3, 4, 5, 6, 7]);
 console.log(new Array(1, 2, 3, 4, 5, 6, 7));
 
+//  empty arrays + fill method
 const x = new Array(7);
 console.log(x);
 // console.log(x.map(() => 5));
-x.fill(1);
+// x.fill(1);
+// where we want to start fill 
+x.fill(1, 3, 5);
+// x.fill(1);
 console.log(x);
 
+const arr = [1, 2, 3, 4, 5, 6, 7];
+arr.fill(23, 4, 6);
+console.log(arr);
+
+//  Array.from
+const y = Array.from({ length: 7 }, () => 3);
+console.log(y); 
+
+// this like a map method calling on empty array 
+const z = Array.from({ length: 7 }, (_, i) => i + 1); // _ means we don't use this parameter
+console.log(z);
+ 
+
+labelBalance.addEventListener('click', function () {
+      const movementsUI = Array.from(
+        document.querySelectorAll('.movements__value'),
+        el => Number(el.textContent.replace('€', ''))
+      );
+
+      console.log(movementsUI);
+
+      const movementsUI2 = [...document.querySelectorAll('.movements__value')];
+      console.log(movementsUI2);
+});
 
 
-
-
+ */
 
 /////////////////////////////////////////////////////////////
 /////////             24 Sorting Arrays          ////////////
