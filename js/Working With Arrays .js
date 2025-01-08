@@ -323,6 +323,22 @@ btnSort.addEventListener('click', function(e){
 
 
 
+/////////////////////////////////////////////////////////////
+//////  25 More Ways of Creating and Filling Arrays  ////////
+/////////////////////////////////////////////////////////////
+
+// in this section we learn how to programmatically create and fill arrays🧨🧨🧨
+
+console.log([1, 2, 3, 4, 5, 6, 7]);
+console.log(new Array(1, 2, 3, 4, 5, 6, 7));
+
+const x = new Array(7);
+console.log(x);
+// console.log(x.map(() => 5));
+x.fill(1);
+console.log(x);
+
+
 
 
 
