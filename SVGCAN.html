@@ -19,19 +19,21 @@
          margin: 6px;
          border: 4px solid black;
          display: grid;
-         grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+         grid-auto-flow: row;
+         grid-template-columns: 1fr 1fr 1fr 1fr;
          align-items: center;
          align-content: center;
          text-align: center;
+         overflow: hidden;
       }
       #svg3 {
            margin-top: 7px;
        }
       .bx{
          border: 2px solid black;
-         width: 100px;
-         height: 100px;
-         background-color: black;
+         width: 380px;
+         height: 400px;
+         
        }
        #polygon{
          animation: 5s flip infinite linear;
@@ -62,45 +64,45 @@
 <body>
    <h1>My first SVG</h1>
    <div id="container">
-      <div id="box1">
+      <div id="box1" class="bx">
          <svg width="190" height="190" >
             <circle cx="99" cy="99" r="70" stroke="blue" stroke-width="6" fill="lightblue"/>
          </svg>
       </div>
-      <div id="box2">
+      <div id="box2" class="bx">
          <svg width="160" height="100" xmlns="http://www.w3.org/2000/svg">
             <rect width="100%" height="100%" fill="green" rx="20" ry="20"/>
             <circle cx="75" cy="50" r="40" fill="yellow" />
             <text x="75" y="60" font-size="30" text-anchor="middle" fill="blue">SVG</text>
           </svg>
       </div>
-      <div id="box3">
+      <div id="box3" class="bx">
          <svg width="260" height="200" xmlns="http://www.artcode9.com" id="svg3">
             <rect width="100%" height="100%" fill="blue" rx="16" ry="16"></rect>
             <circle cx="125" cy="95" r="80" fill="lightblue" stroke="black" stroke-width="4"></circle>
             <text x="125" y="105" font-size="30" text-anchor="middle" fill="red">Art</text>
          </svg>
       </div>
-      <div id="box4">
+      <div id="box4" class="bx">
             <svg width="320" height="210" xmlns="http://www.artcode9.com">
                <rect width="270" height="112" fill="gray" x="30" y="50" stroke="red" stroke-width="2"></rect>
                <rect width="120" height="90" fill="lightblue" x="10" y="30" rx="16" ry="16"
                opacity="0.7" stroke="blue" stroke-width="2" id="dxd"></rect>
             </svg>
       </div>
-      <div id="box5">
+      <div id="box5" class="bx">
             <svg width="120" hight="80" style="border:2px solid black">
                   <circle cx="50" cy="60" r="50" fill="yellow"></circle>
                   <circle cx="44" cy="33" r="33" fill="black" opacity="0.3"></circle>
             </svg>
       </div>
-      <div id="box6">
+      <div id="box6" class="bx">
                <svg width="220" hight="120" style="border:2px solid black; border-radius:13px; background: green">
                      <ellipse rx="96" ry="40" cx="120" cy="100"
                      style="fill: yellow; stroke: tomato; stroke-width: 3;"></ellipse>
                </svg>
       </div>
-      <div id="box7">
+      <div id="box7" class="bx">
             <svg width="223" hight="126" style="border:1px solid tomato; border-radius: 5px; background: brown;">
                   <ellipse cx="110" cy="110" rx="110" ry="20" fill="yellow"></ellipse>
                   <ellipse cx="110" cy="90" rx="110" ry="20" fill="green"></ellipse>
@@ -108,13 +110,13 @@
                   <ellipse cx="110" cy="50" rx="110" ry="20" fill="blue"></ellipse>
             </svg>
       </div>
-      <div id="box8">
+      <div id="box8" class="bx">
             <svg width="400" height="90" xmlns="http://www.w3school.com">
                   <ellipse cx="170" cy="50" rx="150" ry="25" fill="yellow"></ellipse>
                   <ellipse cx="160" cy="50" rx="110" ry="15" fill="black"></ellipse>
             </svg>
       </div>
-      <div id="box9">
+      <div id="box9" class="bx">
             <svg width="300" height="200" xmlns="http://www.w3school.com">
                <line x1="0" y1="0" x2="200" y2="180" style="stroke: tomato; stroke-width: 4"></line>
                <line x1="150" y1="0" x2="0" y2="190" style="stroke: blue; stroke-width: 4"></line>
@@ -122,63 +124,63 @@
                <line x1="170" y1="60" x2="60" y2="177" style="stroke: green; stroke-width: 4"></line>
             </svg>
       </div>
-      <div id="box10">
+      <div id="box10" class="bx">
             <h3>A Horizontal Line</h3>
             <svg width="300" height="50" >
                   <line x1="0" y1="10" x2="250" y2="10" style="stroke: red; stroke-width:12"></line>
             </svg>
       </div>
-      <div id="box11">
+      <div id="box11" class="bx">
          <h3>A Vertical line</h3>
          <svg width="300" height="210" >
             <line x1="0" y1="0" x2="0" y2="200" style="stroke: blue; stroke-width:18"></line>
             <line x1="80" y1="0" x2="80" y2="200" style="stroke: blue; stroke-width:18"></line>
          </svg>
       </div>
-      <div id="box12">
+      <div id="box12" class="bx">
          <h4>a polygon with three sides</h4>
                <svg  height="220" width=" 500" id="polygon">
                   <polygon points="100,10  150,190  50,190"
                      style="fill:lime; stroke:purple;stroke-width: 3"></polygon>
                </svg>
       </div>
-      <div id="box14">
+      <div id="box14" class="bx">
             <svg height="260" width="500">
                   <polygon points="180,20  310,220  160,230  113,104"
                   style="fill:lime; stroke: purple; stroke-width: 3"></polygon>
             </svg>
       </div>
-      <div id="box15">
+      <div id="box15" class="bx">
             <svg height="280" width="360" id="flip">
                <polygon points="150,15 258,77 258,202 150,256 42,202 42,77"
                style="fill: lime; stroke: purple; stroke-width:3"></polygon>
             </svg>
       </div>
-      <div id="box16">
+      <div id="box16" class="bx">
             <svg height="210" width="500">
                   <polygon points="100,6 40,198 190,78 10,78 150,198"
                   style="fill:lime; stroke: orange; stroke-width:4"></polygon>
             </svg>
       </div>
-      <div id="box17">
+      <div id="box17" class="bx">
          <svg height="210" width="300" xmlns="http://www.w3.org/2000/svg">
             <polygon points="100,10 40,198 190,78 10,78 160,198"
             style="fill:lime;stroke:purple;stroke-width:5;fill-rule:evenodd;" />
           </svg>
       </div>
-      <div id="box18">
+      <div id="box18" class="bx">
             <svg height="210" width="500" xmlns="http://www.w3.org/2000/svg">
                <polyline points="0,0 50,150 100,75 150,50 200,140 250,140"
                   style="fill:none;stroke:green;stroke-width: 4;"></polyline>
             </svg>
       </div>
-      <div id="box19">
+      <div id="box19" class="bx">
             <svg height="180" width="500">
                   <polyline points="0,40 40,40 40,80 80,80 80,120 120,120 120,160"
                   style="fill:yellow;stroke:red; stroke-width:4;"></polyline>
             </svg>
       </div>
-      <div id="box20">
+      <div id="box20" class="bx">
          <!--           SVG Path - <path> 
          d	Required. A set of commands which define the path.
          The following commands are available for path data:
@@ -201,7 +203,7 @@
             style="fill:none;stroke:green;stroke-width: 3;"></path>
          </svg>
       </div>
-      <div id="box21">
+      <div id="box21" class="bx">
             <h1>A Bézier Curve</h1>
             <svg height="400" width="450" xmlns="http://www.w3.org/2000/svg">
 
@@ -230,12 +232,71 @@
              in drawing paths it is highly recommended 
              to use an SVG editor to create complex graphics. -->
       </div>
-      <div id="box22">
+      <div id="box22" style="text-align: center;" class="bx">
+            <p>A simple Text</p>     
+               <svg height="30" width="200" xmlns="http://www.w3.org">
+                     <text x="6" y="19" fill="red">I love SVG</text>
+               </svg>
 
+            <p>A text with no fill</p>
+            <svg height="40" width="200" xmlns="http://www.23.org">
+               <text x="6" y="30" fill="none" stroke="green" font-size="33">I Love SVG</text>
+            </svg>
+
+            <p>A text with Fill and stroke</p>
+               <svg height="40" width="200" xmlns="http://www.w3.org.com">
+                  <text x="5" y="30" fill="tomato" stroke="black" font-size="33">I love JavaScript</text>
+               </svg>
+
+               <p>Rotate Each Letter of text</p>
+               <svg height="40" width="200">
+                  <text x="5" y="30" fill="red" font-size="33" rotate="30">I love SVG</text>
+               </svg>
+
+               <p>Rotate whole text</p>
+               <svg height="100" width="200" xmlns="http://www.w3.org">
+                  <text x="5" y="30" fill="purple" font-size="30" transform="rotate(30,20,40)">I love SVG</text>
+                  <text x="5" y="30" fill="purple" font-size="30" transform="rotate(90,20,79)">I love SVG</text>
+               </svg>
       </div>
-   </div>
-   
 
+      <div id="box23" class="bx">
+            <p>SVG text ' tspan '</p>
+            <svg height="99" width="250" style="margin-top: 12px;">
+               <text x="5" y="30" fill="red" font-size="35">I <tspan fill="pink" stroke="black" font-size="41">LOVE</tspan>
+                  <tspan fill="none" stroke="green">SVG</tspan>!</text>
+            </svg>          
+      </div>
+
+      <div id="box24" class="bx">
+         <svg height="200" width="350" xmlns="http://www.w3.org/2000/svg">
+            <path id="lineAC" d="M 30 180 q 150 -250 300 0" stroke="blue" stroke-width="2" fill="none"/>
+            <text style="fill:red;font-size:25px;">
+              <textPath href="#lineAC" startOffset="80">I love SVG! I love SVG!</textPath>
+            </text>
+          </svg>
+      </div>
+
+      <div id="box25" class="bx">
+         <svg height="200" width="350" xmlns="http://www.w3.org/2000/svg">
+            <path id="lineAC" d="M 30 180 q 150 -250 300 0" stroke="blue" stroke-width="2" fill="none"/>
+            <text style="fill:red;font-size:25px;">
+              <textPath href="#lineAC" textLength="100%" startOffset="20">I love SVG! I love SVG!</textPath>
+            </text>
+          </svg>
+      </div>
+
+      <div id="box26" class="bx">
+            <p>SVG link</p>
+      </div>
+
+
+
+
+
+
+
+   </div>
    
 </body>
 </html>
