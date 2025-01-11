@@ -166,7 +166,7 @@ const account1 = {
    );
    console.log(currentAccount);
  
-   if (currentAccount?.pin === Number(inputLoginPin.value)) {
+   if (currentAccount?.pin === +inputLoginPin.value) {
      // Display UI and message
      labelWelcome.textContent = `Welcome back, ${
        currentAccount.owner.split(' ')[0]
@@ -184,7 +184,7 @@ const account1 = {
  
  btnTransfer.addEventListener('click', function (e) {
    e.preventDefault();
-   const amount = Number(inputTransferAmount.value);
+   const amount = +inputTransferAmount.value;
    const receiverAcc = accounts.find(
      acc => acc.username === inputTransferTo.value
    );
@@ -208,7 +208,7 @@ const account1 = {
  btnLoan.addEventListener('click', function (e) {
    e.preventDefault();
  
-   const amount = Number(inputLoanAmount.value);
+   const amount = +inputLoanAmount.value;
  
    if (amount > 0 && currentAccount.movements.some(mov => mov >= amount * 0.1)) {
      // Add movement
@@ -225,7 +225,7 @@ const account1 = {
  
    if (
      inputCloseUsername.value === currentAccount.username &&
-     Number(inputClosePin.value) === currentAccount.pin
+     +inputClosePin.value === currentAccount.pin
    ) {
      const index = accounts.findIndex(
        acc => acc.username === currentAccount.username
@@ -253,6 +253,60 @@ const account1 = {
  /////////////////////////////////////////////////
  /////////////////////////////////////////////////
  // LECTURES
+
+
+//////////////////////////////////////////////////////////////////////
+///////////        03 Converting and Checking Numbers/////////////////
+//////////////////////////////////////////////////////////////////////
+
+// that a bug for javascript 
+console.log((1 / 10) + (2 / 10) );
+console.log((1 / 10) + (2 / 10) === 0.3);
+
+// make number in two case (convert string to number conversion)
+console.log(Number('23'));
+// or
+console.log(+'23');
+
+// Parsing > pars a number from string > js automatically try to
+//           figure out the number and the string must start with number if 
+//            want this work
+console.log(Number.parseInt('63px'));
+console.log(Number.parseInt('px55'));
+//  also can accept second argument is called = regex
+console.log(Number.parseInt('63px', 10));
+console.log(Number.parseInt('63px', 2));
+console.log(Number.parseInt('px55', 10));
+
+console.log(Number.parseFloat('2.5rem')); // parseFloat is very good for working with css value
+console.log(Number.parseInt('2.5rem')); // only get the integer part
+//  white space would not effect at all
+// also this all global function we can called without Number
+console.log(parseFloat('22.5rem')); // but this old school js now we use Number😎
+
+// check a value is Not A Number or NAN
+console.log(Number.isNaN(20));
+console.log(Number.isNaN('23'));
+console.log(Number.isNaN(+'26x'));
+console.log(Number.isNaN(23/ 0));
+
+
+// the best way of checking a value is a number
+// this very useful and important😍😍😍
+console.log(Number.isFinite(20));
+console.log(Number.isFinite('20'));
+console.log(Number.isFinite(+'26x'));
+console.log(Number.isFinite(23 / 0));
+
+// 
+console.log(Number.isInteger(23));
+console.log(Number.isInteger(23.0));
+console.log(Number.isInteger(23 / 0));
+
+
+
+
+
 
 
 
