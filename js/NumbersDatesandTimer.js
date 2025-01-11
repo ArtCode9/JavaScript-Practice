@@ -96,7 +96,7 @@ const account1 = {
          <div class="movements__type movements__type--${type}">${
        i + 1
      } ${type}</div>
-         <div class="movements__value">${mov}€</div>
+         <div class="movements__value">${mov.toFixed(2)}€</div>
        </div>
      `;
  
@@ -106,19 +106,19 @@ const account1 = {
  
  const calcDisplayBalance = function (acc) {
    acc.balance = acc.movements.reduce((acc, mov) => acc + mov, 0);
-   labelBalance.textContent = `${acc.balance}€`;
+   labelBalance.textContent = `${acc.balance.toFixed(2)}€`;
  };
  
  const calcDisplaySummary = function (acc) {
    const incomes = acc.movements
      .filter(mov => mov > 0)
      .reduce((acc, mov) => acc + mov, 0);
-   labelSumIn.textContent = `${incomes}€`;
+   labelSumIn.textContent = `${incomes.toFixed(2)}€`;
  
    const out = acc.movements
      .filter(mov => mov < 0)
      .reduce((acc, mov) => acc + mov, 0);
-   labelSumOut.textContent = `${Math.abs(out)}€`;
+   labelSumOut.textContent = `${Math.abs(out).toFixed(2)}€`;
  
    const interest = acc.movements
      .filter(mov => mov > 0)
@@ -128,7 +128,7 @@ const account1 = {
        return int >= 1;
      })
      .reduce((acc, int) => acc + int, 0);
-   labelSumInterest.textContent = `${interest}€`;
+   labelSumInterest.textContent = `${interest.toFixed(2)}€`;
  };
  
  const createUsernames = function (accs) {
@@ -208,8 +208,10 @@ const account1 = {
  btnLoan.addEventListener('click', function (e) {
    e.preventDefault();
  
-   const amount = +inputLoanAmount.value;
- 
+// 💾
+   const amount = Math.floor(inputLoanAmount.value);
+// 💾
+
    if (amount > 0 && currentAccount.movements.some(mov => mov >= amount * 0.1)) {
      // Add movement
      currentAccount.movements.push(amount);
@@ -254,11 +256,110 @@ const account1 = {
  /////////////////////////////////////////////////
  // LECTURES
 
+//////////////////////////////////////////////////////////////////////
+///////////             05 The Remainder Operator  %       ///////////
+//////////////////////////////////////////////////////////////////////
+
+/* 
+// what is the remainder operator?
+// simply returns the remainder of a division >>> %
+console.log(5 % 2);
+console.log(5 / 2);// 5 = 2 * 2 + 1
+
+console.log(8 % 3);
+console.log(8 / 3);// 8 = 2 * 3 + 2
+
+console.log(6 % 2);
+console.log(6 / 2); 
+
+console.log(7 % 2);
+console.log(7 / 2);
+
+const isEven = n => n % 2 === 0;
+console.log(isEven(8));
+console.log(isEven(23));
+console.log(isEven(514));
+
+ */
+
+
+labelBalance.addEventListener('click', function(){
+    [...document.querySelectorAll('.movements__row')].
+    forEach(function(row, i){
+          // 0, 2, 4, 6
+          if( i % 2 === 0) row.style.backgroundColor = 'pink';
+          // 0, 3, 6, 9
+          if( i % 3 === 0) row.style.backgroundColor = 'lightblue';
+    });
+});
+
+
 
 //////////////////////////////////////////////////////////////////////
-///////////        03 Converting and Checking Numbers/////////////////
+///////////               04 Math and Rounding             ///////////
 //////////////////////////////////////////////////////////////////////
 
+/* 
+
+// square root
+console.log(Math.sqrt(25));
+console.log(25 ** (1/2));
+console.log(8 ** (1/3));
+
+console.log(Math.max(3, 23, 6, 8, 12, 7));
+console.log(Math.max(3, '23', 6, 8, 12, 7));
+console.log(Math.max(3, '23p', 6, 8, 12, 7));
+
+console.log(Math.min(3, 23, 6, 8, 12, 7));
+
+// this how we calculate the area of a circle with that radius
+console.log(Math.PI * Number.parseFloat('10px') ** 2);
+
+console.log(Math.trunc(Math.random() * 6) + 1);
+
+const randomInt = (min, max) => 
+      Math.floor(Math.random() * (max - min) + 1) + min;
+//  random 0...1  -> 0...(max - min) -> min...max
+console.log(randomInt(15, 23));
+console.log(randomInt(18, 83));
+
+// rounding integers
+console.log(Math.trunc(23.12));
+
+console.log(Math.round(56.3));
+console.log(Math.round(56.9));
+
+console.log(Math.ceil(88.9));
+console.log(Math.ceil(88.3));
+
+console.log(Math.floor(44.4));
+console.log(Math.floor(44.9));
+//  all of the above method do type coercion
+console.log(Math.floor('44.9'));
+
+//  with minus number
+console.log(`----with minus number-----`)
+console.log(Math.trunc(-23.12));
+console.log(Math.floor(-23.12));// floor is good for work with negative
+
+//rounding decimal
+// toFixed always return string 
+console.log((2.7).toFixed(0));
+console.log((2.7).toFixed(3));
+console.log((2.346).toFixed(2));
+console.log(+(2.346).toFixed(2));
+
+//  work on the bankist project >>>> 💾
+
+ */
+
+
+//////////////////////////////////////////////////////////////////////
+///////////        03 Converting and Checking Numbers    /////////////
+//////////////////////////////////////////////////////////////////////
+
+
+/* 
 // that a bug for javascript 
 console.log((1 / 10) + (2 / 10) );
 console.log((1 / 10) + (2 / 10) === 0.3);
@@ -303,13 +404,7 @@ console.log(Number.isInteger(23));
 console.log(Number.isInteger(23.0));
 console.log(Number.isInteger(23 / 0));
 
+ */
 
 
-
-
-
-
-
-
-
-
+////////////////////////////////////////////////////
