@@ -261,8 +261,43 @@ const account1 = {
 //////////////////////////////////////////////////////////////////////
 
 
+/* 
+// this is the biggest number js can represent
+console.log(2 ** 53 - 1);
+console.log(Number.MAX_SAFE_INTEGER);
+console.log(2 ** 53 + 1);
+console.log(2 ** 53 + 2);
+console.log(2 ** 53 + 3);
+console.log(2 ** 53 + 4);
 
 
+// now if need bigger number than this
+// use n  at end to make regular number to big int
+console.log(4531257469887923908012937n);
+console.log(BigInt(4531257));
+
+// operation with big int
+console.log(10000n + 10000n);
+console.log(12956438476876329487234n * 10000000n);
+// console.log(Math.sqrt(16n));  <<<< this does not work
+
+const huge = 2334647452468657n;
+const num = 23;
+console.log(huge * BigInt(num));
+
+// Exception
+console.log(20n > 15);
+console.log(20n === 20);
+console.log(typeof 20n);
+console.log(20n === '20');
+
+console.log(huge + 'is REALLY big!!!!!');
+
+// Divisions
+console.log(11n / 3n);
+console.log(10 / 3);
+
+ */
 
 //////////////////////////////////////////////////////////////////////
 ///////////               06 Numeric Separators            ///////////
