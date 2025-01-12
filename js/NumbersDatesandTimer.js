@@ -196,8 +196,6 @@ const hour = now.getHours();
 const min = now.getMinutes();
 labelDate.textContent = `${day}/${month}/${year}, ${hour}:${min}`;
 
-//  day/month/year
-
 
  btnLogin.addEventListener('click', function (e) {
    // Prevent form from submitting
@@ -315,6 +313,23 @@ labelDate.textContent = `${day}/${month}/${year}, ${hour}:${min}`;
  ////////////////////////////////////////////////////////////////////
  ////////////////////////////////////////////////////////////////////
  // LECTURES
+
+//////////////////////////////////////////////////////////////////////
+///////////       11 Internationalizing Dates (Intl)    💾  //////////
+//////////////////////////////////////////////////////////////////////
+const now2 = new Date();
+const options = {
+    hour: 'numeric',
+    minute: 'numeric',
+    day: 'numeric',
+    month: 'numeric',
+    year: 'numeric',
+    weekday: 'long',
+};
+// const locale = navigator.language;
+// console.log(locale);
+
+labelDate.textContent = new Intl.DateTimeFormat(currentAccount.locale, options).format(now2);
 
 //////////////////////////////////////////////////////////////////////
 ///////////            10 Operations With Dates           ////////////
