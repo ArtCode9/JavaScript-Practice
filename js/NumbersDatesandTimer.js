@@ -88,7 +88,7 @@ const formatMovementDate = function(date) {
   const calcDaysPassed = (date1, date2) => Math.round(Math.abs(date2 - date1) / (1000 * 60 * 60 * 24));
 
   const daysPassed = calcDaysPassed(new Date(), date);
-  console.log(daysPassed);
+  // console.log(daysPassed);
 
   if(daysPassed === 0) return 'Today'; 
   if(daysPassed === 1) return 'Yesterday'; 
@@ -278,7 +278,8 @@ labelDate.textContent = `${day}/${month}/${year}, ${hour}:${min}`;
 // 💾
 
    if (amount > 0 && currentAccount.movements.some(mov => mov >= amount * 0.1)) {
-     // Add movement
+    setTimeout( function (){
+    // Add movement
      currentAccount.movements.push(amount);
  
      //  add loan date
@@ -286,7 +287,8 @@ labelDate.textContent = `${day}/${month}/${year}, ${hour}:${min}`;
 
      // Update UI
      updateUI(currentAccount);
-   }
+   }, 2500);
+  }
    inputLoanAmount.value = '';
  });
  
@@ -325,10 +327,42 @@ labelDate.textContent = `${day}/${month}/${year}, ${hour}:${min}`;
  // LECTURES
 
 //////////////////////////////////////////////////////////////////////
-///////////       13 Timers setTimeout and setInterval      //////////
+///////////    😋13 Timers setTimeout and setInterval😋   //////////
 //////////////////////////////////////////////////////////////////////
 
+/* 
 
+// set timeout::
+setTimeout(() => console.log(`Here is Your Pizza 🍕`), 3000);
+console.log(`Waiting....`);
+
+setTimeout((ing1, ing2) =>
+  console.log(`Here is Your Pizza with ${ing1} and ${ing2} 🍕`),
+  4000,
+  'olives2',
+  'spinach2'
+);
+console.log(`Waiting2....`);
+
+// cancel timeout with condition
+const ingredients = ['olives3', 'spinach3'];
+const pizzaTimer = setTimeout((ing1, ing2) =>
+    console.log(`Here is your pizza with ${ing1} and ${ing2} 🍕`),
+    6000,
+    ...ingredients
+);
+console.log(`Third Pizaa order....`);
+//  now this not come in console 
+if(ingredients.includes('spinach3')) clearTimeout(pizzaTimer);
+
+//  set Interval
+// setInterval(function (){
+//     const now = new Date();
+//     console.log(now);
+// }, 3000);
+
+
+ */
 
 
 //////////////////////////////////////////////////////////////////////
