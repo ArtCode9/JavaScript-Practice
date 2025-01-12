@@ -102,7 +102,15 @@ const formatMovementDate = function(date) {
     return `${day}/${month}/${year}`;
   }; 
   };
- 
+
+const formatCur = function (value, locale, currency) {
+      return new Intl.NumberFormat(locale, {
+          style:'currency',
+          currency: currency
+      }).format(value);
+};
+
+
 
  const displayMovements = function (acc, sort = false) {
    containerMovements.innerHTML = '';
@@ -115,6 +123,7 @@ const formatMovementDate = function(date) {
      const date = new Date(acc.movementsDates[i]);
      const displayDate  = formatMovementDate(date);
 
+     const formattedMov = formatCur(mov, acc.locale, acc.currency);
 
      const html = `
        <div class="movements__row">
@@ -122,7 +131,7 @@ const formatMovementDate = function(date) {
        i + 1
      } ${type}</div>
          <div class="movements__date">${displayDate}</div>
-         <div class="movements__value">${mov.toFixed(2)}€</div>
+         <div class="movements__value">${formattedMov}</div>
        </div>
      `;
  
@@ -132,19 +141,20 @@ const formatMovementDate = function(date) {
  
  const calcDisplayBalance = function (acc) {
    acc.balance = acc.movements.reduce((acc, mov) => acc + mov, 0);
-   labelBalance.textContent = `${acc.balance.toFixed(2)}€`;
+   
+   labelBalance.textContent = formatCur(acc.balance, acc.locale, acc.currency);
  };
  
  const calcDisplaySummary = function (acc) {
    const incomes = acc.movements
      .filter(mov => mov > 0)
      .reduce((acc, mov) => acc + mov, 0);
-   labelSumIn.textContent = `${incomes.toFixed(2)}€`;
+   labelSumIn.textContent = formatCur(incomes, acc.locale, acc.currency);
  
    const out = acc.movements
      .filter(mov => mov < 0)
      .reduce((acc, mov) => acc + mov, 0);
-   labelSumOut.textContent = `${Math.abs(out).toFixed(2)}€`;
+   labelSumOut.textContent = formatCur(out, acc.locale, acc.currency);
  
    const interest = acc.movements
      .filter(mov => mov > 0)
@@ -154,7 +164,7 @@ const formatMovementDate = function(date) {
        return int >= 1;
      })
      .reduce((acc, int) => acc + int, 0);
-   labelSumInterest.textContent = `${interest.toFixed(2)}€`;
+   labelSumInterest.textContent = formatCur(interest, acc.locale, acc.currency);
  };
  
  const createUsernames = function (accs) {
@@ -313,6 +323,61 @@ labelDate.textContent = `${day}/${month}/${year}, ${hour}:${min}`;
  ////////////////////////////////////////////////////////////////////
  ////////////////////////////////////////////////////////////////////
  // LECTURES
+
+//////////////////////////////////////////////////////////////////////
+///////////       13 Timers setTimeout and setInterval      //////////
+//////////////////////////////////////////////////////////////////////
+
+
+
+
+//////////////////////////////////////////////////////////////////////
+///////////       12 Internationalizing Numbers (Intl)    ////////////
+//////////////////////////////////////////////////////////////////////
+
+
+/* 
+const num = 3884764.23;
+const num2 = 546534.897;
+const num3 = 6444.453;
+
+const opt = {
+    style: 'unit',
+    unit: 'mile-per-hour'
+};
+const opt2 = {
+    style: 'unit',
+    unit: 'celsius'
+};
+const opt3 = {
+  style: 'currency',
+  unit: 'celsius',
+  currency: 'EUR'
+};
+
+// Basic formating
+console.log('US:      ', new Intl.NumberFormat('en-US', opt).format(num));
+console.log('GERMANY: ', new Intl.NumberFormat('de-DE', opt).format(num));
+console.log('Syria: ', new Intl.NumberFormat('ar-SY', opt).format(num));
+console.log(
+            navigator.language,
+            new Intl.NumberFormat(navigator.language, opt).format(num)
+);
+
+console.log('GERMANY: ', new Intl.NumberFormat('de-DE', opt2).format(num2));
+console.log(
+  navigator.language,
+  new Intl.NumberFormat(navigator.language, opt2).format(num2)
+);
+
+console.log('US:      ', new Intl.NumberFormat('en-US', opt3).format(num3));
+console.log('GERMANY: ', new Intl.NumberFormat('de-DE', opt3).format(num3));
+console.log(
+  navigator.language,
+  new Intl.NumberFormat(navigator.language, opt3).format(num3)
+);
+
+ */
 
 //////////////////////////////////////////////////////////////////////
 ///////////       11 Internationalizing Dates (Intl)    💾  //////////
