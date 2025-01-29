@@ -72,10 +72,12 @@ console.log(className);
 // .insertAdjacentHTML
 
 const message = document.createElement('div');
+
 message.classList.add('cookie-message');
 // message.textContent = 'We use cookied for improved functionality and analytics';
 message.innerHTML = `We use cookied for improved functionality and analytics.
                      <button class="btn btn--close-cookie">Got it!</button>`;
+
 // we select header above
 //header.prepend(message); // add before first child
 header.append(message);
@@ -93,5 +95,69 @@ document.querySelector('.btn--close-cookie')
          });
 
 //////////////////////////////////////////////////////////////////////////
-//////////       ///////////
+//////////         006 Styles, Attributes and Classes          ///////////
 //////////////////////////////////////////////////////////////////////////
+
+// styles
+message.style.backgroundColor = '#8ED988';
+message.style.color = 'black';
+message.style.width = '100%';
+
+// WE only can log styles the we define not from class in css
+console.log(message.style.backgroundColor);
+console.log(message.style.width);
+console.log(message.style.height);
+console.log(message.style.color);
+
+// but if we want get the style from class css we use getComputedStyle
+console.log(getComputedStyle(message).color);
+console.log(getComputedStyle(message).height);
+
+// set height for message with take parse number out of the string method
+message.style.height = Number.parseFloat(
+   getComputedStyle(message).height, 10) + 30 + 'px';
+
+// we can work with css custom var root
+document.documentElement.style.setProperty('--color-primary', 'red');
+// so we can change the style of page with change the property
+
+
+// Attributes
+const logo = document.querySelector('.nav__logo');
+console.log(logo.alt);
+console.log(logo.src);
+console.log(logo.className);
+
+logo.alt = 'Beautiful minimalist Logo by ARTCODE';
+console.log(logo.alt);
+
+// non-standard   and does't work
+console.log(logo.designer);
+// but with this we can access
+console.log(logo.getAttribute('designer'));
+// and also we can set the attribute
+logo.setAttribute('company' , 'Bankist');
+console.log(logo.getAttribute('company'));
+
+
+console.log(logo.src);
+console.log(logo.getAttribute('src'));
+
+const link = document.querySelector('.twitter-link');
+console.log(link.href);
+console.log(link.getAttribute('href'));
+
+const link2 = document.querySelector('.nav__link--btn');
+console.log(link2.href);
+console.log(link2.getAttribute('href'));
+
+
+// Data attribute  >>> version-number from logo element we add in html
+console.log(logo.dataset.versionNumber);
+
+
+// classes
+logo.classList.add('c', 'j');
+logo.classList.remove('c', 'j');
+logo.classList.toggle('c');
+logo.classList.contains('c'); // not includes like it is called in array
