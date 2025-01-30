@@ -235,8 +235,38 @@ headering.addEventListener('click' , function(e){
 //////////////       010 Event Propagation in Practice      //////////////
 //////////////////////////////////////////////////////////////////////////
 
+// create random color
+// rgb(255, 255, 255)
+// this make random number
+const randomInt = (min, max) => Math.floor(Math.random() * (max - min + 1) + min);
+// now we use that randomInt to make random color
+const randomColor = () => `rgb(${randomInt(0, 255)},${randomInt(0, 255)},
+${randomInt(0, 255)})`;
+console.log(randomColor(0, 255));
+
+const navLinks = document.querySelector('.nav__links');
+const navLink = document.querySelector('.nav__link');
 
 
 
+navLink.addEventListener('click', function(e) {
+   this.style.backgroundColor = randomColor();
+   console.log('LINK', e.target, e.currentTarget);
+   console.log(e.currentTarget === this);
+
+   // stop propagation    >>>> but not a good idea but good for fix problem in application
+   // e.stopPropagation();
+});
+navLinks.addEventListener('click', function(e) {
+   this.style.backgroundColor = randomColor();
+   console.log('CONTAINER', e.target, e.currentTarget);
+});
+document.querySelector('.nav').addEventListener('click', function(e) {
+   this.style.backgroundColor = randomColor();
+   console.log('NAV', e.target, e.currentTarget);
+});
 
 
+//////////////////////////////////////////////////////////////////////////
+////////////  
+//////////////////////////////////////////////////////////////////////////
