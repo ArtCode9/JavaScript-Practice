@@ -161,3 +161,82 @@ logo.classList.add('c', 'j');
 logo.classList.remove('c', 'j');
 logo.classList.toggle('c');
 logo.classList.contains('c'); // not includes like it is called in array
+
+
+//////////////////////////////////////////////////////////////////////////
+//////////         007 Implementing Smooth Scrolling           ///////////
+//////////////////////////////////////////////////////////////////////////
+
+const btnScrollTo = document.querySelector('.btn--scroll-to');
+const section1 = document.querySelector('#section--1');
+
+btnScrollTo.addEventListener('click', function(e){
+   // with = getBoundingClientRect() we can get position of the element of the element in page 
+   const s1coords = section1.getBoundingClientRect();
+   console.log(s1coords);
+
+   console.log(e.target.getBoundingClientRect());
+
+   console.log('Current scroll (X/Y)' , window.pageXOffset, pageYOffset);
+
+   console.log('height/width viewport' , 
+         document.documentElement.clientHeight,
+         document.documentElement.clientWidth
+   );
+
+   // scrolling
+   // window.scrollTo(s1coords.left + window.pageXOffset , s1coords.top + window.pageYOffset);
+
+   // window.scrollTo({
+   //     left: s1coords.left + window.pageXOffset,
+   //    top: s1coords.top + window.pageYOffset,
+   //    behavior: 'smooth',
+   // });
+
+   section1.scrollIntoView({behavior: 'smooth'});
+
+});
+
+//////////////////////////////////////////////////////////////////////////
+//////////         008 Types of Events and Event Handlers      ///////////
+//////////////////////////////////////////////////////////////////////////
+
+// select the element:
+const h1 = document.querySelector('h1');
+const headering = document.querySelector('h4');
+
+const alertH1 =  function(e){
+   alert('addEventListener: Great! You are reading the heading :D');
+
+// we can prevent form happing or we can set time for remove it 
+// h1.removeEventListener('mouseenter', alertH1);
+};
+
+h1.addEventListener('mouseenter',alertH1);
+
+// we set 6s time for removing this mouseenter event 
+setTimeout(() => h1.removeEventListener('mouseenter', alertH1), 6000);
+
+
+// h1.onmouseenter = function(e){
+//    alert('onmouseenter: Great! You are reading the heading :D');
+// };
+
+headering.addEventListener('click' , function(e){
+   alert('You click on event happing in page');
+});
+
+//////////////////////////////////////////////////////////////////////////
+//////////      009 Event Propagation: Bubbling and Capturing     ////////
+//////////////////////////////////////////////////////////////////////////
+   // check video in folder 5
+
+//////////////////////////////////////////////////////////////////////////
+//////////////       010 Event Propagation in Practice      //////////////
+//////////////////////////////////////////////////////////////////////////
+
+
+
+
+
+
