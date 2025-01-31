@@ -1,13 +1,14 @@
 'use strict';
 
-///////////////////////////////////////
-// Modal window
 
 const modal = document.querySelector('.modal');
 const overlay = document.querySelector('.overlay');
 const btnCloseModal = document.querySelector('.btn--close-modal');
 const btnsOpenModal = document.querySelector('.btn--show-modal');
 
+
+///////////////////////////////////////
+// Modal window
 
 const openModal = function(e) {
    e.preventDefault(); // the page don't jump when button click
@@ -34,6 +35,57 @@ document.addEventListener('keydown', function(e) {
           closeModal();
       }
 });
+
+///////////////////////////////////////////////////////////////
+//        011 Event Delegation Implementing Page Navigation
+// page navigation
+
+// this exact same function attach to three element in nav bar
+
+/* 
+document.querySelectorAll('.nav__link').forEach
+(function(el){
+      el.addEventListener('click', function(e) {
+         e.preventDefault();
+         // console.log('LINK');
+
+         const id = this.getAttribute('href'); // now we get the href section target from nav
+         console.log(id);
+         document.querySelector(id).scrollIntoView({ behavior: 'smooth' });
+          
+      });
+});
+
+*/
+
+// now if we got 10000 elements , we should copy all of them??? what is the solution
+//         and the solution is event delegation :::
+// so in event delegation we basically need two steps:
+// first we add the event listener to a common parent element of all the elements that we're
+// interested in.
+// second determine what element originated the event where the event was actually created.
+
+document.querySelector('.nav__links').addEventListener
+('click', function(e) {
+      // console.log(e.target);
+      e.preventDefault();
+
+      // Matching strategy
+      if(e.target.classList.contains('nav__link')){
+         // console.log('LINK');
+         const id = e.target.getAttribute('href');
+         console.log(id);
+         document.querySelector(id).scrollIntoView({
+               behavior: 'smooth'
+         });
+      }
+});
+/* 
+   we successfully implemented event delegation which is lot better and
+   a lot more efficient than simply attaching the same event handler to multiple 
+   elements
+*/
+
 
 //////////////////////////////////////////////////////////////////////////
 /////////////////////   004 How the DOM Really Works    //////////////////
@@ -235,6 +287,8 @@ headering.addEventListener('click' , function(e){
 //////////////       010 Event Propagation in Practice      //////////////
 //////////////////////////////////////////////////////////////////////////
 
+/* 
+
 // create random color
 // rgb(255, 255, 255)
 // this make random number
@@ -246,8 +300,7 @@ console.log(randomColor(0, 255));
 
 const navLinks = document.querySelector('.nav__links');
 const navLink = document.querySelector('.nav__link');
-
-
+ 
 
 navLink.addEventListener('click', function(e) {
    this.style.backgroundColor = randomColor();
@@ -264,9 +317,78 @@ navLinks.addEventListener('click', function(e) {
 document.querySelector('.nav').addEventListener('click', function(e) {
    this.style.backgroundColor = randomColor();
    console.log('NAV', e.target, e.currentTarget);
+}, true);  
+// true >> this element listening for the event as it travels down from the DOM
+
+ */
+
+//////////////////////////////////////////////////////////////////////////
+///////      011 Event Delegation Implementing Page Navigation     ///////
+//////////////////////////////////////////////////////////////////////////
+// all the code belong to this section is below the modal code at top of page 
+
+
+//////////////////////////////////////////////////////////////////////////
+//////////////               012 DOM Traversing               ////////////
+//////////////////////////////////////////////////////////////////////////
+
+//    dom traversing is basically walking through the dom.
+// which means that we can select an element based on another element
+// because sometimes we need to select elements relative to a certain other element
+// for example a direct child or direct parent element
+
+const he1 = document.querySelector('h1');
+
+// Going downwards: child
+console.log(he1.querySelectorAll('.highlight'));
+// tips : Nodes can be anything
+console.log(he1.childNodes);
+console.log(he1.children);  // this one work only for direct children
+he1.firstElementChild.style.color = 'red';
+he1.lastElementChild.style.color = 'orangered';
+
+// Going upwards: parents
+console.log(`🙄`);
+console.log(he1.parentNode);
+console.log(he1.parentElement);
+console.log(`===============`);
+
+he1.closest('.header').style.background = 'var(--gradient-secondary)';
+// so it selected the closest header to our h1 element,
+//  so the closest parent element that has this class ('.header')
+// and then it's simply applied all style to that element.
+
+he1.closest('h1').style.background = 'var(--gradient-primary)';
+// so we can think of closest here as basically being the opposite of querySelector
+// so both receive a query string as an input but querySelector finds children
+// no matter how deep in Dom tree while the closest method finds parents
+// and also no matter how far up in the Dom tree
+
+
+// Going sideways: siblings
+// we can only access direct siblings
+console.log(he1.previousElementSibling);
+console.log(`😁`);
+console.log(he1.nextElementSibling);
+
+
+console.log(he1.previousSibling);
+console.log(he1.nextSibling);
+
+// now if we really need all the siblings and not just the previous and next one 
+// then we can use the trick of moving up to the parent element and then read all the children
+// from there
+console.log(he1.parentElement.children);
+[...he1.parentElement.children].forEach(function(el) {
+   // we wanted to change some style to all the siblings but except the element itself
+   if(el !== he1){ // because the he1 is the element itself
+      el.style.transform = 'scale(0.5)';
+      // and this is how we can do with all the sibling elements of one element
+   }
 });
 
 
 //////////////////////////////////////////////////////////////////////////
-////////////  
+//////////////        013 Building a Tabbed Component            /////////
 //////////////////////////////////////////////////////////////////////////
+
