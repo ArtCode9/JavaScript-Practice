@@ -392,3 +392,41 @@ console.log(he1.parentElement.children);
 //////////////        013 Building a Tabbed Component            /////////
 //////////////////////////////////////////////////////////////////////////
 
+// Tabbed component
+const tabs = document.querySelectorAll('.operations__tab');
+const tabsContainer = document.querySelector('.operations__tab-container');
+const tabsContent = document.querySelectorAll('.operations__content');
+
+// we taking all the tabs and then on each of them we could attach an event handler
+/* 
+tabs.forEach(t => t.addEventListener('click', () =>
+console.log('TAB')));// now if we have 200 tab this not good and make our site slow down
+ */
+// so we us event delegation =
+// for event delegation we need to attach the event handler on the common parent element
+// of all the elements that we're interested in. and in our case is tab container
+
+tabsContainer.addEventListener('click', function (e) {
+   const clicked = e.target.closest('.operations__tab');
+   // console.log(clicked);
+
+   // Guard clause
+   if(!clicked) return;
+
+   // Remove active classes
+   tabs.forEach(t => t.classList.remove('operations__tab--active'));
+   tabsContent.forEach(c => c.classList.remove('operations__content--active'));
+   
+   // Activate tab
+   clicked.classList.add('operations__tab--active');
+
+   // Activate content area
+   // console.log(clicked.dataset.tab);
+   document.querySelector(`.operations__content--${clicked.dataset.tab}`)
+            .classList.add('operations__content--active');
+});
+
+
+//////////////////////////////////////////////////////////////////////////
+//////////////        013 Building a Tabbed Component            /////////
+//////////////////////////////////////////////////////////////////////////
