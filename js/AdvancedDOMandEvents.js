@@ -7,6 +7,8 @@ const btnCloseModal = document.querySelector('.btn--close-modal');
 const btnsOpenModal = document.querySelector('.btn--show-modal');
 
 
+const nav = document.querySelector('.nav');
+
 ///////////////////////////////////////
 // Modal window
 
@@ -430,5 +432,43 @@ tabsContainer.addEventListener('click', function (e) {
 //////////////////////////////////////////////////////////////////////////
 //////////////     014 Passing Arguments to Event Handlers     ///////////
 //////////////////////////////////////////////////////////////////////////
+
+//  Menu fade animation
+const handleHover = function(e) {
+   if(e.target.classList.contains('nav__link')){
+      const clink = e.target;
+      const siblings = clink.closest('.nav').querySelectorAll('.nav__link');
+      const logo = clink.closest('.nav').querySelector('img');
+
+      siblings.forEach(el => {
+         if(el !== clink){
+            el.style.opacity = this;
+         }
+      });
+      logo.style.opacity = this;
+   }
+};
+
+// Passing "argument" into handler  = we can do it in two way
+// second way
+nav.addEventListener('mouseover', handleHover.bind(0.5));
+nav.addEventListener('mouseout', handleHover.bind(1));
+
+// one way
+/* 
+nav.addEventListener('mouseover', function(e) {
+      handleHover(e, 0.5);
+});
+nav.addEventListener('mouseout', function(e) {
+      handleHover(e, 1);
+});
+
+ */
+
+//////////////////////////////////////////////////////////////////////////
+///////    015 Implementing a Sticky Navigation The Scroll Event   ///////
+//////////////////////////////////////////////////////////////////////////
+
+
 
 
