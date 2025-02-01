@@ -511,7 +511,7 @@ observer.observe(section1);
 // when the header out of view then we want to display the navigation
 const headhead = document.querySelector('.header');
 const navHeight = nav.getBoundingClientRect().height;
-console.log(navHeight);
+// console.log(navHeight);
 
 const stickyNav = function(entries) {
       const [entry] = entries;
@@ -532,8 +532,31 @@ headerObserver.observe(headhead);
 ///////////////       017 Revealing Elements on Scroll       /////////////
 //////////////////////////////////////////////////////////////////////////  
 
+// working on showing section animation
+const allSection = document.querySelectorAll('.section');
 
+const revealSection = function(entries, observer){
+      const [entry] = entries;
+      console.log(entry);
 
+      if(!entry.isIntersecting) return;
+      
+      entry.target.classList.remove('section--hidden');
+      observer.unobserve(entry.target); 
+};
 
+const sectionObserver = new  IntersectionObserver(revealSection, {
+     root: null,
+     threshold: 0.15
+});
 
+allSection.forEach(function(section){
+      sectionObserver.observe(section);
+      section.classList.add('section--hidden');
+});
+ 
+
+//////////////////////////////////////////////////////////////////////////
+///////////////           018 Lazy Loading Images             ////////////
+//////////////////////////////////////////////////////////////////////////
 
