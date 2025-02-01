@@ -469,6 +469,71 @@ nav.addEventListener('mouseout', function(e) {
 ///////    015 Implementing a Sticky Navigation The Scroll Event   ///////
 //////////////////////////////////////////////////////////////////////////
 
+// we scroll down once we then reach a certain point the menu bar attached
+// to the top of the page
+
+/* 
+const initialCoords = section1.getBoundingClientRect();
+console.log(initialCoords);
+
+window.addEventListener('scroll', function () {
+      // console.log(window.scrollY);
+
+      if(window.scrollY > initialCoords.top) nav.classList.add('sticky');
+      else nav.classList.remove('sticky');
+
+});
+
+ */
+//////////////////////////////////////////////////////////////////////////
+//////////    016 A Better Way The Intersection Observer API     /////////
+//////////////////////////////////////////////////////////////////////////
+
+/* for this section study MDN IntersectionObserver::
+// Sticky Navigation: Intersection Observer API
+
+const obsCallback = function (entries, observer) {
+         entries.forEach(entry => {
+            console.log(entry);
+         });
+};
+
+const obsOption = {
+   root: null,
+   threshold: [0, 0.2]
+};
+
+const observer = new IntersectionObserver(obsCallback, obsOption);
+observer.observe(section1);
+
+ */
+
+// when the header out of view then we want to display the navigation
+const headhead = document.querySelector('.header');
+const navHeight = nav.getBoundingClientRect().height;
+console.log(navHeight);
+
+const stickyNav = function(entries) {
+      const [entry] = entries;
+      console.log(entry);
+      if(!entry.isIntersecting) nav.classList.add('sticky');
+      else nav.classList.remove('sticky');
+};
+
+const headerObserver = new IntersectionObserver(stickyNav, {
+   root: null,
+   threshold: 0,
+   rootMargin: `-${navHeight}px`
+});
+headerObserver.observe(headhead);
+
+
+//////////////////////////////////////////////////////////////////////////
+///////////////       017 Revealing Elements on Scroll       /////////////
+//////////////////////////////////////////////////////////////////////////  
+
+
+
 
 
 
