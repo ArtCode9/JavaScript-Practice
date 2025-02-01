@@ -997,7 +997,7 @@ so that it is smooth among other more minor things */
 }
 /* ==================box8====================== */
 #box8{
-   background-image: linear-gradient(to top, rgb(249, 3, 114) , #111111);
+   background-image: linear-gradient(to top, rgb(29, 3, 114) , #111111);
    grid-area: pd;
    display: flex;
    flex-direction: column;
@@ -1006,6 +1006,31 @@ so that it is smooth among other more minor things */
    border: 1px solid gray;
    margin: 0 5px;
 }
+#box8 h1 {
+   color: gold;
+   font-weight: bolder;
+   letter-spacing: 6px;
+   font-family: -apple-system, BlinkMacSystemFont,Ubuntu;
+   border-bottom: 3px solid gold;
+   padding: 9px;
+}
+#box8span {
+   color: black;
+   background-color: gold;
+   border-radius: 9px;
+   padding: 3px;
+   margin-right: 3px;
+}
+#boardGames {
+   width: 100%;
+   height: 100%;
+   border: 2px solid gold;
+   display: grid;
+   grid-template-columns: 1fr 1fr 1fr 1fr;
+   grid-template-rows: 1fr 1fr 1fr 1fr;
+
+}
+
 /* ==================box9====================== */
 #box9{
    background-image: linear-gradient(to right, rgb(2, 248, 150) , #333);
