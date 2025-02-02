@@ -677,7 +677,63 @@ slider();
 //////////////////         021 Lifecycle DOM Events         //////////////
 //////////////////////////////////////////////////////////////////////////
 
+// DOM content loaded
+// Events:
+
+document.addEventListener('DOMContentLoaded', function(e) {
+      console.log('HTML parsed and DOM tree built!', e);
+});
+
+window.addEventListener('load', function(e){
+      console.log('page fully loaded', e);
+});
+
+// window.addEventListener('beforeunload', function(e) {
+//       e.preventDefault();
+//       console.log(e);
+//       e.returnValue = '';
+// });
+
+
+//////////////////////////////////////////////////////////////////////////
+/////////////    022 Efficient Script Loading defer and async    /////////
+//////////////////////////////////////////////////////////////////////////
+
+
+/* 
+                                                HEAD                                            BODY END
+                                       -----------------------                         ------------------------
+REGULAR                         parsing HTML..| waiting... | Finish parsing html|      parsing HTML  | Fetch script..Execute|
+<script src="script.js">         TIME >>>>    | Fetch script..Execute|          |                           DOMContentLoaded|
+
+
+ASYNC                           parsing HTML..| waiting... | Finish parsing html|
+<script async src="script.js">        Fetch script..Execute|
+
+
+DEFER                           parsing HTML........Execute|
+<script defer src="script.js">      Fetch script
+
+
+Tips: in the body fetching and executing the script always happens after parsing the HTML anyway.
+      and so async and defer have no practical effector.
+*/
+//=============================================================================================================
+/* 
+             END OF BODY                    ASYNC IN HEAD                              DEFER IN HEAD
+===============================    ================================              ============================
+   Parse HTML | Fetch|RUN|              Parse HTML|wait| Parse HTML     |            Parse HTML |RUN        |
+           DOMContentLoad|                   Fetch| RUN|  DOMContentLoad|             Fetch   DOMContentLoad|
+
+ >>  Scripts are fetched &      |           Scripts are fetched        |           Scripts are fetched 
+     executed after the HTML    |           asynchronously and         |        asynchronously and executed
+      is completely parsed      |           executed immediately       |        after the HTML is completely parsed
+
+
+*/
 
 
 
 
+
+ 
