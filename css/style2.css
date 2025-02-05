@@ -1028,7 +1028,6 @@ so that it is smooth among other more minor things */
    display: grid;
    grid-template-columns: 1fr 1fr 1fr 1fr;
    grid-template-rows: 1fr 1fr 1fr 1fr;
-
 }
 
 /* ==================box9====================== */
