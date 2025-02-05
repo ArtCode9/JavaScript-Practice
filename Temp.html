@@ -176,18 +176,16 @@
       
          const text = document.getElementById('TextContent');      
 
-         const calAge = function (year){
-            return 2025-year;
+         const art = {
+            firstName: "ali",
+            lastName: "tavanmand",
+            birthYear: 1991,
+            job: "FrontEnd Developer",
+            friends: ['me', 'mom', 'myself'],
+            calcAge: function(birth){
+               return 2025 - this.birthYear;
+            }
          }
-
-         const girls = [1991, 1999, 1998, 2002];
-         
-         text.innerText = `girl 1 = ${calAge(girls[0])}
-                           girl 2 = ${calAge(girls[1])}
-                           girl 3 = ${calAge(girls[2])}
-                           girl 4 = ${calAge(girls[3])}
-                           last girl = ${calAge(girls[girls.length -1])}`;
-         
 </script>   
  </body>
 </html>
