@@ -119,7 +119,7 @@
 
 </head>
  <body>   
-   <div class="logos">
+   <!-- <div class="logos">
       <div class="logos-slide">
             <div class="card">   
                <img src="src/facebook.png" alt="facebook">
@@ -165,23 +165,29 @@
                <img src="src/web2.png" alt="web">
                <p>Web</p>
             </div>
-            <br><br><hr>
+            <br><br><hr> -->
 
-            <p class="TextContent"></p>
+            <p id="TextContent"></p>
       </div>
    </div>
              
         
 <script>
-      const text = document.getElementsByClassName('TextContent');
-
-      function calcAverage (n1,n2){
-            return (n1 + n2) / 2 ;
-      }         
-
       
+         const text = document.getElementById('TextContent');      
 
+         const calAge = function (year){
+            return 2025-year;
+         }
 
+         const girls = [1991, 1999, 1998, 2002];
+         
+         text.innerText = `girl 1 = ${calAge(girls[0])}
+                           girl 2 = ${calAge(girls[1])}
+                           girl 3 = ${calAge(girls[2])}
+                           girl 4 = ${calAge(girls[3])}
+                           last girl = ${calAge(girls[girls.length -1])}`;
+         
 </script>   
  </body>
 </html>
