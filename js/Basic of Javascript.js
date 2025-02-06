@@ -151,7 +151,7 @@ console.log(jonas.motive());
 ///////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////      part7    🚩//////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////
-// check this and solve array problem in object you created yourself🧨🧨🧨 >>>> SOLVED 😎
+// check this and solve array problem in object you created yourself🧨🧨🧨 >>>> SOLVED with AI 😎
 
 /* const art = {
     firstName: 'art',
@@ -178,8 +178,46 @@ console.log(jonas.motive());
 }
 const num = prompt('Enter number::');
 console.log(`${art.firstName} ${art.lastNAme} born in ${art.birthYear} and he is ${art.job}
-and also he🚩${art['ability'](num)} and his enemy ${art.paleD(art.dude)}`);
+and also he 🚩🚩${art['ability'](num)} and his enemy ${art.paleD(art.dude)}`);
   */
+
+/*  // 🏁🏁🏁🏁🏁🏁🏁🏁🏁   the problem solve by AI and this code from AI with description
+    
+    //    Key Changes:
+    //    1. Fixed the typo in lastName.
+    //    2. Changed the paleD method to return a string of the dude array.
+    //    3. Changed the ability method to return strings instead of logging them directly.
+    //    4. Defined num to avoid reference errors.
+
+  const art = {
+    firstName: 'art',
+    lastName: 'arta', // Fixed typo here
+    job: 'Developer',
+    birthYear: 1999,
+    dude: ['f1', 'f2', 'f3'],
+    paleD: function() {
+        return this.dude.join(', '); // Join the array into a string
+    },
+    ability: function(a) {
+        const b = Number(a);
+
+        if (b === 2) {
+            return `He is trying to double skill in DEV`; // Return the string instead of console.log
+        } else if (b === 3) {
+            return `he is awesome on JAVASCRIPTS`; // Fixed typo here
+        } else {
+            return `He is resting do not bother him`; // Return the string instead of console.log
+        }
+    }
+}
+
+// Define num or use a specific number
+const num = prompt('Enter number::');// Example number
+
+console.log(`${art.firstName} ${art.lastName} born in ${art.birthYear} and he is ${art.job} 
+and also he ${art.ability(num)} and his enemies are ${art.paleD()}`);
+
+*/
 
 ///////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////      part8    /////////////////////////////////////////
