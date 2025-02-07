@@ -4,179 +4,18 @@
    <meta charset="UTF-8">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <title>Temps</title>
-   
-      <style>
-         *{
-            padding: 0;
-            margin: 0;
-            box-sizing: border-box;
-         }
-         body {
-            background: #f2f2f2;
-            text-align: center;
-            align-items: center;
-            align-content: center;
-         }
-         .logos {
-   overflow: hidden;
-   padding: 30px 0;
-   background: transparent;
-   white-space: nowrap;
-   width: 100%;
-   height: 166px;
-   margin: 10px auto;
-   position: relative;
-}
-.logos::before,
-.logos::after {
-   position: absolute;
-   top: 0;
-   width: 650px;
-   height: 100%;
-   content: "";
-   z-index: 2;
-   background-color: tomato;
-}
-.logos::before {
-   left: 0;
-   background: linear-gradient(to left, rgba(255, 255, 255, 0), white);
-}
-.logos::after {
-   right: 0;
-   background: linear-gradient(to right, rgba(255, 255, 255, 0), white);
-}
-.logos:hover .logos-slide {
-   animation-play-state: paused;
-}
-.logos-slide {
-   display: flex;
-   flex-direction: row;
-   animation: 30s slide infinite linear;
-}
-.logos-slide img {
-   height: 44px;
-   margin: 0 66px;
-   cursor: pointer;
-}
-.logos-slide h1 {
-   height: 90px;
-   margin: 0 66px;
-   display: inline-flex;
-}
-.card{
-   display: flex;
-   
-   padding: 9px;
-   flex-direction: column;
-   width: fit-content;
-}
-@keyframes slide {
-   0%{
-      transform: translateX(100%);
-   }10%{
-      transform: translateX(75%);
-   }20%{
-      transform: translateX(50%);
-   }30%{
-      transform: translateX(25%);
-   }40%{
-      transform: translateX(0);
-   }50%{
-      transform: translateX(-25%);
-   }60%{
-      transform: translateX(-50%);
-   }70%{
-      transform: translateX(-75%);
-   }80%{
-      transform: translateX(-85%);
-   }90%{
-      transform: translateX(-90%);
-   }100%{
-      transform: translateX(-100%);
-   }
-   /* 0%{
-      transform: translateX(-100%);
-   }25%{
-      transform: translateX(-75%);
-   }50%{
-      transform: translateX(-50%);
-   }75%{
-      transform: translateX(-25%);
-   }100%{
-      transform: translateX(0);
-   }
-    */   
-   
-   /* 
-   from{
-      transform: translateX(0);
-   }
-   to{
-      transform: translateX(-100%);
-   } */
-}
-</style>
 
 </head>
- <body>   
-   <!-- <div class="logos">
-      <div class="logos-slide">
-            <div class="card">   
-               <img src="src/facebook.png" alt="facebook">
-               <p>Facebook</p>
-            </div>
-            <div class="card">
-               <img src="src/gmail.png" alt="gmail">
-               <p>Gmail</p>
-            </div>
-            <div class="card">
-               <img src="src/icon19.png" alt="19">
-               <p>icon</p>
-            </div>
-            <div class="card">
-               <img src="src/icon27.png" alt="27">
-               <p>icon</p>
-            </div>
-            <div class="card">
-               <img src="src/icon50.png" alt="50">
-               <p>icon</p>
-            </div>
-            <div class="card">
-               <img src="src/icons8-css3-64.png" alt="css">
-               <p>Css</p>
-            </div>
-            <div class="card">
-               <img src="src/icons8-git-96.png" alt="git">
-               <p>Git</p>
-            </div>
-            <div class="card">
-               <img src="src/icons8-javascript-96.png" alt="js">
-               <p>JavaScript</p>
-            </div>
-            <div class="card">
-               <img src="src/linkedin.png" alt="ld">
-               <p>Linkdin</p>
-            </div>
-            <div class="card">
-               <img src="src/telegram.png" alt="telegram">
-               <p>Telegram</p>
-            </div>
-            <div class="card">
-               <img src="src/web2.png" alt="web">
-               <p>Web</p>
-            </div>
-            <br><br><hr> -->
+<body>
+
 
             <p id="TextContent"></p>
-      </div>
-   </div>
-             
         
-<script>
-            
+   <script>
 
 
 
-</script>   
- </body>
+
+   </script>   
+</body>
 </html>

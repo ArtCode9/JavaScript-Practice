@@ -236,7 +236,7 @@ const john = {
     fullname: 'John Smith',
     mass: 92,
     height: 1.95,
-    calcBMI: function(){
+    calcBMI: function(){ 
       this.bmi = this.mass / (this.height * this.height);
       return this.bmi;
     }
