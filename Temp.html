@@ -13,10 +13,38 @@
         
    <script>
 
+         const calcTips = function (bill){
+            return bill >= 50 && bill <= 300 ? bill * 0.15: bill * 0.2;
+         };
+
+         const bills = [22, 295, 167, 440, 37, 105];
+         const tips = [];
+         const totla = [];
+
+         for(let i =0; i < bills.length; i++){
+            const tip = calcTips(bills[i]);
+            tips.push(tip);
+            totla.push(tip + bills[i]);
+         };
+
+         console.log(bills);
+         console.log(tips);
+         console.log(totla);
+         console.log(`==================`);
+
+         const calcAvg = function(arr){
+            let sum = 0;
+            for(let i =0; i < arr.length; i++){
+               sum += arr[i];
+            }
+            console.log(sum);
+            return sum / arr.length;
+
+         }
+         console.log(calcAvg([2, 5, 8]));
+         console.log(calcAvg(totla));
+         console.log(calcAvg(tips));
          
-
-
-
    </script>   
 </body>
 </html>
