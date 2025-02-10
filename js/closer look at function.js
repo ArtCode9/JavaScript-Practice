@@ -2,7 +2,7 @@
 //  closer look at function
 
 /////////////////////////////////////////////////////////////
-/////////////////     3 Default Parameters    ///////////////
+/////////////////     3 Default Parameters    🚩 ////////////
 /////////////////////////////////////////////////////////////
 
 /* 
@@ -16,7 +16,7 @@ const createBooking = function(flightNum, numPassenger = 1, price = 199 * numPas
    const booking = { flightNum , numPassenger , price}
    console.log(booking);
    bookings.push(booking);
-;}
+};
 
 createBooking('LH124');
 createBooking('LH124', 2, 800);
@@ -28,7 +28,7 @@ createBooking('LH124', undefined, 1000);
  */
 
 /////////////////////////////////////////////////////////////
-////  4 How Passing Arguments Works Value vs. Reference   ///
+////  4 How Passing Arguments Works Value vs. Reference  🚩//
 /////////////////////////////////////////////////////////////
 
 /* 
@@ -71,7 +71,7 @@ checkIn(flight, jonas);
  */
 
 /////////////////////////////////////////////////////////////
-/////     5 First-Class and Higher-Order Functions       ////
+/////    5 First-Class and Higher-Order Functions    🚩 ////
 /////////////////////////////////////////////////////////////
 
 // first class function : simply values
@@ -79,7 +79,7 @@ checkIn(flight, jonas);
 // higher order function : ""    ""    ""   ""
 
 /////////////////////////////////////////////////////////////
-/////     6 Functions Accepting Callback Functions       ////
+/////     6 Functions Accepting Callback Functions     🚩///
 /////////////////////////////////////////////////////////////
 
 /* 
@@ -118,7 +118,7 @@ document.body.addEventListener('click', high5); // addEventListener is higher-or
  */
 
 /////////////////////////////////////////////////////////////
-/////          7 Functions Returning Functions           ////
+/////          7 Functions Returning Functions         🚩///
 /////////////////////////////////////////////////////////////
 
 /* 
