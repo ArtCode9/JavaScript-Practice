@@ -124,6 +124,8 @@ console.log(art.hasOwnProperty('species'));
 
 // search and study MDN and document
 
+// https://developer.mozilla.org/en-US/docs/Learn_web_development/Extensions/Advanced_JavaScript_objects/Object_prototypes
+
 /////////////////////////////////////////////////////////////////////
 /////////   008 Prototypal Inheritance on Built-In Objects    ///////
 /////////////////////////////////////////////////////////////////////
@@ -204,3 +206,7 @@ console.log(arr.__proto__ === Array.prototype);
 
 console.log(arr.__proto__.__proto__);
 console.log(arr.__proto__.__proto__.__proto__);
+
+
+
+
