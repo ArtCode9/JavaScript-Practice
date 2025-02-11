@@ -277,6 +277,8 @@ bmw.accelerate();
 ///////////////////////     010 ES6 Classes         /////////////////
 /////////////////////////////////////////////////////////////////////
 
+/* 
+
 // class expression
 // const PersonCl = class {};
 // console.log(typeof PersonCl);
@@ -318,5 +320,123 @@ jessica.greet2();
 // 1. Classes are NOT hoisted
 // 2. Class are first-class citizes
 // 3. Classes are executed in strict mode
+
+*/
+/////////////////////////////////////////////////////////////////////
+//////////////////      011 Setters and Getters     /////////////////
+/////////////////////////////////////////////////////////////////////
+
+/* 
+const account = {
+   owner: 'Jonas',
+   movements: [200, 530, 120, 300],
+
+   get latest() {
+      return this.movements.slice(-1).pop();
+   },
+
+   set latest(mov) {
+      this.movements.push(mov);
+   }
+};
+
+// use get
+console.log(account.latest);
+
+// use set
+account.latest = 50;
+console.log(account.movements);
+
+// from last section
+class PersonCl {
+   constructor(fName, birthYear){
+      this.fName = fName;
+      this.birthYear = birthYear;
+   }
+   
+   // create method and will be added to .prototype property
+   calcAge(){
+      console.log(2037 - this.birthYear);
+   }
+
+   greet(){
+      console.log(`Hey ${this.fName} from inside class through prototype`);
+   }
+
+
+   // setters and getters are very useful for validation
+   get age() {
+      return 2037 - this.birthYear;
+   }
+   // Set a property that already exists
+   set fullName(name){
+      console.log(name + "0000000");
+      if(name.includes(' ')) this._fName = name;
+      else alert(`${name} is not a full name!`);
+   }
+
+   get fullName() {
+      return this.fName;
+   }
+};
+
+const alan = new PersonCl('Alan spark', 1991);
+console.log(alan);
+alan.calcAge();
+console.log(alan.age);
+console.log(alan.fullName);
+
+
+const walter = new PersonCl('Walter', 1965);
+
+ */
+
+
+/////////////////////////////////////////////////////////////////////
+//////////////////        012 Static Methods        /////////////////
+/////////////////////////////////////////////////////////////////////
+
+// is the build in Array.from method
+// static methods are not available on the instances
+
+// console.log(Array.from(document.querySelector('h1')));
+
+
+/////////////////////////////////////////////////////////////////////
+//////////////////            013 Object.create          ////////////
+/////////////////////////////////////////////////////////////////////
+
+/* 
+const PersonProto = {
+   calcAge() {
+      console.log(2037 - this.birthYear);
+   },
+   init(fname, birthYear) {
+      this.fname = fname;
+      this.birthYear = birthYear;
+   },
+};
+
+// steven now is empty object and linked to PersonProto object which will be its prototype
+const steven = Object.create(PersonProto);
+console.log(steven);
+steven.name = 'Steven';
+steven.birthYear = 2002;
+steven.calcAge();
+
+console.log(steven.__proto__ === PersonProto);
+
+const sarah = Object.create(PersonProto);
+sarah.init('Sarah', 1979);
+sarah.calcAge();
+
+ */
+
+/////////////////////////////////////////////////////////////////////
+//////////////////            014 CHALLENGE #2       ////////////////
+/////////////////////////////////////////////////////////////////////
+
+
+
 
 
