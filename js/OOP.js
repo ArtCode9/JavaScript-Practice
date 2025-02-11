@@ -130,7 +130,7 @@ console.log(art.hasOwnProperty('species'));
 /////////   008 Prototypal Inheritance on Built-In Objects    ///////
 /////////////////////////////////////////////////////////////////////
 
-
+/* 
 const Person = function(fName, birthYear) {
    // Instance properties
 
@@ -198,15 +198,125 @@ console.log(art.__proto__);
 console.log(art.__proto__.__proto__);
 console.log(art.__proto__.__proto__.__proto__);
 
-console.log(Person.prototype.constructor);
+console.dir(Person.prototype.constructor);
+console.log(`====================`);
 
-const arr = [3, 5, 6, 8, 2 ,9];
+const arr = [3, 5, 3, 2, 2 ,9];  // new Array === []
 console.log(arr.__proto__);
 console.log(arr.__proto__ === Array.prototype);
 
 console.log(arr.__proto__.__proto__);
 console.log(arr.__proto__.__proto__.__proto__);
 
+// check array.prototype.filter() on MDN
 
+Array.prototype.unique = function () {
+      return [...new Set(this)];
+};
+
+console.log(arr.unique());
+
+const h1 = document.querySelector('h1');
+console.dir(h1);
+console.log(h1);
+
+console.dir(x => x + 1);
+console.dir(typeof (x => x + 1));
+
+*/
+
+
+/////////////////////////////////////////////////////////////////////
+/////////////             009 CHALLENGE #1              /////////////
+/////////////////////////////////////////////////////////////////////
+//   ⚠⚠⚠⚠⚠⚠   this is very good point read and study it more more
+
+/* 
+
+// Your tasks:
+// 1. Use a constructor function to implement a 'Car'. A car has a 'make' and a 
+// 'speed' property. The 'speed' property is the current speed of the car in 
+// km/h
+// 2. Implement an 'accelerate' method that will increase the car's speed by 10, 
+// and log the new speed to the console
+// 3. Implement a 'brake' method that will decrease the car's speed by 5, and log 
+// the new speed to the console
+// 4. Create 2 'Car' objects and experiment with calling 'accelerate' and 
+// 'brake' multiple times on each of them
+// Test data:
+// § Data car 1: 'BMW' going at 120 km/h
+// § Data car 2: 'Mercedes' going at 95 km/h
+
+const Car = function(make, speed) {
+      this.make = make;
+      this.speed = speed;
+};
+// add method to Car
+Car.prototype.accelerate = function() {
+   this.speed += 10;
+   console.log(`${this.make} is going at ${this.speed}km/h`);
+};
+
+Car.prototype.brake = function() {
+   this.speed -= 5;
+   console.log(`${this.make} is brake at ${this.speed}km/h`);
+};
+
+const bmw = new Car('BMW', 120);
+const benz = new Car('BENZ', 90);
+console.log(bmw, benz);
+
+bmw.accelerate();
+bmw.accelerate();
+bmw.brake(); 
+bmw.accelerate();
+
+
+ */
+/////////////////////////////////////////////////////////////////////
+///////////////////////     010 ES6 Classes         /////////////////
+/////////////////////////////////////////////////////////////////////
+
+// class expression
+// const PersonCl = class {};
+// console.log(typeof PersonCl);
+
+
+// class declaration
+class PersonCl {
+   constructor(fName, birthYear){
+      this.fName = fName;
+      this.birthYear = birthYear;
+   }
+   
+   // create method and will be added to .prototype property
+   calcAge(){
+      console.log(2037 - this.birthYear);
+   }
+
+   greet2(){
+      console.log(`Hey ${this.fName} from inside class through prototype`);
+   }
+};
+console.log(typeof PersonCl);
+
+const jessica = new PersonCl('Jessica', 1998);
+console.log(jessica);
+console.log(typeof jessica);
+jessica.calcAge();
+
+console.log(jessica.__proto__ === PersonCl.prototype);
+
+// add method manually to prototype and also we can add this inside the class like greet2
+PersonCl.prototype.greet = function(){
+   console.log(`Hey ${this.fName}`);
+};
+jessica.greet();
+jessica.greet2();
+
+// point for work with classes:::
+// 1. Classes are NOT hoisted
+// 2. Class are first-class citizes
+// 3. Classes are executed in strict mode
 
 
