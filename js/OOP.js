@@ -938,11 +938,221 @@ console.dir(Student.prototype.constructor);
 //  reuse and organization. Understanding these concepts is essential for any 
 //  JavaScript developer aiming to write clean, maintainable, and efficient code.
 
-
+console.log(`=======================================`);
 
 /////////////////////////////////////////////////////////////////////
 //////////////////            016 CHALLENGE #3           ////////////
 /////////////////////////////////////////////////////////////////////
+
+
+
+
+// Your tasks:
+// 1. Use a constructor function to implement an Electric Car (called 'EV') as a child
+// "class" of 'Car'. Besides a make and current speed, the 'EV' also has the 
+// current battery charge in % ('charge' property)
+// 2. Implement a 'chargeBattery' method which takes an argument 
+// 'chargeTo' and sets the battery charge to 'chargeTo'
+// 3. Implement an 'accelerate' method that will increase the car's speed by 20, 
+// and decrease the charge by 1%. Then log a message like this: 'Tesla going at 140 
+// km/h, with a charge of 22%'
+// 4. Create an electric car object and experiment with calling 'accelerate', 
+// 'brake' and 'chargeBattery' (charge to 90%). Notice what happens when 
+// you 'accelerate'! Hint: Review the definiton of polymorphism �
+// Test data:
+// § Data car 1: 'Tesla' going at 120 km/h, with a charge of 23%
+
+/* 
+
+const Car = function (make, speed) {
+   this.make = make;
+   this.speed = speed;
+};
+
+Car.prototype.accelerate = function () {
+   this.speed += 10;
+   console.log(`${this.make} is going at ${this.speed}km/h`);
+};
+
+Car.prototype.brake = function (){
+   this.speed -= 5;
+   console.log(`${this.make} is brake at ${this.speed}km/h`);
+};
+
+const EV = function (make , speed , charge) {
+      Car.call(this, make, speed);
+      this.charge = charge;
+};
+
+
+// Link the prototypes
+EV.prototype = Object.create(Car.prototype);
+
+EV.prototype.chargeBattery = function (chargeTo) {
+   this.charge = chargeTo;
+};
+
+EV.prototype.accelerate = function (){
+   this.speed += 20;
+   this.charge--;
+   console.log(`${this.make} is going at ${this.speed}km/h, with a charge of ${this.charge}km/h`);
+};
+
+const tesla = new EV('Tesla', 120 , 23);
+tesla.chargeBattery(90);
+console.log(tesla);
+tesla.brake();
+tesla.accelerate();
+
+ */
+
+
+
+/////////////////////////////////////////////////////////////////////
+////////    017 Inheritance Between Classes ES6 Classes     /////////
+/////////////////////////////////////////////////////////////////////
+
+/* 
+Introduction
+In the realm of JavaScript, classes provide a powerful way 
+to create objects and manage their behavior. 
+The code provided illustrates the implementation of a PersonCl 
+class and a derived StudentCl class, showcasing the principles
+ of inheritance, encapsulation, and method overriding. 
+ This article will break down the code, explaining its structure and functionality in detail.
+
+Key Concepts
+Classes and Objects: 
+Classes serve as blueprints for creating objects. 
+In this code, PersonCl is a base class, while StudentCl extends it,
+ inheriting its properties and methods.
+
+Constructor: 
+The constructor method initializes new objects.
+ It sets the fullName and birthYear properties for instances of PersonCl.
+
+Instance Methods: 
+These are functions defined within a class that operate on
+ instances of that class. In this code, calcAge and greet are instance methods of PersonCl.
+
+Getters and Setters: 
+These allow controlled access to properties. 
+The fullName property has a setter that validates the input and a getter that retrieves the value.
+
+Static Methods: 
+Unlike instance methods, static methods belong to the class
+ itself rather than any object instance. The hey method in PersonCl is an example of this.
+
+Inheritance: 
+The StudentCl class inherits from PersonCl, allowing it to use its methods 
+and properties while also defining its own.
+
+Code Structure
+The code is structured into two classes: PersonCl and StudentCl.
+
+PersonCl:
+
+Contains a constructor to initialize fullName and birthYear.
+Includes instance methods for calculating age and greeting.
+Implements a getter and setter for fullName.
+Features a static method for a generic greeting.
+
+StudentCl:
+
+Inherits from PersonCl using the extends keyword.
+Has its own constructor that calls the parent constructor with super().
+Introduces a method to introduce the student and overrides the calcAge 
+method to provide a customized age calculation.
+===================================================================================
+
+Explanation of the Code
+PersonCl Class:
+
+The constructor initializes the fullName and birthYear.
+The calcAge method calculates the age based on a fixed year (2037).
+The greet method outputs a greeting message.
+The fullName setter checks if the name contains a space, ensuring it is a full name.
+The age getter calculates the age dynamically.
+The static method hey can be called without creating an instance of the class.
+
+StudentCl Class:
+
+Inherits from PersonCl and adds a course property.
+The introduce method provides a personalized introduction.
+The calcAge method overrides the parent method to add a humorous twist to the age calculation.
+
+Creating an Instance:
+
+An instance of StudentCl named martha is created, demonstrating the use of both inherited and new methods.
+
+Conclusion
+The provided code exemplifies the power of JavaScript classes,
+ showcasing how to create a base class and extend it with additional 
+ functionality. By utilizing constructors, instance methods, getters, 
+ setters, and static methods, developers can create robust and maintainable
+ code structures. Understanding these concepts is crucial for any JavaScript 
+ programmer looking to leverage the full potential of object-oriented programming in their applications.
+
+
+ */
+class PersonCl {
+      constructor(fullName, birthYear){
+         this.fullName = fullName;
+         this.birthYear = birthYear;
+      }
+
+      // Instance methods
+      calcAge() {
+         console.log(2037 - this.birthYear);
+      }
+
+      greet() {
+         console.log(`Hey ${this.fullName}`);
+      }
+
+      get age() {
+         return 2037 - this.birthYear;
+      }
+
+      set fullName(name){
+         if(name.includes(' ')) this._fullName = name;
+         else alert(`${name} is not a full name!`);
+      }
+
+      get fullName() {
+         return this._fullName;
+      }
+
+      // static method
+      static hey (){
+         console.log(`Hey there 🖐`);
+      }
+};
+
+class StudentCl extends PersonCl {
+   constructor(fullName, birthYear, course){
+      // Always needs to happen first!
+      super(fullName, birthYear);
+      this.course = course;    
+   }
+
+   introduce() {
+      console.log(`My name is ${this.fullName} and I study ${this.course}`);
+   }
+
+   calcAge(){
+      console.log(`I'm ${2037 - this.birthYear} years old, but as a Student i feel more like 
+         ${2037 - this.birthYear + 10}`);
+   }
+};
+
+const martha = new StudentCl('Martha Jones', 2012, 'It Computer');
+console.log(martha);
+martha.introduce();
+martha.calcAge();
+
+
+
 
 
 
