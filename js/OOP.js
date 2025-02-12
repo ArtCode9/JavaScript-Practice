@@ -463,6 +463,53 @@ bmw.accelerate();
 ///////////////////////     010 ES6 Classes         /////////////////
 /////////////////////////////////////////////////////////////////////
 
+
+/* 
+   Understanding JavaScript Classes:
+    A Deep Dive into Class Expressions and Declarations
+Introduction
+In the realm of JavaScript, classes serve as a blueprint for creating objects, 
+encapsulating data, and defining behaviors. This article delves into the nuances 
+of class expressions and declarations, illustrated through a practical example.
+ We will explore how to define a class, instantiate objects, and utilize methods, 
+ all while adhering to JavaScript's principles.
+
+Key Concepts
+Before we dive into the code, let's clarify some key concepts:
+
+Class Expression:
+ A class can be defined using an expression, which can be anonymous or named.
+  This allows for more dynamic class creation.
+Class Declaration:
+ This is a more traditional way to define a class, providing a clear structure and scope.
+Prototype: 
+JavaScript uses prototypes to enable inheritance and method sharing among instances of a class.
+Strict Mode:
+ Classes in JavaScript are executed in strict mode by default, which helps catch common coding errors.
+Code Structure
+The provided code snippet demonstrates both a class expression and a class declaration.
+ It defines a PersonCl class with a constructor and methods,
+  showcasing how to create instances and interact with
+
+
+
+
+  Explanation of the Code:
+The code begins with a class expression, which is logged to confirm its type.
+A class declaration follows, defining the PersonCl class with a constructor and two methods.
+An instance of PersonCl is created for a person named Jessica, demonstrating how to instantiate a 
+      class and access its properties and methods.
+The prototype is utilized to add a new method, greet, which can be called on the instance.
+The comments at the end highlight important characteristics of classes in JavaScript.
+Conclusion
+In conclusion, understanding class expressions and declarations 
+in JavaScript is crucial for effective object-oriented programming. 
+The provided code illustrates how to define a class, create instances,
+ and utilize methods, all while adhering to JavaScript's unique characteristics.
+  By mastering these concepts, developers can create more organized and maintainable code, 
+  leveraging the power of classes to encapsulate functionality and promote reusability.
+
+ */
 /* 
 
 // class expression
