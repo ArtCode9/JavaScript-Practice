@@ -1263,5 +1263,128 @@ jay.calcAge();
 //////////////          019 Another Class Example        ////////////
 /////////////////////////////////////////////////////////////////////
 
+/* 
+ Understanding the JavaScript Account Class Implementation
+Introduction
+In this article, we will delve into a JavaScript class named Account,
+ which encapsulates the functionality of a bank account. 
+ This class allows for basic operations such as depositing and withdrawing
+ funds, as well as requesting loans. We will explore the key concepts behind
+  the class, its structure, and provide code examples to illustrate its functionality.
+
+Key Concepts
+The Account class is designed to represent a bank account with several key features:
+
+Constructor: 
+Initializes the account with an owner's name, currency type, and a personal 
+identification number (PIN).
+Movements: 
+An array that tracks all deposits and withdrawals made to the account.
+Locale: 
+Captures the user's locale using the browser's language settings.
+Public Methods: 
+Includes methods for depositing, withdrawing, approving loans, and requesting loans.
+Code Structure
+
+
+The structure of the Account class is straightforward:
+
+Properties: 
+The class has properties for the account owner, currency, PIN, movements, and locale.
+Methods: 
+It includes methods for depositing and withdrawing money, 
+approving loans, and requesting loans.  
+=============================================================
+
+Explanation of Code Examples
+Creating an Account:
+
+const acc1 = new Account('Jonas', 'EUR', 1111);
+creates a new account for the owner "Jonas" with the currency "EUR" and 
+a PIN of 1111. The constructor logs a welcome message to the console.
+
+Depositing Funds:
+
+acc1.deposit(290); adds 290 to the movements array, indicating a deposit.
+Withdrawing Funds:
+
+acc1.withdraw(145); effectively calls the deposit method with a 
+negative value, thus subtracting 145 from the account.
+Requesting a Loan:
+
+acc1.requestLoan(1000); checks if the loan can be approved. 
+If approved, it deposits 1000 into the account and logs a message indicating the loan approval.
+Logging Account Details:
+
+The final console.log statements display the account details, 
+including the PIN, movements, and the deposit method itself.
+Conclusion
+The Account class in JavaScript provides a
+ simple yet effective way to manage bank account operations
+ . By encapsulating properties and methods, it allows for a 
+ clean interface for users to interact with their accounts. 
+ This implementation serves as a foundational example of 
+ object-oriented programming in JavaScript, demonstrating 
+ how to create and manage complex data structures effectively.
+  As you continue to explore JavaScript, consider how you can 
+  expand upon this class to include additional features such as 
+  transaction history or interest calculations.
+
+ */
+/* 
+class Account {
+   constructor(owner, currency, pin){
+      this.owner = owner;
+      this.currency = currency;
+      this.pin = pin;
+      this.movements = [];
+      this.locale = navigator.language;
+
+      console.log(`Thanks for opening an account, ${owner}`);
+   }
+
+   // public interface
+   deposit(val){
+      this.movements.push(val);
+   }
+
+   withdraw(val){
+      this.deposit(-val);
+   }
+
+   approveLoan(val){
+      return true;
+   }
+
+   requestLoan(val){
+      if(this.approveLoan(val)){
+         this.deposit(val);
+         console.log(`Loan approved.`);
+      }
+   }
+};
+
+const acc1 = new Account('Jonas', 'EUR', 1111);
+console.log(acc1);
+
+//  acc1.movements.push(250);
+//  acc1.movements.push(-149);
+// we do instead like this
+acc1.deposit(290);
+acc1.withdraw(145);
+acc1.requestLoan(1000);
+acc1.approveLoan(1000);
+
+console.log(acc1);
+console.log(acc1.pin);
+console.log(acc1.movements);
+console.log(acc1.deposit);
+
+ */
+
+/////////////////////////////////////////////////////////////////////
+////   020 Encapsulation Protected Properties and Methods   ////////
+/////////////////////////////////////////////////////////////////////
+
 
 
