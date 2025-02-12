@@ -1226,6 +1226,7 @@ By utilizing prototypes, we can create a hierarchy of objects that share methods
 
 */
 
+/* 
 const PersonProto = {
    calcAge() {
       console.log(2037 - this.birthYear);
@@ -1256,11 +1257,10 @@ jay.introduce();
 console.log(jay)
 jay.calcAge();
 
-
-
+ */
 
 /////////////////////////////////////////////////////////////////////
-
+//////////////          019 Another Class Example        ////////////
 /////////////////////////////////////////////////////////////////////
 
 
