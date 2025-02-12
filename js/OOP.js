@@ -488,6 +488,38 @@ console.log(ford);
 //////     015 Inheritance Between Classes Constructor Functions ////
 /////////////////////////////////////////////////////////////////////
 
+
+// Introduction:
+//  In the realm of JavaScript, understanding how objects and inheritance work is crucial
+//  for effective programming. The provided code snippet demonstrates the creation of a 
+//  Person object and a Student object that inherits from Person.
+//  This example illustrates the use of constructor functions, prototype chaining,
+//  and method definitions, showcasing how JavaScript handles inheritance and object-oriented programming.
+
+// Key Concepts:
+//  Constructor Functions: 
+//  These are special functions used to create objects. 
+//  They are invoked with the new keyword, which creates a new object and sets its prototype.
+
+// Prototypal Inheritance: 
+//  JavaScript uses prototypes to enable inheritance. 
+//  An object can inherit properties and methods from another object through its prototype.
+
+// Method Definition: 
+//  Methods can be added to the prototype of a constructor function, 
+//  allowing all instances of that constructor to share the same method.
+
+// Instanceof Operator: 
+//  This operator checks whether an object is an 
+//  instance of a specific constructor or its prototype chain.
+
+// Code Structure
+//  The code is structured into two main constructor functions:
+//  Person and Student. The Person function initializes the properties of a person,
+//  while the Student function extends Person to include additional properties specific to students.
+//  The prototype of Student is linked to Person, 
+//  allowing Student instances to access methods defined in Person.
+
 // parent class
 const Person = function (firstName, birthYear){
    this.firstName = firstName;
@@ -527,6 +559,52 @@ console.log(mike instanceof Object);
 
 Student.prototype.constructor = Student;
 console.dir(Student.prototype.constructor);
+
+
+// Explanation of the Code
+// 1. Person Constructor:
+
+// The Person function initializes a new object with firstName and birthYear properties.
+// The calcAge method calculates the age based on a fixed year (2037 in this case).
+
+// 2. Student Constructor:
+
+// The Student function calls the Person constructor using
+//  Person.call(this, firstName, birthYear) to inherit its properties.
+// It also initializes a new property, course, specific to students.
+
+// 3. Prototype Linking:
+
+// Student.prototype = Object.create(Person.prototype); establishes the prototype chain, 
+// allowing Student instances to access methods from Person.
+
+// 4. Method Addition:
+
+// The introduce method is added to Student.prototype, enabling instances to introduce themselves.
+
+// 5. Creating an Instance:
+
+// An instance of Student, named mike, is created with specific values.
+// The introduce and calcAge methods are called on mike, demonstrating the functionality inherited from Person.
+
+// 6. Prototype Inspection:
+
+// The prototype chain is inspected using __proto__, showing the relationship between mike, Student, and Person.
+
+// 7. Instance Checks:
+
+// The instanceof operator checks if mike is an instance of Student, Person, and Object, confirming the inheritance structure.
+
+// 8. Constructor Reference:
+
+// Finally, the constructor reference for Student.prototype is restored to Student to maintain proper constructor references.
+
+// Conclusion
+// This code snippet effectively illustrates the principles of prototypal 
+// inheritance in JavaScript. By utilizing constructor functions and prototype
+//  chaining, we can create a robust object-oriented structure that allows for code 
+// reuse and organization. Understanding these concepts is essential for any 
+// JavaScript developer aiming to write clean, maintainable, and efficient code.
 
 
 
