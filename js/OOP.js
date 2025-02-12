@@ -1093,8 +1093,9 @@ The provided code exemplifies the power of JavaScript classes,
  code structures. Understanding these concepts is crucial for any JavaScript 
  programmer looking to leverage the full potential of object-oriented programming in their applications.
 
-
  */
+
+ /* 
 class PersonCl {
       constructor(fullName, birthYear){
          this.fullName = fullName;
@@ -1151,8 +1152,116 @@ console.log(martha);
 martha.introduce();
 martha.calcAge();
 
+ */
+console.log(`==================================`);
+/////////////////////////////////////////////////////////////////////
+/////////    018 Inheritance Between Classes Object.create   ////////
+/////////////////////////////////////////////////////////////////////
+
+/* 
+Introduction
+In JavaScript, prototypal inheritance is a powerful feature that allows 
+objects to inherit properties and methods from other objects. 
+This article will delve into a specific code example that demonstrates 
+how to create objects using prototypes, initialize their properties,
+ and utilize inherited methods. We will explore the structure of the code, 
+ its key concepts, and how it operates in practice.
+
+Key Concepts
+Prototypal Inheritance: 
+This is a method by which an object can inherit properties and methods 
+from another object. In JavaScript, every object has a prototype, which is also an object.
+Object.create(): 
+This method creates a new object, using an existing object as the prototype
+ of the newly created object.
+Method Invocation: 
+The way in which methods are called on objects, allowing access to their properties and functionalities.
+Code Structure
+The provided code consists of two main prototypes:
+ PersonProto and StudentProto. The PersonProto serves as a base prototype
+  for creating person objects, while StudentProto extends PersonProto to
+  create student objects with additional properties and methods.
+
+Breakdown of the Code:
+PersonProto: This prototype includes methods for calculating age and initializing properties.
+StudentProto: This prototype inherits from PersonProto and adds functionality specific to 
+students, such as introducing themselves.
+
+===============================================================================
+Explanation of the Code:
+PersonProto:
+
+calcAge(): This method calculates the age of a person based on the year 2037 and the birthYear property.
+init(firstName, birthYear): This method initializes the firstName and birthYear properties of the object.
+
+Creating a Person Object:
+
+const steven = Object.create(PersonProto);: This line creates a new object steven that inherits 
+from PersonProto. Initially, it has no properties.
+
+StudentProto:
+
+const StudentProto = Object.create(PersonProto);: This creates a new prototype for students 
+that inherits from PersonProto.
+init(firstName, birthYear, course): This method initializes the properties of a student, 
+including the additional course property. It uses call to invoke the init method of PersonProto to set the firstName and birthYear.
+introduce(): This method allows the student to introduce themselves, 
+utilizing the firstName and course properties.
+
+Creating a Student Object:
+
+const jay = Object.create(StudentProto);: This creates a new student object jay that inherits from StudentProto.
+jay.init('Jay', 2010, 'Computer Science');: This initializes jay with the specified properties.
+jay.introduce();: This calls the introduce method, outputting the student's name and course.
+jay.calcAge();: This calls the calcAge method, calculating and outputting the age based on the birthYear.
+
+Conclusion
+The provided code effectively demonstrates the principles of prototypal inheritance in JavaScript. 
+By utilizing prototypes, we can create a hierarchy of objects that share methods and properties,
+ promoting code reusability and organization. Understanding these concepts is crucial for any JavaScript
+  developer, as they form the foundation of object-oriented programming in the language. 
+  Through this example, we see how inheritance can be leveraged to create more complex and 
+  functional objects, enhancing the capabilities of our applications.
 
 
+*/
+
+const PersonProto = {
+   calcAge() {
+      console.log(2037 - this.birthYear);
+   },
+
+   init(firstName, birthYear){
+      this.firstName = firstName;
+      this.birthYear = birthYear;
+   },
+};
+
+const steven = Object.create(PersonProto);
+console.log(steven);
+
+const StudentProto = Object.create(PersonProto);
+StudentProto.init = function(firstName, birthYear, course){
+      PersonProto.init.call(this, firstName, birthYear);
+      this.course = course;
+};
+
+StudentProto.introduce = function (){
+   console.log(`My name is ${this.firstName} and I study ${this.course}`);
+}
+
+const jay = Object.create(StudentProto);
+jay.init('Jay' , 2010, 'Computer Science');
+jay.introduce();
+console.log(jay)
+jay.calcAge();
+
+
+
+
+/////////////////////////////////////////////////////////////////////
+
+/////////////////////////////////////////////////////////////////////
 
 
 
