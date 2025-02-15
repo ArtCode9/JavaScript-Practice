@@ -23,7 +23,7 @@
          color: lightseagreen;
          padding: 12px;
          font-size: 64px;
-         border: 2px solid lightseagreen;
+         border: 5px solid lightseagreen;
       }
    </style>
 </head>
@@ -33,6 +33,49 @@
             <p id="TextContent"></p>
         
    <script>
+
+      const restaurant = {
+         name: 'Classico Italiano',
+         location: 'Via Angelo Tavanti 23, Firenzam Italy',
+         
+         categories: ['italian', 'Pizzeira', 'Vegetrian', 'Organic'],
+         
+         startMenu: ['Focaccia','Garlic bread','brischetta','Capress salad'],
+         
+         mainMenu: ['Pizza', 'Pasta', 'Rosotto'],
+         openingHours: {
+            thu:{
+               open: 12,
+               close: 22
+            },
+            fri:{
+               open: 11,
+               close: 23
+            },
+            sat:{
+               open: 0, // open 24 hours
+               close: 24
+            },
+            mon:{
+               open: 12,
+               close: 22
+            }
+         },
+         order: function(starterIndex, mainIndex){
+            return [this.startMenu[starterIndex], this.mainMenu[mainIndex]];
+         },
+         orderDelivery: function({ starterIndex = 1, mainIndex = 0, time = '20:00', address}) {
+            console.log(`Order received ${this.startMenu[starterIndex]} and ${this.mainMenu[mainIndex]} 
+            will be delivered to ${address} at ${time}`);
+         } 
+      };
+
+
+     
+      
+
+
+
 
 
 
