@@ -565,3 +565,16 @@ button.addEventListener('click', function (e) {
 /////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////     box 10       ///////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////
+
+
+document.getElementById('openPopup').onclick = function() {
+   document.getElementById('overlay_x').style.display = 'block';
+}
+document.getElementById('closePopup').onclick = function() {
+   document.getElementById('overlay_x').style.display = 'none';
+}
+window.onclick = function(event) {
+   if (event.target == document.getElementById('overlay')) {
+       document.getElementById('overlay_x').style.display = 'none';
+   }
+}

@@ -305,7 +305,27 @@
                </div>
 
          </div>
-         <div id="box10"></div>
+         <div id="box10">
+            <h1>Open pop up  form</h1>
+            <hr style="width: 100%;">
+            <br>
+            <button id="openPopup" class="openPopup">Open Form</button>
+
+               <div class="overlay_x" id="overlay_x">
+                  <div class="popup_x">
+                     <span class="close_x" id="closePopup">&times;</span>
+                     <h2>Form Title</h2>
+                     <form action="submit.php" method="post">
+                           <label for="name">Name:</label><br>
+                           <input type="text" id="name" name="name" required><br><br>
+                           <label for="email">Email:</label><br>
+                           <input type="email" id="email" name="email" required><br><br>
+                           <input type="submit" value="Submit">
+                     </form>
+                  </div>
+               </div>
+
+         </div>
          <div id="box11"></div>
          <div id="box12"></div>
          <div id="box13"></div>
