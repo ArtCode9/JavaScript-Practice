@@ -36,46 +36,39 @@
 
       const restaurant = {
          name: 'Classico Italiano',
-         location: 'Via Angelo Tavanti 23, Firenzam Italy',
-         
-         categories: ['italian', 'Pizzeira', 'Vegetrian', 'Organic'],
-         
-         startMenu: ['Focaccia','Garlic bread','brischetta','Capress salad'],
-         
-         mainMenu: ['Pizza', 'Pasta', 'Rosotto'],
+         location: 'Spain 23 ave number 3423',
+         categories: ['italian', 'Pizzaro', 'Vegitarian', 'Organic'],
+         starterMenu: ['Focaccia', 'Bruchesta', 'Garlic bread', 'capress salad'],
+         mainMenu: ['Pizza', 'Pasta', 'Rissoto'],
          openingHours: {
             thu:{
                open: 12,
-               close: 22
-            },
+               close: 23
+               },
             fri:{
                open: 11,
-               close: 23
-            },
-            sat:{
-               open: 0, // open 24 hours
-               close: 24
-            },
-            mon:{
-               open: 12,
                close: 22
-            }
+               },
+            sat:{
+               open: 12,
+               close: 23
+               }
          },
-         order: function(starterIndex, mainIndex){
-            return [this.startMenu[starterIndex], this.mainMenu[mainIndex]];
+         order: function (starterIndex, mainIndex){
+            return [this.starterMenu[starterIndex], this.mainMenu[mainIndex]];
          },
-         orderDelivery: function({ starterIndex = 1, mainIndex = 0, time = '20:00', address}) {
-            console.log(`Order received ${this.startMenu[starterIndex]} and ${this.mainMenu[mainIndex]} 
-            will be delivered to ${address} at ${time}`);
-         } 
+         orderDelivery: function({starterIndex = 1, mainIndex = 0, time = '20:00', address}){
+            console.log(`1️⃣order list : ${this.starterMenu[starterIndex]} and ${this.mainMenu[mainIndex]}
+this address ${address} in ${time} oclock`);
+         },
+         orderPasta: function(ing1, ing2, ing3){
+             console.log(`Here is your pasta with ${ing1}, ${ing2} and ${ing3}`);
+         },
       };
 
-
-     
       
-
-
-
+     
+   // copy array (shallow copy of array)
 
 
 
