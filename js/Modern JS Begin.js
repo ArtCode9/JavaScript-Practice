@@ -340,7 +340,7 @@ restaurant.orderPizza('mushroom', 'onion', 'olives', 'spinach');
 restaurant.orderPizza('pickels');
  */
 
-/////////////////////////////////////////////////////////////
+//🚩/////////////////////////////////////////////////////////
 //////////////   08 Short Circuiting (&& and ||)  ///////////
 /////////////////////////////////////////////////////////////
 
@@ -400,7 +400,7 @@ const guests1 = restaurant.numGuests ? restaurant.numGuests : 10;
 console.log(`🚻` ,guests1);
 
 const guests2 = restaurant.numGuests || 10;
-console.log(guests2);
+cons ole.log(guests2);
 
 console.log(`------- AND ------`);
 console.log(0 && 'Jonas');
