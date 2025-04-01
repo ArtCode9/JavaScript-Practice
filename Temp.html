@@ -34,44 +34,7 @@
         
    <script>
 
-      const restaurant = {
-         name: 'Classico Italiano',
-         location: 'Spain 23 ave number 3423',
-         categories: ['italian', 'Pizzaro', 'Vegitarian', 'Organic'],
-         starterMenu: ['Focaccia', 'Bruchesta', 'Garlic bread', 'capress salad'],
-         mainMenu: ['Pizza', 'Pasta', 'Rissoto'],
-         openingHours: {
-            thu:{
-               open: 12,
-               close: 23
-               },
-            fri:{
-               open: 11,
-               close: 22
-               },
-            sat:{
-               open: 12,
-               close: 23
-               }
-         },
-         order: function (starterIndex, mainIndex){
-            return [this.starterMenu[starterIndex], this.mainMenu[mainIndex]];
-         },
-         orderDelivery: function({starterIndex = 1, mainIndex = 0, time = '20:00', address}){
-            console.log(`1️⃣order list : ${this.starterMenu[starterIndex]} and ${this.mainMenu[mainIndex]}
-this address ${address} in ${time} oclock`);
-         },
-         orderPasta: function(ing1, ing2, ing3){
-             console.log(`Here is your pasta with ${ing1}, ${ing2} and ${ing3}`);
-         },
-         orderPizza: function(mainIngredient, ...otherIngredients) {
-            console.log(`💲`,mainIngredient);
-            console.log(otherIngredients);
-         }
-      };
-
-      restaurant.numGuests = 0;
-      
+         
 
    </script>   
 </body>
