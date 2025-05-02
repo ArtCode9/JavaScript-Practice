@@ -1,0 +1,76 @@
+<script>
+      
+      const taskInput = document.getElementById('taskInput');
+      const addTaskBtn = document.getElementById('addTaskBtn');
+      const taskList = document.getElementById('taskList'); 
+
+      // localstorage
+      document.addEventListener('DOMContentLoaded', loadTasks);
+
+      // add new task
+      addTaskBtn.addEventListener('click', () =>
+      {
+            const taskText = taskInput.value.trim();
+
+            if(taskText === '') return;
+            
+            addTaskToDom(taskText);
+            saveTask(taskText);
+            taskInput.value = '';
+      });
+
+      function addTaskToDom(taskText){
+         const li = document.createElement('li');
+         li.textContent = taskText;
+
+         const deleteBtn = document.createElement('button');
+         deleteBtn.textContent = '❌';
+         deleteBtn.addEventListener('click', () =>
+       {
+         li.remove();
+         deleteTask(taskText);
+      });
+
+      li.appendChild(deleteBtn);
+      taskList.appendChild(li);
+      }
+
+      function saveTask(taskText){
+         let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+         tasks.push(taskText);
+         localStorage.setItem('tasks', JSON.stringify(tasks));
+      }
+
+      function deleteTask(taskText){
+         let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+         tasks = tasks.filter(task => task !== taskText);
+         localStorage.setItem('tasks', JSON.stringify(tasks));
+      }
+
+      function loadTasks () {
+         const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+         tasks.array.forEach(task => {
+               addTaskToDom(task);
+         });
+      }
+
+      // add enter key function
+      taskInput.addEventListener('keypress' ,(e) => 
+      {
+         if(e.key === 'Enter') {
+            const taskText = taskInput.value.trim();
+            if(taskText === '') return;
+
+            addTaskToDom(taskText);
+            saveTask(taskText);
+            taskInput.value = '';
+         }
+      }
+      );
+
+      
+
+
+
+
+   </script>
