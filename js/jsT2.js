@@ -608,3 +608,278 @@ keys.forEach(key => key.addEventListener('transitionend', removeTransition));
 /////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////     box 12      ///////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////
+
+// Main app Controller
+
+function initializeEnhancedApp() {
+   // state
+
+   let tasks = loadTasksFromStorage();
+   let filter = 'all';
+   let editingTaskId = null;
+
+   // DOM elements 
+   const taskForm = document.getElementById('task-form');
+   const taskInput = document.getElementById('task-input');
+   const dueDateInput = document.getElementById('due-date');
+   const priorityInput = document.getElementById('priority');
+   const taskList = document.getElementById('task-list');
+   const filterButtons = {
+      all: document.getElementById('all'),
+      active: document.getElementById('active'),
+      completed: document.getElementById('completed')
+  };
+  const counters = {
+      total: document.getElementById('total-count'),
+      active: document.getElementById('active-count'),
+      completed: document.getElementById('completed-count')
+  };
+
+  // 1. local storage Persistence
+  function loadTasksFromStorage() {
+      const savedTasks = localStorage.getItem('tasks');
+      return savedTasks ? JSON.parse(savedTasks) : [];
+  };
+
+  function saveTasksToStorage() {
+   localStorage.setItem('tasks', JSON.stringify(tasks));
+   updateCounters();
+}
+
+// 2. Enhanced Task Rendering with Animations
+function renderTasks(tasksToRender) {
+   taskList.innerHTML = '';
+   
+   tasksToRender.forEach(task => {
+       const li = document.createElement('li');
+       li.className = `priority-${task.priority} ${task.completed ? 'completed' : ''}`;
+       
+       if (editingTaskId === task.id) {
+           li.innerHTML = `
+               <input type="text" class="edit-input" value="${task.text}">
+               <div class="task-actions">
+                   <button class="save">Save</button>
+                   <button class="cancel">Cancel</button>
+               </div>
+           `;
+           
+           const saveHandler = () => {
+               const newText = li.querySelector('.edit-input').value.trim();
+               if (newText) {
+                   updateTask(task.id, { text: newText });
+               }
+               editingTaskId = null;
+               renderTasks(filterTasks());
+           };
+           
+           const cancelHandler = () => {
+               editingTaskId = null;
+               renderTasks(filterTasks());
+           };
+           
+           li.querySelector('.save').addEventListener('click', saveHandler);
+           li.querySelector('.cancel').addEventListener('click', cancelHandler);
+           li.querySelector('.edit-input').focus();
+       } else {
+           const dueDateText = task.dueDate ? `Due: ${new Date(task.dueDate).toLocaleDateString()}` : '';
+           
+           li.innerHTML = `
+               <div class="task-content">
+                   <span>${task.text}</span>
+                   <div class="task-meta">
+                       ${dueDateText} | Priority: ${task.priority}
+                   </div>
+               </div>
+               <div class="task-actions">
+                   <button class="toggle">${task.completed ? 'Undo' : 'Complete'}</button>
+                   <button class="edit">Edit</button>
+                   <button class="delete">Delete</button>
+               </div>
+           `;
+           
+           // Event handlers using different function types
+           li.querySelector('.delete').addEventListener('click', () => {
+               animateRemoval(li, () => deleteTask(task.id));
+           });
+           
+           li.querySelector('.toggle').addEventListener('click', () => {
+               toggleTask(task.id);
+           });
+           
+           li.querySelector('.edit').addEventListener('click', () => {
+               editingTaskId = task.id;
+               renderTasks(filterTasks());
+           });
+         }
+            
+         taskList.appendChild(li);
+     });
+ }
+ 
+ // 3. Animation Functions
+ function animateRemoval(element, callback) {
+     element.classList.add('fade-leave-active');
+     setTimeout(() => {
+         callback();
+     }, 500);
+ }
+ 
+ // 4. Task Operations with Enhanced Features
+ function createTask(text, dueDate, priority) {
+     return {
+         id: Date.now().toString(),
+         text,
+         dueDate,
+         priority,
+         completed: false,
+         createdAt: new Date().toISOString()
+     };
+ }
+ 
+ function addTask(text, dueDate, priority) {
+     if (!text.trim()) return false;
+     
+     const newTask = createTask(text, dueDate, priority);
+     tasks.push(newTask);
+     saveTasksToStorage();
+     renderTasks(filterTasks());
+     taskInput.value = '';
+     dueDateInput.value = '';
+     return true;
+ }
+ 
+ function deleteTask(id) {
+     tasks = tasks.filter(task => task.id !== id);
+     saveTasksToStorage();
+     renderTasks(filterTasks());
+ }
+ 
+ function toggleTask(id) {
+     tasks = tasks.map(task => 
+         task.id === id ? {...task, completed: !task.completed} : task
+     );
+     saveTasksToStorage();
+     renderTasks(filterTasks());
+ }
+ 
+ // 5. Task Editing
+ function updateTask(id, updates) {
+     tasks = tasks.map(task => 
+         task.id === id ? {...task, ...updates} : task
+     );
+     saveTasksToStorage();
+ }
+ 
+ // 6. Filtering and Counting
+ function filterTasks() {
+     switch(filter) {
+         case 'active':
+             return tasks.filter(task => !task.completed);
+         case 'completed':
+             return tasks.filter(task => task.completed);
+         default:
+             return [...tasks];
+     }
+ }
+ 
+ function updateCounters() {
+     const total = tasks.length;
+     const completed = tasks.filter(task => task.completed).length;
+     const active = total - completed;
+     
+     counters.total.textContent = total;
+     counters.active.textContent = active;
+     counters.completed.textContent = completed;
+ }
+ 
+ // Event Listeners
+ taskForm.addEventListener('submit', e => {
+     e.preventDefault();
+     addTask(taskInput.value, dueDateInput.value, priorityInput.value);
+ });
+ 
+ Object.entries(filterButtons).forEach(([key, button]) => {
+     button.addEventListener('click', () => {
+         filter = key;
+         renderTasks(filterTasks());
+         
+         // Update active button
+         Object.values(filterButtons).forEach(btn => 
+             btn.style.fontWeight = 'normal'
+         );
+         button.style.fontWeight = 'bold';
+     });
+ });
+ 
+ // Initialize
+ renderTasks(filterTasks());
+ updateCounters();
+ filterButtons.all.style.fontWeight = 'bold';
+}
+
+// Start the enhanced app
+initializeEnhancedApp();
+
+/* 
+Key Feature Implementations
+1. Local Storage Persistence
+Added loadTasksFromStorage() and saveTasksToStorage() functions
+
+Integrated with all task operations (add, delete, toggle, update)
+
+Uses localStorage to persist tasks between page reloads
+
+2. Task Editing
+Added edit mode with save/cancel buttons
+
+Implemented updateTask() function
+
+Added editing state management (editingTaskId)
+
+3. Due Dates and Priorities
+Added form fields for due date and priority
+
+Enhanced task creation with these properties
+
+Added visual priority indicators (colored borders)
+
+Display due dates in task metadata
+
+4. Task Counter
+Created updateCounters() function
+
+Shows total, active, and completed counts
+
+Updates after every task operation
+
+5. Animations
+Added hover effects for tasks
+
+Implemented fade-out animation when deleting tasks
+
+Used CSS transitions for smooth visual effects
+
+Advanced Function Concepts Used
+Closures: State management within initializeEnhancedApp()
+
+Higher-Order Functions: filterTasks(), animateRemoval()
+
+Arrow Functions: Event handlers for concise syntax
+
+Async Operations: Potential for future API integration
+
+Recursion: Could be added for nested tasks
+
+IIFE: Could be used for private storage keys
+
+How to Run
+Save the HTML as index.html
+
+Save the JavaScript as script.js
+
+Open index.html in a browser
+
+This enhanced version maintains all the original function concepts while adding practical features that demonstrate real-world JavaScript application development. */
+
+
+

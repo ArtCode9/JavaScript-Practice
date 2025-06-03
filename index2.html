@@ -356,6 +356,29 @@
          </div>
          <div id="box12">
 
+            <h1>Enhanced Task Manager</h1>
+            <form id="task-form">
+                <input type="text" id="task-input" placeholder="Enter a new task" required>
+                <input type="date" id="due-date" placeholder="Due date">
+                <select id="priority">
+                    <option value="low">Low Priority</option>
+                    <option value="medium" selected>Medium Priority</option>
+                    <option value="high">High Priority</option>
+                </select>
+                <button type="submit">Add Task</button>
+            </form>
+            
+            <div class="counter">
+                <span id="total-count">0</span> tasks (<span id="active-count">0</span> active, <span id="completed-count">0</span> completed)
+            </div>
+            
+            <div id="filters">
+                <button id="all">All</button>
+                <button id="active">Active</button>
+                <button id="completed">Completed</button>
+            </div>
+            
+            <ul id="task-list"></ul>
             
          </div>
          <div id="box13"></div>
