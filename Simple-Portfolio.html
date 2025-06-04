@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Temps</title>
+   <style>
+
+   * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Roboto, Oxygen, Ubuntu, Cantarell;
+   }
+   body {
+      line-height: 1.6;
+      background-color: #f5f5f5;
+      color: #333;
+   }
+
+   /* header */
+   header {
+      background: #333;
+      color: #fff;
+      padding: 1rem 2rem;
+      position: sticky;
+      top: 0;
+      z-index: 1000;   
+   }
+
+   nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+   }
+   .logo {
+      font-size: 1.5rem;
+      font-weight: bold;
+   }
+   .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 1.5rem;
+   }
+   .nav-links a {
+      color: whitesmoke;
+      text-decoration: none;
+      transition: color 0.3s;
+   }
+   .nav-links a:hover {
+      color: #00bcd4;
+   }
+   .menu-toggle {
+      display: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+   }
+   /* Hero section */
+   .hero {
+      text-align: center;
+      padding: 4rem 2rem;
+      background: #e0f7fa;
+   }
+   .hero img {
+      width: 150px;
+      height: 150px;
+      border: 2px solid purple;
+      border-radius: 9999px;
+      margin-top: 1rem;
+   }
+
+   /*  about section  */
+   #about {
+      padding: 2rem;
+      background: white;
+   }
+   #about ul {
+      margin-top: 1rem;
+      list-style: disc inside;
+   }
+
+   /* skill section */
+   #skills {
+      padding: 2rem;
+      background: #f0f0f0;
+   }
+   .skill {
+      margin:  1rem 0;
+   }
+   .bar {
+      width: 100%;
+      height: 10px;
+      background: #ddd;
+      border-radius: 5px;
+      position: relative;
+      overflow: hidden;
+   }
+   .bar.html::before {
+      content: '';
+      position: absolute;
+      height: 100%;
+      width: 90%;
+      background: #e44d26;
+   }
+   .bar.css::before {
+      content: '';
+      position: absolute;
+      height: 100%;
+      width: 80%;
+      background: green;
+   }
+   .bar.js::before {
+      content: '';
+      position: absolute;
+      height: 100%;
+      width: 65%;
+      background: #00bcd4;
+   }
+
+   #projects {
+      padding: 2rem;
+      background: white;
+   }
+   .project {
+      background: #fafafa;
+      padding: 1rem;
+      margin-top: 1rem;
+      border: 1px solid #ddd;
+      text-align: center;
+   }
+   .project img {
+      max-width: 100%;
+      height: auto;
+   }
+
+   /* Contact */
+#contact {
+  padding: 2rem;
+  background: #f0f0f0;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+}
+
+input, textarea {
+  padding: 0.5rem;
+  border: 2px solid palevioletred;
+  border-radius: 5px;
+}
+
+button {
+  padding: 0.75rem;
+  background: purple;
+  color: white;
+  font-size: 1.7rem;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background 0.3s;
+}
+
+button:hover {
+  background: #00bcd4;
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  padding: 1rem;
+  background: #333;
+  color: white;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    background: #333;
+    position: absolute;
+    top: 60px;
+    right: 0;
+    width: 200px;
+    padding: 1rem;
+  }
+
+  .nav-links.active {
+    display: flex;
+  }
+
+  .menu-toggle {
+    display: block;
+  }
+}
+
+   </style>
+</head>
+<body>
+   <!-- header section -->
+   <header>
+      <nav>
+      <h1 class="logo">MyPortfolio</h1>
+      <ul class="nav-links">
+         <li><a href="#about">About</a></li>
+         <li><a href="#skills">Skills</a></li>
+         <li><a href="#projects">Projects</a></li>
+         <li><a href="#contact">Contact</a></li>
+      </ul>
+       <div class="menu-toggle">☰</div>
+      </nav>
+   </header>
+   <!-- main section -->
+   <main>
+      <section class="hero">
+         <h2>Hello, i'm ART</h2>
+         <p>Aspiring Frontend & Wordpress Developer</p>
+         <img src="src/icons8-javascript-96.png" alt="Profile photo">
+      </section>
+
+      <section id="about">
+            <h2>About Me</h2>
+            <p>I love creating website and learning new Technologies.</p>
+            <ul>
+               <li>Coding</li>
+               <li>Gaming</li>
+               <li>Learning</li>
+            </ul>
+      </section>
+
+      <section id="skills">
+            <h2>Skills</h2>
+            <div class="skill">
+               <span>HTML</span>
+               <div class="bar html"></div>
+            </div>
+            <div class="skill">
+               <span>CSS</span>
+               <div class="bar css"></div>
+            </div>
+            <div class="skill">
+               <span>JavaScript</span>
+               <div class="bar js"></div>
+            </div>
+      </section>
+
+      <section id="projects">
+         <h2>Projects</h2>
+         <div class="project">
+            <img src="src/logo.png" alt="project1">
+            <h3>Shopping Website</h3>
+            <a href="#">View Project</a>
+         </div>
+      </section>
+
+      <section id="contact">
+         <h2>Contact Me</h2>
+         <form action="" id="contactForm">
+            <input type="text" id="name" placeholder="Your Name">
+            <input type="email" id="email" placeholder="Your Email">
+            <textarea  id="message" placeholder="Your message"></textarea>
+            <button type="submit">Send</button>
+         </form>
+      </section>
+   </main>
+   <!-- Footer section -->
+   <footer>
+      <p>&copy; 2025 ArtCode. All rights reserved.</p>
+
+   </footer>
+   
+   
+   
+   <script>
+
+   // mobile menu toggle
+   const menuToggle = document.querySelector('.menu-toggle');
+   const navLinks = document.querySelector('.nav-links');
+      
+   menuToggle.addEventListener('click', () => {
+      navLinks.classList.toggle('active')
+   });
+
+   // form validation
+   const form = document.getElementById('contactForm');
+   form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const message = document.getElementById('message').value.trim();
+      if(!name || !email || !message){
+         alert(`Please Fill in all fields.`);
+      } else {
+         alert(`thanks to you for send message!`);
+         form.reset();
+      };
+   });
+
+   // Smooth scroll for navigation links
+const navItems = document.querySelectorAll('.nav-links a');
+
+navItems.forEach(link => {
+  link.addEventListener('click', function (e) {
+    e.preventDefault();
+    const targetId = this.getAttribute('href').substring(1);
+    const target = document.getElementById(targetId);
+    if (target) {
+      target.scrollIntoView({ behavior: 'smooth' });
+      navLinks.classList.remove('active');
+    }
+  });
+});
+
+   </script>   
+</body>
+</html>
