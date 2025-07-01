@@ -21,6 +21,10 @@ navigator.geolocation.getCurrentPosition(function (position){
     console.log(`https://www.google.pt/maps/@${latitude}, ${longitude}`);  // this is our currnet location on google map
     
 
+    //  for the rest of code just check 15-Mapty in src origin files
+
+     
+
 } , function () {
     alert(`Could Not get your position`);
 });
