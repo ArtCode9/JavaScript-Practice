@@ -26,6 +26,6 @@ navigator.geolocation.getCurrentPosition(function (position){
      
 
 } , function () {
-    alert(`Could Not get your position`);
+        console.log(`Can not access the location!!!`);
 });
 }

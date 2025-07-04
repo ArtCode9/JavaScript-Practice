@@ -3,23 +3,321 @@
 <head>
    <meta charset="UTF-8">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>Simple To Do List📃</title>
+   <title>فرم ورود</title>
+   
    <style> 
-         /*===== style section ====== */
+           * {
+            box-sizing: border-box;
+            font-family: 'Tahoma', 'Arial', sans-serif;
+        }
+        
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(to right, #4285F4, #777);
+            margin: 0;
+        }
+        
+        .login-container {
+            background-color: lightblue;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 14px 12px rgba(0, 0, 0, 0.4);
+            width: 100%;
+            max-width: 400px;
+        }
+        
+        h2 {
+            text-align: center;
+            margin-bottom: 24px;
+            color: #333;
+        }
+        
+        .google-login {
+            width: 100%;
+            padding: 12px;
+            background-color: #4285F4;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+        
+        .google-login:hover {
+            background-color: #357ABD;
+        }
+        
+        .google-icon {
+            margin-left: 10px;
+            width: 20px;
+            height: 20px;
+        }
+        
+        .divider {
+            display: flex;
+            align-items: center;
+            margin: 20px 0;
+        }
+        
+        .divider::before, .divider::after {
+            content: "";
+            flex: 1;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .divider-text {
+            padding: 0 10px;
+            color: #777;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #555;
+            text-align: right;
+        }
+        
+        input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+            text-align: right;
+        }
+        
+        input:focus {
+            outline: none;
+            border-color: #4285F4;
+            box-shadow: 0 0 0 2px rgba(66, 133, 244, 0.2);
+        }
+        
+        .forgot-password {
+            text-align: left;
+            margin: -10px 0 15px;
+        }
+        
+        .forgot-password a {
+            color: #4285F4;
+            text-decoration: none;
+            font-size: 14px;
+        }
+        
+        .forgot-password a:hover {
+            text-decoration: underline;
+        }
+        
+        .buttons {
+            display: flex;
+            gap: 10px;
+        }
+        
+        button {
+            flex: 1;
+            padding: 12px;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .login-btn {
+            background-color: #4285F4;
+            color: white;
+        }
+        
+        .login-btn:hover {
+            background-color: #357ABD;
+        }
+        
+        .signup-btn {
+            background-color: #f1f1f1;
+            color: #333;
+        }
+        
+        .signup-btn:hover {
+            background-color: #e1e1e1;
+        }
+        
+        .error-message {
+            color: #d32f2f;
+            font-size: 14px;
+            margin-top: 5px;
+            display: none;
+            text-align: right;
+        }
+        .box{
+          display: flex;
+          flex-direction: column;
+        }
+        .main_box{
+          width: 75%;
+          border: 2px solid black;
+          border-radius: 22px;
+          display: flex;
+          flex-direction: row;
+          grid: 22px;
+          padding: 14px;
+          margin: 4%;
+          box-shadow: 0 14px 18px rgba(0, 0, 0, 0.6);
+          background: rgba(255, 255, 255, 0.12);
+          backdrop-filter: blur(15px);
+          -webkit-backdrop-filter: blur(15px);
+        }
+         .password-container {
+            position: relative;
+        }
+        
+        .toggle-password {
+            position: absolute;
+            left: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 18px;
+        }
+        
+        .toggle-password:hover {
+            color: #fff;
+        }
+        
+        input[type="password"],
+        input[type="text"] {
+            padding-right: 12px;
+            padding-left: 35px; /* فضا برای آیکون چشم */
+        }
    </style>
 </head>
 <body>
 
+  <div class="main_box">
+    <img src="src/icons8-javascript-96.png" alt="img" width="180px" height="180px" style="margin: 180px;">
    
+    <div class="login-container">
+        <h2>به صفحه ورود خوش آمدید</h2>
+        
+        <button class="google-login" id="googleLogin">
+            <img src="src/icons8-javascript-96.png" alt="Google logo" class="google-icon">
+              ورود از طریق سرویس گوگل
+          </button>
+        
+        <div class="divider">
+            <span class="divider-text">یا</span>
+        </div>
+        
+        <form id="loginForm">
+            <div class="form-group">
+                <label for="username">نام کاربری</label>
+                <input type="text" id="username" name="username" placeholder="نام خود را وارد کنید" maxlength="12">
+                <div class="error-message" id="usernameError">نام باید ۱۲ کاراکتر باشد</div>
+            </div>
+            
+            <div class="form-group">
+                <label for="password">رمز عبور</label>
 
+                <div class="password-container">
+                    <input type="password" id="password" name="password" placeholder="رمز عبور خود را وارد کنید">
+                    <!-- <i class="fas fa-eye toggle-password" id="togglePassword" style="color: black;">نمایش</i> -->
+                     <img src="src/icons8-pixel-star-80.png" alt="toggle" style="width: 20px; height: 20px;" class="fas fa-eye toggle-password" id="togglePassword">
+                </div>                <br><hr>
+                <div class="forgot-password">
+                    <a href="#">رمز خود را فر اموش کردید؟</a>
+                </div>
+            </div>
+            
+            <div class="buttons">
+                <button type="submit" class="login-btn">ورود</button>
+              </div>
+              <hr>
+              <div class="buttons box">
+                <h2>اگر در سایت عضویت ندارید ؟</h2>
+                <button type="button" class="signup-btn" id="signupBtn">ثبت نام</button>
+              </div>
+        </form>
+    </div>
+  </div>
 
-
+   
+  
+   
 
    <!--========JS section======-->
 
    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+            const loginForm = document.getElementById('loginForm');
+            const usernameInput = document.getElementById('username');
+            const usernameError = document.getElementById('usernameError');
+            const googleLoginBtn = document.getElementById('googleLogin');
+            const signupBtn = document.getElementById('signupBtn');
+            const togglePassword = document.getElementById('togglePassword');
+            const passwordInput = document.getElementById('password');
+            
+
+            togglePassword.addEventListener('click', function() {
+                const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+                passwordInput.setAttribute('type', type);
+                this.classList.toggle('fa-eye');
+                this.classList.toggle('fa-eye-slash');
+            });
+            
+            usernameInput.addEventListener('input', function() {
+                if (this.value.length !== 12 && this.value.length > 0) {
+                    usernameError.style.display = 'block';
+                } else {
+                    usernameError.style.display = 'none';
+                }
+            });
+            
+            loginForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const username = usernameInput.value.trim();
+                const password = passwordInput.value.trim();
+                
+                if (username.length !== 12) {
+                    usernameError.style.display = 'block';
+                    return;
+                }
+                
+                if (!password) {
+                    alert('لطفاً رمز عبور خود را وارد کنید');
+                    return;
+                }
+                
+                console.log('Attempt login with:', { username, password });
+                alert('فرم ورود ارسال شد! (این یک نمایش است)');
+            });
+            
+            googleLoginBtn.addEventListener('click', function() {
+                console.log('Google login clicked');
+                alert('ورود با گوگل کلیک شد! (این یک نمایش است)');
+            });
+            
+            signupBtn.addEventListener('click', function() {
+                console.log('Sign up clicked');
+                alert('ثبت نام کلیک شد! (این یک نمایش است)');
+            });
+        });
+          
       
 
+      
 
 
    </script>
