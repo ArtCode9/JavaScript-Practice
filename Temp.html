@@ -3,322 +3,283 @@
 <head>
    <meta charset="UTF-8">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>فرم ورود</title>
+   <title>WOW</title>
    
    <style> 
-           * {
-            box-sizing: border-box;
-            font-family: 'Tahoma', 'Arial', sans-serif;
-        }
-        
-        body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            background: linear-gradient(to right, #4285F4, #777);
-            margin: 0;
-        }
-        
-        .login-container {
-            background-color: lightblue;
-            padding: 30px;
-            border-radius: 8px;
-            box-shadow: 0 14px 12px rgba(0, 0, 0, 0.4);
-            width: 100%;
-            max-width: 400px;
-        }
-        
-        h2 {
-            text-align: center;
-            margin-bottom: 24px;
-            color: #333;
-        }
-        
-        .google-login {
-            width: 100%;
-            padding: 12px;
-            background-color: #4285F4;
-            color: white;
-            border: none;
-            border-radius: 4px;
-            font-size: 16px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 20px;
-        }
-        
-        .google-login:hover {
-            background-color: #357ABD;
-        }
-        
-        .google-icon {
-            margin-left: 10px;
-            width: 20px;
-            height: 20px;
-        }
-        
-        .divider {
-            display: flex;
-            align-items: center;
-            margin: 20px 0;
-        }
-        
-        .divider::before, .divider::after {
-            content: "";
-            flex: 1;
-            border-bottom: 1px solid #ddd;
-        }
-        
-        .divider-text {
-            padding: 0 10px;
-            color: #777;
-        }
-        
-        .form-group {
-            margin-bottom: 20px;
-        }
-        
-        label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 600;
-            color: #555;
-            text-align: right;
-        }
-        
-        input {
-            width: 100%;
-            padding: 12px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            font-size: 16px;
-            text-align: right;
-        }
-        
-        input:focus {
-            outline: none;
-            border-color: #4285F4;
-            box-shadow: 0 0 0 2px rgba(66, 133, 244, 0.2);
-        }
-        
-        .forgot-password {
-            text-align: left;
-            margin: -10px 0 15px;
-        }
-        
-        .forgot-password a {
-            color: #4285F4;
-            text-decoration: none;
-            font-size: 14px;
-        }
-        
-        .forgot-password a:hover {
-            text-decoration: underline;
-        }
-        
-        .buttons {
-            display: flex;
-            gap: 10px;
-        }
-        
-        button {
-            flex: 1;
-            padding: 12px;
-            border: none;
-            border-radius: 4px;
-            font-size: 16px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-        
-        .login-btn {
-            background-color: #4285F4;
-            color: white;
-        }
-        
-        .login-btn:hover {
-            background-color: #357ABD;
-        }
-        
-        .signup-btn {
-            background-color: #f1f1f1;
-            color: #333;
-        }
-        
-        .signup-btn:hover {
-            background-color: #e1e1e1;
-        }
-        
-        .error-message {
-            color: #d32f2f;
-            font-size: 14px;
-            margin-top: 5px;
-            display: none;
-            text-align: right;
-        }
-        .box{
-          display: flex;
-          flex-direction: column;
-        }
-        .main_box{
-          width: 75%;
-          border: 2px solid black;
-          border-radius: 22px;
-          display: flex;
-          flex-direction: row;
-          grid: 22px;
-          padding: 14px;
-          margin: 4%;
-          box-shadow: 0 14px 18px rgba(0, 0, 0, 0.6);
-          background: rgba(255, 255, 255, 0.12);
-          backdrop-filter: blur(15px);
-          -webkit-backdrop-filter: blur(15px);
-        }
-         .password-container {
-            position: relative;
-        }
-        
-        .toggle-password {
-            position: absolute;
-            left: 10px;
-            top: 50%;
-            transform: translateY(-50%);
-            cursor: pointer;
-            color: rgba(255, 255, 255, 0.7);
-            font-size: 18px;
-        }
-        
-        .toggle-password:hover {
-            color: #fff;
-        }
-        
-        input[type="password"],
-        input[type="text"] {
-            padding-right: 12px;
-            padding-left: 35px; /* فضا برای آیکون چشم */
-        }
+   
+    :root{
+        /* dark shade primary color */
+        --clr-primary-1: hsl(108, 77%, 19%);
+        --clr-primary-2: hsl(108, 88%, 12%);
+        --clr-primary-3: hsl(108, 99%, 22%);
+        --clr-primary-4: hsl(108, 62%, 56%);
+        /* primary main color */
+        --clr-primary-5: hsl(108, 44%, 77%);
+        /* lighter shade of primary color */
+        --clr-primary-6: hsl(108, 66%, 84%);
+        --clr-primary-7: hsl(108, 44%, 67%);
+        --clr-primary-8: hsl(108, 55%, 88%);
+        --clr-primary-9: hsl(108, 76%, 74%);
+        --clr-primary-10: hsl(108, 95%, 62%);
+            /* darkest grey - used for headings */
+        --clr-grey-1: hsl(209, 61%, 16%);
+        --clr-grey-2: hsl(211, 39%, 23%);
+        --clr-grey-3: hsl(209, 34%, 30%);
+        --clr-grey-4: hsl(209, 28%, 39%);
+        /* grey used for paragraphs */
+        --clr-grey-5: hsl(210, 22%, 49%);
+        --clr-grey-6: hsl(209, 23%, 60%);
+        --clr-grey-7: hsl(211, 27%, 70%);
+        --clr-grey-8: hsl(210, 31%, 80%);
+        --clr-grey-9: hsl(212, 33%, 89%);
+        --clr-grey-10: hsl(210, 36%, 96%);
+        --clr-white: #fff;
+        --clr-red-dark: hsl(360, 67%, 44%);
+        --clr-red-light: hsl(360, 71%, 66%);
+        --clr-green-dark: hsl(125, 67%, 44%);
+        --clr-green-light: hsl(125, 71%, 66%);
+        --clr-black: #222;
+        --ff-primary: "Roboto", sans-serif;
+        --ff-secondary: "Open Sans", sans-serif;
+        --transition: all 0.3s linear;
+        --spacing: 0.1rem;
+        --radius: 0.25rem;
+        --light-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        --dark-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        --max-width: 1170px;
+        --fixed-width: 620px;
+    }
+    /* =============global style================= */
+    *, ::after, ::before {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: var(--ff-secondary);
+      background: var(--clr-grey-10);
+      color: var(--clr-grey-1);
+      line-height: 1.5;
+      font-size: 0.875rem;
+    }
+    ul {
+      list-style-type: none;
+    }
+    a {
+      text-decoration: none;
+    }
+    img:not(.logo){
+      width: 100%;
+    }
+    img {
+      display: block;
+    }
+    h1,h2,h3,h4{
+      letter-spacing: var(--spacing);
+      text-transform: capitalize;
+      line-height: 1.25;
+      margin-bottom: 0.75rem;
+      font-family: var(--ff-primary);
+    }
+    h1 {
+      font-size: 3rem;
+    }
+    h2 {
+      font-size: 2rem;
+    }
+    h3 {
+      font-size: 1.25rem;
+    }
+    h4 {
+      font-size: 0.875rem;
+    }
+    p {
+      margin-bottom: 1.25rem;
+      color: var(--clr-grey-5);
+    }
+    @media screen and (min-width: 800px){
+      h1 {
+        font-size: 4rem;
+      }
+      h2 {
+        font-size: 2.5rem;
+      }
+      h3 {
+        font-size: 1.75rem;
+      }
+      h4 {
+        font-size: 1rem;
+      }
+      body {
+        font-size: 1rem;
+      }
+      h1,h2,h3,h4 {
+        line-height: 1;
+      }
+    }
+    /* === global classes */
+    .btn {
+      text-transform: uppercase;
+      background: transparent;
+      color: var(--clr-black);
+      padding: 0.375rem 0.75rem;
+      letter-spacing: var(--spacing);
+      display: inline-block;
+      transition: var(--transition);
+      font-size: 0.875rem;
+      border: 2px solid var(--clr-black);
+      cursor: pointer;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+      border-radius: var(--radius);
+    }
+    .btn:hover {
+      color: var(--clr-white);
+      background: var(--clr-black);
+    }
+    /* section */
+    .section {
+      padding: 5rem 0;
+    }
+    main {
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+    }
+    /* ====== menu ====== */
+    .menu {
+      padding: 5rem 0;
+    }
+    .title {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+    .underline {
+      width: 5rem;
+      height: 0.25rem;
+      background: var(--clr-gold);
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .btn-container {
+      margin-bottom: 4rem;
+      display: flex;
+      justify-content: center;
+    }
+    .filter-btn {
+      background: transparent;
+      border-color: var(--clr-gold);
+      font-size: 1rem;
+      text-transform: capitalize;
+      margin: 0 0.5rem;
+      letter-spacing: 1px;
+      border-radius: var(--radius);
+      padding: 0.375rem 0.75rem;
+      color: var(--clr-gold);
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    .filter-btn:hover {
+      background: var(--clr-gold);
+      color: var(--clr-white);
+    }
+    .section-center {
+      width: 90vw;
+      margin: 0 auto ;
+      max-width: 1170px;
+      display: grid;
+      gap: 3rem 2rem;
+      justify-content: center;
+    }
+    .menu-item {
+      display: grid;
+      gap: 1rem 2rem;
+      max-width: 25rem;
+    }
+    .photo {
+      object-fit: cover;
+      height: 200px;
+      border: 0.25rem solid var(--clr-gold);
+      border-radius: var(--radius);
+    }
+    .item-info header {
+      display: flex;
+      justify-content: space-between;
+      border-bottom: 0.5px dotted var(--clr-grey-5);
+    }
+    .item-info h4 {
+      margin-bottom: 0.5rem;
+    }
+    .price {
+      color: var(--clr-gold);
+    }
+    
+       
+    
    </style>
 </head>
 <body>
 
-  <div class="main_box">
-    <img src="src/icons8-javascript-96.png" alt="img" width="180px" height="180px" style="margin: 180px;">
-   
-    <div class="login-container">
-        <h2>به صفحه ورود خوش آمدید</h2>
-        
-        <button class="google-login" id="googleLogin">
-            <img src="src/icons8-javascript-96.png" alt="Google logo" class="google-icon">
-              ورود از طریق سرویس گوگل
-          </button>
-        
-        <div class="divider">
-            <span class="divider-text">یا</span>
+      <section class="menu">
+        <!-- title -->
+         <div class="title">
+            <h2>Our Menu</h2>
+            <div class="underline"></div>
+         </div>
+         <!-- filter buttons -->
+         <div class="btn-container">
+            <button type="button" class="filter-btn" data-id="all">all</button>
+            <button type="button" class="filter-btn" data-id="breakfast">breakfast</button>
+            <button type="button" class="filter-btn" data-id="lunch">lunch</button>
+            <button type="button" class="filter-btn" data-id="shakes">shakes</button>            
         </div>
-        
-        <form id="loginForm">
-            <div class="form-group">
-                <label for="username">نام کاربری</label>
-                <input type="text" id="username" name="username" placeholder="نام خود را وارد کنید" maxlength="12">
-                <div class="error-message" id="usernameError">نام باید ۱۲ کاراکتر باشد</div>
+      <!-- menu item  -->
+       <div class="section-center">
+        <!-- single item -->
+         <article class="menu-item">
+            <img src="src/menu-item.jpeg" alt="menu item" class="photo">
+            <div class="item-info">
+              <header>
+                  <h4>buttermilk pancakes</h4>
+                  <h4 class="price">$15</h4>
+              </header>
+              <p class="item-text">
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt, corrupti?
+              </p>
             </div>
-            
-            <div class="form-group">
-                <label for="password">رمز عبور</label>
-
-                <div class="password-container">
-                    <input type="password" id="password" name="password" placeholder="رمز عبور خود را وارد کنید">
-                    <!-- <i class="fas fa-eye toggle-password" id="togglePassword" style="color: black;">نمایش</i> -->
-                     <img src="src/icons8-pixel-star-80.png" alt="toggle" style="width: 20px; height: 20px;" class="fas fa-eye toggle-password" id="togglePassword">
-                </div>                <br><hr>
-                <div class="forgot-password">
-                    <a href="#">رمز خود را فر اموش کردید؟</a>
-                </div>
+         </article>
+         <!-- end of single item -->
+         <!-- single item -->
+          <article class="menu-item">
+            <img src="src/menu-item.jpeg" alt="menu item" class="photo">
+            <div class="item-info">
+              <header>
+                <h4>buttermilk pancakes</h4>
+                <h4 class="price">$15</h4>
+              </header>
+              <p class="item-text">
+                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Repellat, in.
+              </p>
             </div>
-            
-            <div class="buttons">
-                <button type="submit" class="login-btn">ورود</button>
-              </div>
-              <hr>
-              <div class="buttons box">
-                <h2>اگر در سایت عضویت ندارید ؟</h2>
-                <button type="button" class="signup-btn" id="signupBtn">ثبت نام</button>
-              </div>
-        </form>
-    </div>
-  </div>
-
-   
-  
-   
-
+          </article>
+          <!-- end of single item -->
+           <!-- single item -->
+          <article class="menu-item">
+            <img src="src/menu-item.jpeg" alt="menu item" class="photo">
+            <header class="item-info">
+              <h4>buttermilk pancakes</h4>
+              <h4 class="price">$15</h4>
+            </header>
+            <p class="item-text">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam suscipit sint iusto rerum expedita?
+            </p>
+          </article> 
+          <!-- end of single item -->
+       </div>
+      </section>   
+      
    <!--========JS section======-->
-
    <script>
-      document.addEventListener('DOMContentLoaded', function() {
-            const loginForm = document.getElementById('loginForm');
-            const usernameInput = document.getElementById('username');
-            const usernameError = document.getElementById('usernameError');
-            const googleLoginBtn = document.getElementById('googleLogin');
-            const signupBtn = document.getElementById('signupBtn');
-            const togglePassword = document.getElementById('togglePassword');
-            const passwordInput = document.getElementById('password');
-            
-
-            togglePassword.addEventListener('click', function() {
-                const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
-                passwordInput.setAttribute('type', type);
-                this.classList.toggle('fa-eye');
-                this.classList.toggle('fa-eye-slash');
-            });
-            
-            usernameInput.addEventListener('input', function() {
-                if (this.value.length !== 12 && this.value.length > 0) {
-                    usernameError.style.display = 'block';
-                } else {
-                    usernameError.style.display = 'none';
-                }
-            });
-            
-            loginForm.addEventListener('submit', function(e) {
-                e.preventDefault();
-                
-                const username = usernameInput.value.trim();
-                const password = passwordInput.value.trim();
-                
-                if (username.length !== 12) {
-                    usernameError.style.display = 'block';
-                    return;
-                }
-                
-                if (!password) {
-                    alert('لطفاً رمز عبور خود را وارد کنید');
-                    return;
-                }
-                
-                console.log('Attempt login with:', { username, password });
-                alert('فرم ورود ارسال شد! (این یک نمایش است)');
-            });
-            
-            googleLoginBtn.addEventListener('click', function() {
-                console.log('Google login clicked');
-                alert('ورود با گوگل کلیک شد! (این یک نمایش است)');
-            });
-            
-            signupBtn.addEventListener('click', function() {
-                console.log('Sign up clicked');
-                alert('ثبت نام کلیک شد! (این یک نمایش است)');
-            });
-        });
-          
-      
-
-      
-
+    
 
    </script>
 </body>
