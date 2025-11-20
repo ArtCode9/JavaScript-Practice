@@ -18,27 +18,38 @@
 // for git remember : 1) git add .   2) git commit -m "your message"  3) git pull  4) git push
 
 
-const renderCountry = function (data){
-   const html = `
-      <article class="country">
-       <img class="">
-      </article>
-   `;
-}
-
-const getCountryAndNeighbour = function (country) {
-   const request = new XMLHttpRequest();
+// const renderCountry = function (data){
    
-   request.open('GET', `https://restcountries.com/v3.1/name/${country}`);
-   request.send();
+// }
 
-   request.addEventListener('load', function () {
-       const  [data] = JSON.parse(this.responseText);
-       console.log(data);
+// const getCountryAndNeighbour = function (country) {
+//    const request = new XMLHttpRequest();
+   
+//    request.open('GET', `https://restcountries.com/v3.1/name/${country}`);
+//    request.send();
 
-       renderCountry(data);
-   });
+//    request.addEventListener('load', function () {
+//        const  [data] = JSON.parse(this.responseText);
+//        console.log(data);
 
-};
+//        renderCountry(data);
+//    });
 
-getCountryAndNeighbour();
+// };
+
+// getCountryAndNeighbour();
+
+// const getCountryData = function (country) {
+//    //  country 1
+//    fetch(`https://restcountries.com/v3.1/name/${country}`).then(response => response.json())
+//             .then(data => {
+//                renderCountry(data[0]);
+//                const neighbour = data[0].borders[0];
+
+//                if(!neighbour) return;
+
+//                // country 2
+//                return fetch
+//             }).then(response => response.json())
+//             .then(data => renderCountry(data, 'neighbour'));
+// };
