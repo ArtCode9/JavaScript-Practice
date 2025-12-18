@@ -1,0 +1,23 @@
+{
+  "name": "js-practice",
+  "version": "1.0.0",
+  "description": "my journey in JavaScript",
+  "homepage": "https://github.com/ArtCode9/JavaScript-Practice#readme",
+  "bugs": {
+    "url": "https://github.com/ArtCode9/JavaScript-Practice/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ArtCode9/JavaScript-Practice.git"
+  },
+  "license": "ISC",
+  "author": "ArtCode",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "leaflet": "^1.9.4"
+  }
+}
