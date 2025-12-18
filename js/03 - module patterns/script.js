@@ -11,7 +11,7 @@ console.log(`importing module from one`);
     the only purpose of this function is to create a new scope and return data just once 
 */
 
-(function () {
+const shoppingCart2 =  (function () {
    // all of this data here is private
    const cart = [];
    const shippingCost = 10;
@@ -20,12 +20,23 @@ console.log(`importing module from one`);
 
    const addToCart = function(product, quantity) {
       cart.push({product, quantity});
-      console.log(`${quantity} ${product} added to cart`);
+      console.log(`${quantity} ${product} added to cart
+         shipping cost is ${shippingCost}`);
    };
 
    const orderStock = function(product, quantity){
       console.log(`${quantity} ${product} ordered from supplier`);
    };
 
+   return {
+      addToCart,
+      cart,
+      totalPrice,
+      totalQuantity
+   };
 })();
  
+ shoppingCart2.addToCart('apple', 2);
+ shoppingCart2.addToCart('pizza', 23);
+ console.log(shoppingCart2);
+ console.log(shoppingCart2.shippingCost);
