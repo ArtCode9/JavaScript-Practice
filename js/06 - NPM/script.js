@@ -98,3 +98,39 @@ Mental model to keep
    npm manages dependencies
    node_modules is a build artifact, not source
 */
+
+
+ /*
+   one of the most popular Javascript libraries:   🤖👉  lodash  
+      is a collection of a ton of useful function for erase 
+      objects, functions, dates, and more....
+      so it's a lot of that could or should be included in javascript , but are not.
+
+      now we add it to our project : 
+         npm i lodash-es
+ */
+
+import cloneDeep from '../../node_modules/lodash-es/cloneDeep.js';
+
+const state = {
+   cart:  [
+      {product: 'bread', quantity: 5},
+      {product: 'pizza', quantity: 5}
+   ],
+   user: { loggedIn: true} ,  
+}
+const stateClone = Object.assign({}, state);
+// now we user cloneDeep.js before change false happen down below
+const stateDeepClone = cloneDeep(state);
+
+// i change true to false 
+state.user.loggedIn = false;
+console.log(stateClone);
+
+// lock at this clone is still true 😎
+console.log(stateDeepClone);   // that's beautiful using npm and package 😍😍😍
+
+// you do not need push your node_module just copy or push your project file 
+// then after that your project need all your module use before in it 
+// just run " npm i " and when npm reach your package.json file and find out witch package you need
+// it will be installed auto and add to your folder of your project 😎
