@@ -188,5 +188,57 @@ The operators ++ and -- can be placed either before or after a variable.
 - When the operator goes after the variable, it is in “postfix form”: ```counter++```.
 - The “prefix form” is when the operator goes before the variable: ```++counter```.
 -------------------------
+Both of these statements do the same thing: increase counter by 1.
+
+
+Is there any difference? Yes, but we can only see it if we use the returned value of ++/--.
+
+Let’s clarify. As we know, all operators return a value. Increment/decrement is no exception. The prefix form returns the new value while the postfix form returns the old value (prior to increment/decrement).
+
+```js 
+let counter = 1; 
+let a = ++counter; //(*)
+
+console.log(a); // 2
+```
+In the line (*), the prefix form ++counter increments counter and returns the new value, 2. So, the alert shows 2.
+
+Now, let’s use the postfix form:
+```js 
+let counter = 1;
+let a = counter++; // (*)
+```
+In the line (*), the postfix form counter++ also increments counter but returns the old value (prior to increment). So, the alert shows 1.
+
+```js 
+let counter = 1;
+( 2 * ++counter );  // 4
+( 2 * counter++ );  // 2 because this  return old value
+```
+------------------
+# Bitwise operators
+Bitwise operators treat arguments as 32-bit integer numbers and work on the level of their binary representation.
+
+These operators are not JavaScript-specific. They are supported in most programming languages.
+
+The list of operators:
+   - AND ```&```
+   - OR ```|```
+   - XOR ```^```
+   - NOT ```~```
+   - LEFT SHIFT ```<<```
+   - RIGHT SHIFT ```>>```
+   - ZERO-FILL RIGHT SHIFT ```>>>```
+--------------------
+# Comma 
+The comma operator , is one of the rarest and most unusual operators. Sometimes, it’s used to write shorter code, so we need to know it in order to understand what’s going on.
+
+The comma operator allows us to evaluate several expressions, dividing them with a comma ,. Each of them is evaluated but only the result of the last one is returned.
+```js 
+let  a = ( 1 + 2 , 3 + 4 );  // 7
+```
+Comma has a very low precedence
+Please note that the comma operator has very low precedence, lower than =, so parentheses are important in the example above.
+
 
 
