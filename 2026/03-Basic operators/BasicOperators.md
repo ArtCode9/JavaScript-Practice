@@ -123,4 +123,70 @@ Why are unary pluses applied to values before the binary ones? As we’re going 
 
 ---------
 
+## Assignment 
+= is also an operator. 
+That’s why, when we assign a variable, like x = 2 * 2 + 1, the calculations are done first and then the = is evaluated, storing the result in x.
+
+-----------------------
+
+## Assignment = returns a value
+The fact of = being an operator, not a “magical” language construct has an interesting implication.
+
+All operators in JavaScript return a value. That’s obvious for + and -, but also true for =.
+
+The call x = value writes the value into x and then returns it.
+
+Here’s a demo that uses an assignment as part of a more complex expression:
+```js
+let a = 1; 
+let b = 2;
+let c = 3 - (a = b + 1);
+
+// now a = 3 
+// now c = 0
+```
+
+## Chaining assignments
+```js 
+let a , b, c;
+ a = b = c = 2 + 2;
+
+// all a b c equal 4
+```
+--------
+## Modify-in-place
+
+We often need to apply an operator to a variable and store the new result in that same variable.
+for example:
+```js
+let n = 2;
+n = n + 5;
+n = n * 2;
+```
+This notation can be shortened using the operators += and *=:
+
+```js
+let n = 2;
+n += 5;  // now n = 7 (same as n = n + 5)
+n *= 2;  // now n = 14 (same as  n = n * 2)
+```
+Short “modify-and-assign” operators exist for all arithmetical and bitwise operators: /=, -=, etc.
+
+```js 
+let n = 2;
+n *= 3 + 5; // right part evaluated first, same as n *= 8
+alert( n ); // 16
+```
+
+##  Increment/decrement
+Increasing or decreasing a number by one is among the most common numerical operations.
+
+- ***increment*** ```++``` : increases a variable by 1.
+- ***Decrement***```--```: decreases a variable by 1.
+------------------
+The operators ++ and -- can be placed either before or after a variable.
+- When the operator goes after the variable, it is in “postfix form”: ```counter++```.
+- The “prefix form” is when the operator goes before the variable: ```++counter```.
+-------------------------
+
 
