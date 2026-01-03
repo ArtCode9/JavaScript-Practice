@@ -1,0 +1,141 @@
+ * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      background: #f4f6f8;
+      color: #222;
+      padding: 1rem;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 1.5rem;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: auto;
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 1.5rem;
+    }
+
+    /* -------- FORM -------- */
+    .card {
+      background: #fff;
+      border-radius: 8px;
+      padding: 1rem;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    }
+
+    form h2 {
+      margin-top: 0;
+      font-size: 1.2rem;
+    }
+
+    label {
+      font-size: 0.8rem;
+      font-weight: 600;
+      margin-top: 0.75rem;
+      display: block;
+    }
+
+    input {
+      width: 100%;
+      padding: 0.5rem;
+      margin-top: 0.25rem;
+      border-radius: 4px;
+      border: 1px solid #ccc;
+      font-size: 0.9rem;
+    }
+
+    button {
+      margin-top: 1rem;
+      padding: 0.6rem;
+      width: 100%;
+      border: none;
+      border-radius: 4px;
+      background: #2563eb;
+      color: #fff;
+      font-size: 0.9rem;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #1d4ed8;
+    }
+
+    /* -------- CAR LIST -------- */
+    #bunker-list {
+      display: grid;
+      gap: 1rem;
+    }
+
+    .car {
+      background: #fff;
+      border-radius: 8px;
+      padding: 1rem;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .car-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .car-title {
+      font-weight: 700;
+    }
+
+    .car-meta {
+      font-size: 0.85rem;
+      color: #555;
+    }
+
+    .delete-btn {
+      background: #dc2626;
+      padding: 0.4rem 0.6rem;
+      font-size: 0.75rem;
+    }
+
+    .delete-btn:hover {
+      background: #b91c1c;
+    }
+
+    /* -------- RESPONSIVE -------- */
+    @media (max-width: 768px) {
+      .container {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .badges {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.badge {
+  padding: 0.25rem 0.6rem;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: white;
+}
+
+/* SPEED */
+.speed-slow { background: #16a34a; }     /* green */
+.speed-medium { background: #f59e0b; }   /* amber */
+.speed-fast { background: #dc2626; }     /* red */
+
+/* PRICE */
+.price-cheap { background: #2563eb; }    /* blue */
+.price-normal { background: #6b7280; }   /* gray */
+.price-expensive { background: #7c3aed; }/* purple */
