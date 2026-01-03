@@ -1,0 +1,50 @@
+:root {
+   --bg:#0f1724; 
+   --card:#0b1220;
+   --accent:#7dd3fc; 
+   --muted:#94a3b8;
+   --glass: rgba(255,255,255,0.03)
+      }
+   html,body { 
+      height:100%;
+      margin:0;
+      font-family:system-ui,-apple-system,"Segoe UI",Roboto,'Helvetica Neue',Arial;
+      direction:rtl;
+      background:linear-gradient(180deg,#071029 0%, #081426 100%);
+      color:#e6eef6
+      }
+   .container{
+      max-width:1000px;
+      margin:28px auto;
+      padding:20px
+   }
+   header{
+      display:flex;
+      align-items:center;
+      gap:16px
+   }
+   h1{
+      margin:0;
+      font-size:20px
+   }
+   .card{
+      background:var(--card);
+      border-radius:12px;
+      padding:14px;
+      box-shadow:0 6px 18px rgba(2,6,23,0.6);
+   }
+   .controls{
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+      margin-top:12px}
+   input[type=number], input[type=text], select{padding:8px 10px;border-radius:8px;border:1px solid rgba(255,255,255,0.04);background:var(--glass);color:inherit}
+   button{background:var(--accent);border:none;padding:8px 12px;border-radius:8px;cursor:pointer}
+   .grid{display:grid;grid-template-columns:1fr 420px;gap:14px;margin-top:16px}
+   .right{display:flex;flex-direction:column;gap:12px}
+   canvas{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border-radius:10px;width:100%;height:360px}
+   .stats{display:flex;gap:12px;flex-wrap:wrap}
+   .stat{background:rgba(255,255,255,0.03);padding:10px;border-radius:8px;min-width:120px}
+   textarea{width:100%;height:220px;background:transparent;border:1px solid rgba(255,255,255,0.04);color:inherit;padding:8px;border-radius:8px;resize:vertical}
+   footer{margin-top:14px;color:var(--muted);font-size:13px}
+   .small{font-size:13px;color:var(--muted)}

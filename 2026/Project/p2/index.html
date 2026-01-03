@@ -1,0 +1,253 @@
+<!doctype html>
+<html lang="fa">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Collatz Visualizer — دنبالهٔ کولاتز</title>
+  <link rel="stylesheet" href="./src/style/style.css">
+
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="card">
+        <h1>Collatz Visualizer — مصورساز حدس کولاتز</h1>
+        <div class="small">عدد را وارد کن؛ دنباله، تعداد گام‌ها و نمودار نمایش داده می‌شود. memoization فعال است تا محاسبات بعدی سریع‌تر شوند.</div>
+      </div>
+    </header>
+
+    <div class="card" style="margin-top:12px;">
+      <div class="controls">
+        <label>عدد شروع: <input id="startInput" type="text" inputmode="numeric" placeholder="مثلاً 27 یا 12345678901234567890"/></label>
+        <label><input id="useBigInt" type="checkbox"/> استفاده از BigInt (برای اعداد خیلی بزرگ)</label>
+        <label><input id="useLog" type="checkbox"/> محور عمودی لگاریتمی (نمایش بهتر پرش‌ها)</label>
+        <button id="runBtn">اجرا کن</button>
+        <button id="clearCacheBtn">پاک‌کردن Cache</button>
+        <button id="exportCSVBtn">خروجی CSV</button>
+      </div>
+
+      <div class="grid">
+        <div>
+          <canvas id="chartCanvas" width="800" height="360"></canvas>
+          <div class="stats" style="margin-top:10px">
+            <div class="stat">گام‌ها: <span id="stepsSpan">-</span></div>
+            <div class="stat">بیشینهٔ دنباله: <span id="maxSpan">-</span></div>
+            <div class="stat">طول دنباله: <span id="lenSpan">-</span></div>
+            <div class="stat">زمان اجرا (ms): <span id="timeSpan">-</span></div>
+          </div>
+        </div>
+
+        <div class="right">
+          <div>
+            <label class="small">دنباله (اولین 1000 مقدار نشان داده می‌شود):</label>
+            <textarea id="seqArea" readonly></textarea>
+          </div>
+          <div class="small">توضیحات: حافظهٔ میانی (cache) تعداد گام‌ها را برای اعدادِ دیده‌شده ذخیره می‌کند. فعال بودن bigInt برای اعداد فراتر از ایمن‌ترین عدد JS مفید است.</div>
+        </div>
+      </div>
+
+      <footer>برای درخواست ویژگی‌های بیشتر (رنگ، PNG، Chart.js، WebWorker)، بگو اضافه کنم.</footer>
+    </div>
+  </div>
+
+  <script>
+    // دو cache جدا برای Number و BigInt. برای BigInt از string کلید استفاده می‌کنیم.
+    const collatzCacheNum = new Map([[1,0]]);
+    const collatzCacheBig = new Map([['1',0]]);
+
+    // parse input robustly: accept plain integer string possibly larger than Number.MAX_SAFE_INTEGER
+    function parseInput(raw, useBigInt){
+      raw = raw.trim();
+      if (!raw) throw new Error('عدد وارد نشده');
+      // allow optional + sign
+      if (/^\+?\d+$/.test(raw) === false) throw new Error('ورودی باید یک عدد صحیح غیرمنفی باشد');
+      if (useBigInt) {
+        try { return BigInt(raw); } catch(e){ throw new Error('ورودی قابل تبدیل به BigInt نیست'); }
+      } else {
+        const n = Number(raw);
+        if (!Number.isFinite(n) || !Number.isInteger(n) || n <= 0) throw new Error('عدد باید صحیح مثبت و در محدودهٔ استاندارد باشد، یا BigInt را بزن');
+        return n;
+      }
+    }
+
+    // تابع Collatz برای Number با memoization
+    function collatzWithStepsNum(n){
+      if (!Number.isInteger(n) || n <= 0) throw new TypeError('n باید عدد صحیح مثبت باشد');
+      const seq = [];
+      let cur = n;
+      let steps = 0;
+      while (true){
+        seq.push(cur);
+        if (cur === 1) break;
+        if (collatzCacheNum.has(cur)){
+          steps += collatzCacheNum.get(cur);
+          break;
+        }
+        // compute next
+        let next = (cur % 2 === 0) ? cur/2 : 3*cur + 1;
+        cur = next;
+        steps++;
+      }
+      // store steps for original number
+      collatzCacheNum.set(n, steps);
+      return {sequence: seq, steps};
+    }
+
+    // تابع Collatz برای BigInt با memoization
+    function collatzWithStepsBig(n){
+      if (typeof n !== 'bigint' || n <= 0n) throw new TypeError('n باید مثبت bigint باشد');
+      const seq = [];
+      let cur = n;
+      let steps = 0;
+      while (true){
+        seq.push(cur.toString());
+        if (cur === 1n) break;
+        const key = cur.toString();
+        if (collatzCacheBig.has(key)){
+          steps += collatzCacheBig.get(key);
+          break;
+        }
+        // next
+        let next = (cur % 2n === 0n) ? (cur / 2n) : (3n * cur + 1n);
+        cur = next;
+        steps++;
+      }
+      collatzCacheBig.set(n.toString(), steps);
+      return {sequence: seq.map(s => BigInt(s)), steps};
+    }
+
+    // رسم ساده روی canvas. data باید آرایهٔ عددی (Number or BigInt) باشد
+    function drawChart(canvas, data, useLog){
+      const ctx = canvas.getContext('2d');
+      const w = canvas.width = canvas.clientWidth * devicePixelRatio;
+      const h = canvas.height = canvas.clientHeight * devicePixelRatio;
+      ctx.clearRect(0,0,w,h);
+
+      if (!data || data.length === 0) return;
+      // convert to Number for plotting (may overflow -> use scaled log)
+      const numeric = data.map(v => (typeof v === 'bigint') ? Number(v > 0n ? v : 0n) : Number(v));
+      let min = Math.min(...numeric.filter(x=>isFinite(x)));
+      let max = Math.max(...numeric.filter(x=>isFinite(x)));
+      if (!isFinite(min) || !isFinite(max)) { ctx.fillStyle='rgba(255,255,255,0.6)'; ctx.fillText('مقادیر برای نمایش گرافیکی بسیار بزرگ هستند. از BigInt=false و یا خروجی CSV استفاده کن.',10,20); return; }
+
+      // if log scale requested
+      let transformed = numeric.slice();
+      if (useLog){
+        transformed = numeric.map(v => Math.log10(Math.max(1, v)));
+        min = Math.min(...transformed);
+        max = Math.max(...transformed);
+      }
+
+      // padding
+      const pad = 40 * devicePixelRatio;
+      const plotW = w - pad*1.2;
+      const plotH = h - pad*1.2;
+
+      // axes
+      ctx.strokeStyle = 'rgba(255,255,255,0.06)'; ctx.lineWidth = 1 * devicePixelRatio;
+      ctx.beginPath(); ctx.moveTo(pad, pad); ctx.lineTo(pad, pad+plotH); ctx.lineTo(pad+plotW, pad+plotH); ctx.stroke();
+
+      // map function
+      const xFor = i => pad + (i/(transformed.length-1 || 1)) * plotW;
+      const yFor = v => pad + plotH - ((v - min) / (max - min || 1)) * plotH;
+
+      // line
+      ctx.beginPath(); ctx.lineWidth = 2 * devicePixelRatio; ctx.strokeStyle = '#7dd3fc';
+      transformed.forEach((v,i)=>{
+        const x = xFor(i), y = yFor(v);
+        if (i===0) ctx.moveTo(x,y); else ctx.lineTo(x,y);
+      });
+      ctx.stroke();
+
+      // points (sparse)
+      ctx.fillStyle = 'rgba(125,211,252,0.9)';
+      for(let i=0;i<transformed.length;i+=Math.max(1,Math.floor(transformed.length/200))){
+        const x=xFor(i), y=yFor(transformed[i]); ctx.beginPath(); ctx.arc(x,y,2*devicePixelRatio,0,Math.PI*2); ctx.fill();
+      }
+
+      // labels
+      ctx.fillStyle='rgba(255,255,255,0.7)'; ctx.font = `${12*devicePixelRatio}px sans-serif`;
+      ctx.fillText('قدم', pad + plotW/2, h - 6*devicePixelRatio);
+      ctx.fillText(useLog ? 'log10(مقدار)' : 'مقدار', 6*devicePixelRatio, pad + 10*devicePixelRatio);
+
+      // min/max
+      ctx.fillStyle='rgba(255,255,255,0.5)'; ctx.font = `${11*devicePixelRatio}px sans-serif`;
+      ctx.fillText((useLog ? min.toFixed(2) : String(Math.round(min))), pad, pad - 6*devicePixelRatio);
+      ctx.fillText((useLog ? max.toFixed(2) : String(Math.round(max))), pad, pad + plotH + 14*devicePixelRatio);
+    }
+
+    // Export CSV
+    function exportCSV(sequence){
+      const rows = sequence.map((v,i)=>`${i},"${v.toString()}"`);
+      const csv = 'index,value\n' + rows.join('\n');
+      const blob = new Blob([csv], {type:'text/csv;charset=utf-8;'});
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a'); a.href = url; a.download = 'collatz_sequence.csv'; document.body.appendChild(a); a.click(); a.remove(); URL.revokeObjectURL(url);
+    }
+
+    // wire up UI
+    const startInput = document.getElementById('startInput');
+    const useBigIntBox = document.getElementById('useBigInt');
+    const useLogBox = document.getElementById('useLog');
+    const runBtn = document.getElementById('runBtn');
+    const clearCacheBtn = document.getElementById('clearCacheBtn');
+    const exportCSVBtn = document.getElementById('exportCSVBtn');
+    const seqArea = document.getElementById('seqArea');
+    const stepsSpan = document.getElementById('stepsSpan');
+    const maxSpan = document.getElementById('maxSpan');
+    const lenSpan = document.getElementById('lenSpan');
+    const timeSpan = document.getElementById('timeSpan');
+    const canvas = document.getElementById('chartCanvas');
+
+    runBtn.addEventListener('click', ()=>{
+      try{
+        const useBigInt = useBigIntBox.checked;
+        const input = parseInput(startInput.value || '27', useBigInt);
+        const t0 = performance.now();
+        let res;
+        if (useBigInt){
+          res = collatzWithStepsBig(input);
+          // res.sequence is array of BigInt
+          const seqBig = res.sequence; // BigInt array
+          const maxVal = seqBig.reduce((a,b)=> b>a?b:a, seqBig[0]);
+          seqArea.value = seqBig.slice(0,1000).map(x=>x.toString()).join(', ');
+          stepsSpan.textContent = res.steps;
+          maxSpan.textContent = maxVal.toString();
+          lenSpan.textContent = seqBig.length;
+          timeSpan.textContent = Math.round(performance.now()-t0);
+          drawChart(canvas, seqBig, useLogBox.checked);
+          // attach last result for CSV
+          canvas._lastSequence = seqBig.map(x=>x.toString());
+        } else {
+          res = collatzWithStepsNum(input);
+          const seq = res.sequence;
+          const maxVal = Math.max(...seq);
+          seqArea.value = seq.slice(0,1000).join(', ');
+          stepsSpan.textContent = res.steps;
+          maxSpan.textContent = maxVal;
+          lenSpan.textContent = seq.length;
+          timeSpan.textContent = Math.round(performance.now()-t0);
+          drawChart(canvas, seq, useLogBox.checked);
+          canvas._lastSequence = seq.map(x=>x.toString());
+        }
+      }catch(err){
+        alert('خطا: ' + err.message);
+      }
+    });
+
+    clearCacheBtn.addEventListener('click', ()=>{
+      collatzCacheNum.clear(); collatzCacheNum.set(1,0);
+      collatzCacheBig.clear(); collatzCacheBig.set('1',0);
+      alert('Cache پاک شد');
+    });
+
+    exportCSVBtn.addEventListener('click', ()=>{
+      if (!canvas._lastSequence) { alert('هیچ دنباله‌ای اجرا نشده'); return; }
+      exportCSV(canvas._lastSequence.map((v,i)=>[i,v]));
+    });
+
+    // small helper: run default example on load
+    window.addEventListener('load', ()=>{ startInput.value='27'; document.getElementById('runBtn').click(); });
+  </script>
+</body>
+</html>
