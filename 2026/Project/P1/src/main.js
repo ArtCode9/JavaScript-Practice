@@ -27,8 +27,8 @@ form.addEventListener('submit', (event) =>{
 
 bunkerList.addEventListener('click', (event) => {
    if (event.target.tagName === 'BUTTON') {
-      const index = event.target.dataset.index;
-      deleteCar(index);
+      const id = event.target.dataset.id;
+      deleteCar(id);
       renderBunker();
    }
 });

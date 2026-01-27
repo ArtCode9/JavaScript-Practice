@@ -18,33 +18,20 @@ function getPriceClass(price) {
 export function renderBunker() {
   bunkerList.innerHTML = '';
 
-  const cars = getAllCars();
 
   cars.forEach((car, index) => {
     const div = document.createElement('div');
     div.className = 'car';
 
     div.innerHTML = `
-         <div class="car-header">
-            <span class="car-title">${car.brand} ${car.model}</span>
-         </div>
-
-         <div class="badges">
-            <span class="badge ${getSpeedClass(car.speed)}">
-               ${car.speed} km/h
-            </span>
-
-            <span class="badge ${getPriceClass(car.price)}">
-               $${car.price}
-            </span>
-         </div>
-
-         <div class="car-meta">Year: ${car.year}</div>
-                     <button class="delete-btn" data-index="${index}">Delete</button>
-
+         <strong>${index + 1}. ${car.brand} ${car.model}</strong>
+         <p>Speed: ${car.speed} km/h</p>
+         <p>Year: ${car.year}</p>
+         <p>Price: ${car.price}</p>
+         <button data-id="${car.id}">Delete</button>
          `;
 
-
+    getAllCars();
     bunkerList.appendChild(div);
   });
 }
