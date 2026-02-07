@@ -46,3 +46,28 @@ button:hover {
 .zero {
   grid-column: span 2;
 }
+
+.app {
+  display: flex;
+  gap: 20px;
+}
+
+.history {
+  width: 200px;
+  background: #1e1e1e;
+  color: #fff;
+  padding: 10px;
+  border-radius: 8px;
+}
+
+.history ul {
+  list-style: none;
+  padding: 0;
+  font-size: 14px;
+}
+
+.history li {
+  margin-bottom: 6px;
+  border-bottom: 1px solid #333;
+  padding-bottom: 4px;
+}

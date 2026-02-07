@@ -1,5 +1,6 @@
 import { state } from "./state.js"
 import { updateDisplay } from "./ui.js"
+import { addHistory } from "./history.js"
 
 export function inputNumber (number) {
    if(state.currentValue === "0" && number !== ".") {
@@ -25,22 +26,29 @@ export function calculate() {
    const a = Number(state.previousValue)
    const b = Number(state.currentValue)
 
-   let result
+   let result;
+   let symbol;
 
    switch(state.operator) {
       case "add":
          result = a + b
+         symbol = "+"
          break;
       case "subtract":
          result = a - b
+         symbol = "-"
          break;
       case "multiply":
          result = a * b 
+         symbol = "x"
          break;
       case "divide":
          result = b === 0 ? "Error" : a/b
+         symbol = "/"
          break;
    }
+
+   addHistory(`${a} ${symbol} ${b} = ${result}`);
 
    state.currentValue = String(result)
    state.operator = null

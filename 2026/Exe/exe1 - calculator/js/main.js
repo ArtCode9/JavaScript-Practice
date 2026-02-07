@@ -12,6 +12,8 @@ import {
    memorySubtract
 } from "./memory.js"
 
+import { clearHistory } from "./history.js";
+
 document.querySelector(".buttons").addEventListener("click", e => {
    const btn = e.target
    if(!btn.matches("button")) return
@@ -42,6 +44,9 @@ document.querySelector(".buttons").addEventListener("click", e => {
             break
          case "mminus":
             memorySubtract()
+            break
+         case "clear-history":
+            clearHistory()
             break
          default:
             setOperator(btn.dataset.action)

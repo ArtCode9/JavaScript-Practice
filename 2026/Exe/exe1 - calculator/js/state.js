@@ -2,7 +2,8 @@ export const state = {
    currentValue: "0",
    previousValue: null,
    operator: null,
-   memory: 0
+   memory: 0,
+   history: []
 }
 
 /* 
