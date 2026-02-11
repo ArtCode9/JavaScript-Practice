@@ -113,4 +113,26 @@ user || createGuest();
    They control execution, default, and safety not just condition.
 */
 
+/* 
+   Real bugs Caused by || (Logical OR)
+   Many devs thinks:
+      || means use default if value is missing
+   But in JS:
+      || uses the default if the value is falsy
+      not just null or undefined.
 
+   Falsy values include:
+      false , 0, "", NaN, undefined
+*/
+
+/* 
+   Decision Rule (memorize this)
+   only null/undefined are invalid     ->   Use ??
+   all falsy values are invalid        ->   Use '
+   Boolean logic / condition           ->   Use &&
+   Defaults in configs                 ->   Use ??
+
+
+   Most || bugs come from treating falsy as missing.
+   JS does not agree with that assumption
+*/
