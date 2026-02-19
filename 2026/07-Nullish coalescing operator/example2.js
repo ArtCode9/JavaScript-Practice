@@ -101,6 +101,92 @@ console.log(createUser("Art")); // Art
 
 //--------------------------------------------------------
 // ex11: Nullish vs falsy complex case
+let input11 = "";
+
+let value11 = input11 ?? "default";
+
+console.log(value11);
+
+// with || this would break
 //--------------------------------------------------------
+// ex12: With Optional Chaining (Modern Pattern)
+
+let user = {};
+let city = user.address?.city ?? "Unknown";
+
+console.log(city);
+// This is production-level Safe access
+//--------------------------------------------------------
+// ex13: Strict Nullish Logic
+let configValue = 0;
+
+if((configValue ?? 100) === 0) {
+   console.log(`Value preserved`);
+}
+// Ensures 0 is not replaced
+//--------------------------------------------------------
+// ex14: Lazy Evaluation Insight
+function fallback() {
+   console.log(`Fallback Executed`);
+   return 50;
+}
+let value14 = 10 ?? fallback();
+console.log(value14);
+
+// fallback never run because 10 is not nullish
+//--------------------------------------------------------
+// ex15: Side-effect Demonstration
+let a15 = null;
+
+let result15 = a ?? console.log(`Running fallback`);
+// Fallback executes only when left side is nullish
+//--------------------------------------------------------
+// ex16: Mixed with Logical Operator (Precedence Important)
+let value16 = null;
+let result16 = (value16 ?? false) || true;
+console.log(result16);
+
+// ?? can not mix directly with || or && without parentheses in modern js
+// Understanding precedence restrictions is  advanced knowledge
+//--------------------------------------------------------
+// ex17: Configuration System
+let envConfig = {
+   timeout: 0
+};
+let timeout = envConfig.timeout ?? 3000;
+
+console.log(timeout); // 0
+// correct handling of zero config
+//--------------------------------------------------------
+// ex18: database value handling
+let dbValue = undefined;
+
+let finalValue = dbValue ?? 'Not provide';
+
+console.log(finalValue);
+
+// Classic DB null handling
+//--------------------------------------------------------
+// ex19: Nested Object Defaulting
+let setting = {
+   theme: null
+};
+
+let theme = setting.theme ?? "light";
+console.log(theme);
+//--------------------------------------------------------
+// ex20: Real validation Pipeline Example:
+function calculateDiscount(discount) {
+   let validDiscount = discount ?? 0;
+
+   if(validDiscount >= 0 && validDiscount <= 50) {
+      return validDiscount;
+   }
+
+   return 0;
+}
+
+console.log(calculateDiscount(null)); // 0
+console.log(calculateDiscount(20)); // 20
 //--------------------------------------------------------
 
