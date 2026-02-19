@@ -62,6 +62,39 @@ document.body.addEventListener('keydown', function(e) {
             score2.innerText = Number(100);
          }
       }
-   }  
-
+   }     
 });
+
+btn.addEventListener('click', function() {
+      console.log(`Scores: ` + score1.innerText + ` ` + score2.innerText);
+      
+      if(Number(score1.innerText) > Number(score2.innerText)) 
+      {
+         winner.innerText = "Ryu is the Winner";
+         score1.innerText = 100;
+         score2.innerText = 100;
+      }
+      else if (Number(score1.innerText) < Number(score2.innerText))
+      {
+         winner.innerText = "Ken is the winner";
+         score2.innerText = 100;
+         score1.innerText = 100;
+      }
+      else if (Number(score1.innerText) == 0) 
+      {
+         winner.innerText = "Ken is the winner";
+         score2.innerText = 100;
+         score1.innerText = 100;
+      }
+      else if (Number(score2.innerText) == 0) 
+      {
+         winner.innerText = "Ryu is the winner";
+         score2.innerText = 100;
+         score1.innerText = 100;
+      }
+      else {
+         winner.innerText = "It is a tie";
+         score2.innerText = 100;
+         score1.innerText = 100;
+      }
+   })
