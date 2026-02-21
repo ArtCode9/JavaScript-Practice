@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Guess The Number</title>
+   <link rel="stylesheet" href="style.css">
+</head>
+<body>
+   
+   <div class="game-card">
+    <h1>🎯 Guess The Number</h1>
+
+    <div class="settings">
+      <label>Difficulty:</label>
+      <select id="difficulty">
+        <option value="10">Easy (1-10)</option>
+        <option value="50">Medium (1-50)</option>
+        <option value="100" selected>Hard (1-100)</option>
+      </select>
+    </div>
+
+    <p class="info">Pick a number and try your luck.</p>
+
+    <input type="number" id="guessInput" placeholder="Enter your guess" />
+
+    <button id="guessBtn">Guess</button>
+    <button id="restartBtn" class="secondary">Restart</button>
+
+    <div class="status">
+      <p>Attempts: <span id="attempts">0</span></p>
+      <p id="message"></p>
+    </div>
+  </div>
+
+
+   <script src="script.js"></script>
+</body>
+</html>
