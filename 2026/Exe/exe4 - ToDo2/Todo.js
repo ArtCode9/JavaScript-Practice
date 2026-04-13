@@ -14,7 +14,7 @@ function Add() {
 
       text.appendChild(newEle);
       
-      input.value="";
+      input.value = "";
       
       newEle.querySelector("li").addEventListener("click", removeItem);
       function removeItem() {
