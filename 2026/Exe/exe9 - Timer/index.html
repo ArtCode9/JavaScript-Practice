@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>TimerApp</title>
+   <link rel="stylesheet" href="style.css">
+</head>
+<body>
+   
+   <div class="timer">
+      <div class="controls">
+         <input type="Count number" id="duration" placeholder="Count">
+         <div>
+            <button id="start">Start</button>
+            <button id="pause">Pause</button>
+         </div>
+      </div>
+      <svg class="dial">
+         <circle 
+            fill="transparent"
+            stroke="purple"
+            stroke-width="15"
+            r="190"
+            cx="0"
+            cy="200"
+            transform="rotate(-90 100 100)"
+         />
+      </svg>
+   </div>
+
+   <!-- one add timer.js before index.js because Timer can find by it and cause the error -->
+   <script src="timer.js"></script> 
+   <script src="index.js"></script>
+</body>
+</html>
