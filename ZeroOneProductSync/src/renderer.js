@@ -2,29 +2,47 @@ const csvBtn = document.getElementById("csvBtn");
 const excelBtn = document.getElementById("excelBtn");
 const outputBtn = document.getElementById("outputBtn");
 
+const csvPath = document.getElementById("csvPath");
+const excelPath = document.getElementById("excelPath");
+const outputPath = document.getElementById("outputPath");
+
+const log = document.getElementById("log");
+
 csvBtn.addEventListener("click", async () => {
 
-    const path = await window.electronAPI.selectCSV();
+    const result = await window.api.selectCSV();
 
-    if(path)
-        document.getElementById("csvPath").value = path;
+    if (result) {
+        csvPath.value = result;
+        addLog("CSV Selected");
+    }
 
 });
 
 excelBtn.addEventListener("click", async () => {
 
-    const path = await window.electronAPI.selectExcel();
+    const result = await window.api.selectExcel();
 
-    if(path)
-        document.getElementById("excelPath").value = path;
+    if (result) {
+        excelPath.value = result;
+        addLog("Excel Selected");
+    }
 
 });
 
 outputBtn.addEventListener("click", async () => {
 
-    const path = await window.electronAPI.selectFolder();
+    const result = await window.api.selectOutput();
 
-    if(path)
-        document.getElementById("outputPath").value = path;
+    if (result) {
+        outputPath.value = result;
+        addLog("Output Folder Selected");
+    }
 
 });
+
+function addLog(message){
+
+    log.value += message + "\n";
+
+}

@@ -1,57 +1,92 @@
 const { app, BrowserWindow, ipcMain, dialog } = require("electron");
 const path = require("path");
+const { readExcel } = require("./src/excel");
+const { readCSV } = require("./src/csv");
 
 function createWindow() {
-  const win = new BrowserWindow({
-    width: 1200,
-    height: 750,
-    minWidth: 1000,
-    minHeight: 650,
-    title: "ZeroOne Product Sync",
 
-    webPreferences: {
-      preload: path.join(__dirname, "preload.js"),
-      contextIsolation: true,
-      nodeIntegration: false
-    }
-  });
+    const win = new BrowserWindow({
 
-  win.loadFile("src/index.html");
-}
+        width: 1000,
+        height: 750,
+        minWidth: 900,
+        minHeight: 700,
 
-app.whenReady().then(() => {
-  createWindow();
+        webPreferences: {
 
-  app.on("activate", () => {
-    if (BrowserWindow.getAllWindows().length === 0)
-      createWindow();
-  });
-});
+            preload: path.join(__dirname, "preload.js"),
+            contextIsolation: true,
+            nodeIntegration: false
 
-app.on("window-all-closed", () => {
-  if (process.platform !== "darwin")
-    app.quit();
-});
-
-
-ipcMain.handle("select-file", async (event, filters) => {
-
-    const result = await dialog.showOpenDialog({
-
-        properties: ["openFile"],
-
-        filters
+        }
 
     });
 
-    if (result.canceled)
-        return null;
+    win.loadFile("src/index.html");
+
+}
+
+app.whenReady().then(() => {
+
+    createWindow();
+
+});
+
+app.on("window-all-closed", () => {
+
+    if (process.platform !== "darwin") {
+
+        app.quit();
+
+    }
+
+});
+
+
+
+ipcMain.handle("select-csv", async () => {
+
+    const result = await dialog.showOpenDialog({
+
+        filters: [
+
+            { name: "CSV Files", extensions: ["csv"] }
+
+        ],
+
+        properties: ["openFile"]
+
+    });
+
+    if (result.canceled) return "";
 
     return result.filePaths[0];
 
 });
 
-ipcMain.handle("select-folder", async () => {
+
+ipcMain.handle("select-excel", async () => {
+
+    const result = await dialog.showOpenDialog({
+
+        filters: [
+
+            { name: "Excel Files", extensions: ["xlsx", "xls"] }
+
+        ],
+
+        properties: ["openFile"]
+
+    });
+
+    if (result.canceled) return "";
+
+    return result.filePaths[0];
+
+});
+
+
+ipcMain.handle("select-output", async () => {
 
     const result = await dialog.showOpenDialog({
 
@@ -59,9 +94,28 @@ ipcMain.handle("select-folder", async () => {
 
     });
 
-    if (result.canceled)
-        return null;
+    if (result.canceled) return "";
 
     return result.filePaths[0];
+
+});
+
+ipcMain.handle("read-files", async (event, csvFile, excelFile) => {
+
+    const csvData = await readCSV(csvFile);
+
+    const excelData = readExcel(excelFile);
+
+    return {
+
+        csvRows: csvData.length,
+
+        excelRows: excelData.length,
+
+        csvData,
+
+        excelData
+
+    };
 
 });

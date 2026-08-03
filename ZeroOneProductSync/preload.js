@@ -2,23 +2,12 @@ const { contextBridge, ipcRenderer } = require("electron");
 
 contextBridge.exposeInMainWorld("electronAPI", {
 
-    selectCSV: () =>
-        ipcRenderer.invoke("select-file", [
-            {
-                name: "CSV",
-                extensions: ["csv"]
-            }
-        ]),
+    selectCSV: () => ipcRenderer.invoke("select-csv"),
 
-    selectExcel: () =>
-        ipcRenderer.invoke("select-file", [
-            {
-                name: "Excel",
-                extensions: ["xlsx", "xls"]
-            }
-        ]),
+    selectExcel: () => ipcRenderer.invoke("select-excel"),
 
-    selectFolder: () =>
-        ipcRenderer.invoke("select-folder")
+    selectOutput: () => ipcRenderer.invoke("select-output"),
+
+    readFiles: (csv, excel) => ipcRenderer.invoke("read-files", csv, excel)
 
 });

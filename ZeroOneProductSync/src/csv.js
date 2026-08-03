@@ -5,16 +5,28 @@ function readCSV(filePath) {
 
     return new Promise((resolve, reject) => {
 
-        const rows = [];
+        const results = [];
 
         fs.createReadStream(filePath)
             .pipe(csv())
-            .on("data", row => rows.push(row))
-            .on("end", () => resolve(rows))
+            .on("data", (data) => {
+
+                results.push(data);
+
+            })
+            .on("end", () => {
+
+                resolve(results);
+
+            })
             .on("error", reject);
 
     });
 
 }
 
-module.exports = { readCSV };
+module.exports = {
+
+    readCSV
+
+};
