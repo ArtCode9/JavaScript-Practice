@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZeroOne Product Sync</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="container">
+
+    <header>
+        <h1>ZeroOne Product Sync</h1>
+        <span>Version 0.1 Alpha</span>
+        <h2>Design by ARTCODE9</h2>
+    </header>
+
+    <div class="card">
+
+        <label>Site CSV</label>
+
+        <div class="input-row">
+            <input
+                type="text"
+                id="csvPath"
+                placeholder="Select WooCommerce CSV..."
+                readonly>
+
+            <button id="csvBtn">Browse</button>
+        </div>
+
+        <label>Accounting Excel</label>
+
+        <div class="input-row">
+            <input
+                type="text"
+                id="excelPath"
+                placeholder="Select Accounting Excel..."
+                readonly>
+
+            <button id="excelBtn">Browse</button>
+        </div>
+
+        <label>Output Folder</label>
+
+        <div class="file-info">
+
+             <p>CSV Rows : <span id="csvRows">0</span></p>
+
+            <p>Excel Rows : <span id="excelRows">0</span></p>
+
+         </div>
+
+        <div class="input-row">
+            <input
+                type="text"
+                id="outputPath"
+                placeholder="Select Output Folder..."
+                readonly>
+
+            <button id="outputBtn">Browse</button>
+        </div>
+
+        <button id="startBtn" class="primary">
+            Start Sync
+         </button>
+
+         <div class="progress-container">
+
+         <progress
+            id="progressBar"
+            value="0"
+            max="100">
+         </progress>
+
+         <span id="progressText">0%</span>
+
+      </div>
+
+    </div>
+
+   <div class="status">
+
+      <div>Products : <span id="products">0</span></div>
+
+      <div>Matched : <span id="matched">0</span></div>
+
+      <div>Price Updated : <span id="priceUpdated">0</span></div>
+
+      <div>Stock Updated : <span id="stockUpdated">0</span></div>
+
+      <div>Not Found : <span id="missing">0</span></div>
+
+      <div>Errors : <span id="errors">0</span></div>
+
+   </div>
+
+   <div class="log">
+
+    <h3>Process Log</h3>
+
+    <textarea
+        id="log"
+        readonly
+        placeholder="Waiting..."
+    ></textarea>
+
+</div>
+
+</div>
+
+
+
+<script src="renderer.js"></script>
+
+</body>
+</html>
