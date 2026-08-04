@@ -1,31 +1,33 @@
 const fs = require("fs");
 const csv = require("csv-parser");
 
-function readCSV(filePath) {
+function readCSV(filePath){
 
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve)=>{
 
-        const results = [];
+        const rows=[];
 
         fs.createReadStream(filePath)
+
             .pipe(csv())
-            .on("data", (data) => {
 
-                results.push(data);
+            .on("data",(row)=>{
 
-            })
-            .on("end", () => {
-
-                resolve(results);
+                rows.push(row);
 
             })
-            .on("error", reject);
+
+            .on("end",()=>{
+
+                resolve(rows);
+
+            });
 
     });
 
 }
 
-module.exports = {
+module.exports={
 
     readCSV
 

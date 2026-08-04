@@ -1,6 +1,6 @@
 const { contextBridge, ipcRenderer } = require("electron");
 
-contextBridge.exposeInMainWorld("electronAPI", {
+contextBridge.exposeInMainWorld("api", {
 
     selectCSV: () => ipcRenderer.invoke("select-csv"),
 
@@ -8,6 +8,7 @@ contextBridge.exposeInMainWorld("electronAPI", {
 
     selectOutput: () => ipcRenderer.invoke("select-output"),
 
-    readFiles: (csv, excel) => ipcRenderer.invoke("read-files", csv, excel)
+    readFiles: (csv, excel) =>
+        ipcRenderer.invoke("read-files", csv, excel)
 
 });

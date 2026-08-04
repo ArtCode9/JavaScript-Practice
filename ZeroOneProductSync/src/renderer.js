@@ -1,48 +1,137 @@
 const csvBtn = document.getElementById("csvBtn");
 const excelBtn = document.getElementById("excelBtn");
 const outputBtn = document.getElementById("outputBtn");
+const startBtn = document.getElementById("startBtn");
 
 const csvPath = document.getElementById("csvPath");
 const excelPath = document.getElementById("excelPath");
 const outputPath = document.getElementById("outputPath");
 
+const progressBar = document.getElementById("progressBar");
+
+const products = document.getElementById("products");
+const matched = document.getElementById("matched");
+const updated = document.getElementById("updated");
+const missing = document.getElementById("missing");
+
+console.log(products);
+console.log(matched);
+console.log(updated);
+console.log(missing);
+
 const log = document.getElementById("log");
 
-csvBtn.addEventListener("click", async () => {
+csvBtn.onclick = async () => {
 
-    const result = await window.api.selectCSV();
+    const file = await window.api.selectCSV();
 
-    if (result) {
-        csvPath.value = result;
-        addLog("CSV Selected");
+    if(file){
+
+        csvPath.value = file;
+        addLog("✔ CSV Selected");
+
     }
 
-});
+};
 
-excelBtn.addEventListener("click", async () => {
+excelBtn.onclick = async () => {
 
-    const result = await window.api.selectExcel();
+    const file = await window.api.selectExcel();
 
-    if (result) {
-        excelPath.value = result;
-        addLog("Excel Selected");
+    if(file){
+
+        excelPath.value = file;
+        addLog("✔ Excel Selected");
+
     }
 
-});
+};
 
-outputBtn.addEventListener("click", async () => {
+outputBtn.onclick = async () => {
 
-    const result = await window.api.selectOutput();
+    const folder = await window.api.selectOutput();
 
-    if (result) {
-        outputPath.value = result;
-        addLog("Output Folder Selected");
+    if(folder){
+
+        outputPath.value = folder;
+        addLog("✔ Output Folder Selected");
+
     }
 
-});
+};
 
-function addLog(message){
+startBtn.onclick = async ()=>{
 
-    log.value += message + "\n";
+    if(csvPath.value==="" || excelPath.value===""){
+
+        alert("Please select files.");
+
+        return;
+
+    }
+
+    addLog("Reading Files...");
+
+    progressBar.value = 20;
+
+    try {
+
+    const result = await window.api.readFiles(
+
+        csvPath.value,
+
+        excelPath.value
+
+    );
+
+    progressBar.value = 60;
+
+    products.innerText = result.csvRows;
+    matched.innerText = result.excelRows;
+
+    updated.innerText = 0;
+    missing.innerText = 0;
+
+    addLog("CSV Rows : " + result.csvRows);
+    addLog("Excel Rows : " + result.excelRows);
+
+    progressBar.value = 100;
+
+    addLog("Done.");
+
+}
+catch(err){
+
+    console.error(err);
+
+    addLog("ERROR : " + err.message);
+
+}
+
+    progressBar.value = 60;
+
+    products.innerText = result.csvRows;
+
+    matched.innerText = result.excelRows;
+
+    updated.innerText = 0;
+
+    missing.innerText = 0;
+
+    addLog("CSV Rows : "+result.csvRows);
+
+    addLog("Excel Rows : "+result.excelRows);
+
+    progressBar.value = 100;
+
+    addLog("Done.");
+
+};
+
+function addLog(text){
+
+    log.value += text + "\n";
+
+    log.scrollTop = log.scrollHeight;
 
 }
