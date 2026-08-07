@@ -1,31 +1,42 @@
 const fs = require("fs");
-const { createObjectCsvWriter } = require("csv-writer");
 
-async function exportCSV(rows, outputFile) {
+function exportCSV(filePath, data) {
 
-    if (!rows.length) return;
+    if (!data.length) return;
 
-    const headers = Object.keys(rows[0]).map(key => ({
-        id: key,
-        title: key
-    }));
+    const headers = Object.keys(data[0]);
 
-    const writer = createObjectCsvWriter({
+    const rows = [];
 
-        path: outputFile,
+    rows.push(headers.join(","));
 
-        header: headers,
+    data.forEach(row => {
 
-        alwaysQuote: true
+        const values = headers.map(header => {
+
+            let value = row[header];
+
+            if (value === undefined || value === null)
+                value = "";
+
+            value = String(value).replace(/"/g, '""');
+
+            return `"${value}"`;
+
+        });
+
+        rows.push(values.join(","));
 
     });
 
-    await writer.writeRecords(rows);
+    fs.writeFileSync(
+        filePath,
+        rows.join("\n"),
+        "utf8"
+    );
 
 }
 
 module.exports = {
-
     exportCSV
-
 };

@@ -1,68 +1,57 @@
-// src/compare.js
+function compareProducts(csvProducts, excelProducts) {
 
-const { readExcel } = require('./excel');
-const { readCSV } = require('./csv');
+    const excelMap = {};
 
-async function compare(csvFile, excelFile) {
-  const siteProducts = await readCSV(csvFile);
-  const accountingProducts = readExcel(excelFile);
+    let matched = 0;
+    let updated = 0;
+    let missing = 0;
 
-  // ساخت Map برای سرعت بالا
-  const excelMap = new Map();
+    // ساخت Map از اکسل
+    excelProducts.forEach(item => {
 
-  accountingProducts.forEach(item => {
-    const sku = String(item.SKU || '').trim();
+        const sku = String(item["کد کالا"]).trim();
 
-    if (!sku) return;
+        if (!sku) return;
 
-    excelMap.set(sku, {
-      price: item.Price ?? '',
-      stock: item.Stock ?? ''
+        excelMap[sku] = {
+            price: item["قیمت"],
+            stock: item["موجودی"]
+        };
+
     });
-  });
 
-  let matched = 0;
-  let priceUpdated = 0;
-  let stockUpdated = 0;
-  let missing = 0;
+    // بروزرسانی CSV
+    csvProducts.forEach(product => {
 
-  siteProducts.forEach(product => {
-    const sku = String(product['SKU'] || '').trim();
+        const sku = String(product["SKU"]).trim();
 
-    if (!excelMap.has(sku)) {
-      missing++;
-      return;
-    }
+        if (excelMap[sku]) {
 
-    matched++;
+            product["Regular price"] = excelMap[sku].price;
+            product["stock quantity"] = excelMap[sku].stock;
 
-    const excel = excelMap.get(sku);
+            matched++;
+            updated++;
 
-    // آپدیت قیمت
-    if (String(product['Regular price']) !== String(excel.price)) {
-      product['Regular price'] = excel.price;
-      priceUpdated++;
-    }
+        } else {
 
-    // آپدیت موجودی
-    if (String(product['Stock quantity']) !== String(excel.stock)) {
-      product['Stock quantity'] = excel.stock;
-      stockUpdated++;
-    }
-  });
+            missing++;
 
-  return {
-    rows: siteProducts,
-    stats: {
-      products: siteProducts.length,
-      matched,
-      priceUpdated,
-      stockUpdated,
-      missing
-    }
-  };
+        }
+
+    });
+
+    return {
+
+        products: csvProducts,
+        matched,
+        updated,
+        missing
+
+    };
+
 }
 
 module.exports = {
-  compare
+    compareProducts
 };

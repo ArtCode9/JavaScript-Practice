@@ -1,3 +1,13 @@
+const { dialog } = require("@electron/remote");
+
+const path = require("path");
+
+const { readCSV } = require("./csv");
+const { readExcel } = require("./excel");
+const { compareProducts } = require("./compare");
+const { exportCSV } = require("./export");
+
+// عناصر صفحه
 const csvBtn = document.getElementById("csvBtn");
 const excelBtn = document.getElementById("excelBtn");
 const outputBtn = document.getElementById("outputBtn");
@@ -8,130 +18,130 @@ const excelPath = document.getElementById("excelPath");
 const outputPath = document.getElementById("outputPath");
 
 const progressBar = document.getElementById("progressBar");
+const log = document.getElementById("log");
 
 const products = document.getElementById("products");
 const matched = document.getElementById("matched");
 const updated = document.getElementById("updated");
 const missing = document.getElementById("missing");
 
-console.log(products);
-console.log(matched);
-console.log(updated);
-console.log(missing);
+let csvFile = "";
+let excelFile = "";
+let outputFolder = "";
 
-const log = document.getElementById("log");
+function writeLog(text){
+    log.value += text + "\n";
+    log.scrollTop = log.scrollHeight;
+}
 
-csvBtn.onclick = async () => {
+// انتخاب CSV
+csvBtn.onclick = async ()=>{
 
-    const file = await window.api.selectCSV();
+    const result = await dialog.showOpenDialog({
+        properties:["openFile"],
+        filters:[
+            {name:"CSV",extensions:["csv"]}
+        ]
+    });
 
-    if(file){
+    if(result.canceled) return;
 
-        csvPath.value = file;
-        addLog("✔ CSV Selected");
+    csvFile = result.filePaths[0];
 
-    }
-
-};
-
-excelBtn.onclick = async () => {
-
-    const file = await window.api.selectExcel();
-
-    if(file){
-
-        excelPath.value = file;
-        addLog("✔ Excel Selected");
-
-    }
+    csvPath.value = csvFile;
 
 };
 
-outputBtn.onclick = async () => {
+// انتخاب Excel
+excelBtn.onclick = async ()=>{
 
-    const folder = await window.api.selectOutput();
+    const result = await dialog.showOpenDialog({
+        properties:["openFile"],
+        filters:[
+            {name:"Excel",extensions:["xlsx","xls"]}
+        ]
+    });
 
-    if(folder){
+    if(result.canceled) return;
 
-        outputPath.value = folder;
-        addLog("✔ Output Folder Selected");
+    excelFile = result.filePaths[0];
 
-    }
+    excelPath.value = excelFile;
 
 };
 
+// انتخاب پوشه خروجی
+outputBtn.onclick = async ()=>{
+
+    const result = await dialog.showOpenDialog({
+        properties:["openDirectory"]
+    });
+
+    if(result.canceled) return;
+
+    outputFolder = result.filePaths[0];
+
+    outputPath.value = outputFolder;
+
+};
+
+// اجرای برنامه
 startBtn.onclick = async ()=>{
 
-    if(csvPath.value==="" || excelPath.value===""){
+    try{
 
-        alert("Please select files.");
+        log.value="";
 
-        return;
+        progressBar.value=5;
+
+        writeLog("Reading WooCommerce CSV...");
+
+        const csvProducts = await readCSV(csvFile);
+
+        progressBar.value=25;
+
+        writeLog("Reading Accounting Excel...");
+
+        const excelProducts = readExcel(excelFile);
+
+        progressBar.value=45;
+
+        writeLog("Comparing Products...");
+
+        const result = compareProducts(
+            csvProducts,
+            excelProducts
+        );
+
+        progressBar.value=80;
+
+        const savePath = path.join(
+            outputFolder,
+            "woocommerce_updated.csv"
+        );
+
+        exportCSV(
+            savePath,
+            result.products
+        );
+
+        progressBar.value=100;
+
+        products.innerText=result.products.length;
+        matched.innerText=result.matched;
+        updated.innerText=result.updated;
+        missing.innerText=result.missing;
+
+        writeLog("");
+        writeLog("Done.");
+        writeLog(savePath);
+
+    }catch(err){
+
+        console.error(err);
+
+        writeLog(err.message);
 
     }
 
-    addLog("Reading Files...");
-
-    progressBar.value = 20;
-
-    try {
-
-    const result = await window.api.readFiles(
-
-        csvPath.value,
-
-        excelPath.value
-
-    );
-
-    progressBar.value = 60;
-
-    products.innerText = result.csvRows;
-    matched.innerText = result.excelRows;
-
-    updated.innerText = 0;
-    missing.innerText = 0;
-
-    addLog("CSV Rows : " + result.csvRows);
-    addLog("Excel Rows : " + result.excelRows);
-
-    progressBar.value = 100;
-
-    addLog("Done.");
-
-}
-catch(err){
-
-    console.error(err);
-
-    addLog("ERROR : " + err.message);
-
-}
-
-    progressBar.value = 60;
-
-    products.innerText = result.csvRows;
-
-    matched.innerText = result.excelRows;
-
-    updated.innerText = 0;
-
-    missing.innerText = 0;
-
-    addLog("CSV Rows : "+result.csvRows);
-
-    addLog("Excel Rows : "+result.excelRows);
-
-    progressBar.value = 100;
-
-    addLog("Done.");
-
 };
-
-function addLog(text){
-
-    log.value += text + "\n";
-
-    log.scrollTop = log.scrollHeight;
-
-}
